@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ehsan Atiq - Portfolio Website
+
+A high-performance portfolio website built with Next.js 14, showcasing product design and development work.
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **3D Graphics**: Three.js + React Three Fiber
+- **Deployment**: Vercel
+
+## Features
+
+- ⚡ **Blazing Fast**: Server Components, Static Site Generation, automatic code splitting
+- 🎨 **Rich Animations**: Smooth page transitions and scroll-based animations
+- 🎭 **WebGL/Shaders**: Three.js integration for showcasing 3D work
+- 📱 **Responsive Design**: Mobile-first, works beautifully on all devices
+- 🌗 **Dark Mode**: Automatic dark mode based on system preferences
+- 🚀 **Optimized Images**: Automatic WebP/AVIF conversion, lazy loading
+- 📊 **SEO Optimized**: Server-side rendering, meta tags, sitemap
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+portfolio/
+├── src/
+│   ├── app/                  # Next.js App Router pages
+│   │   ├── page.tsx          # Homepage
+│   │   ├── layout.tsx        # Root layout
+│   │   ├── work/             # Work pages
+│   │   ├── about/            # About page
+│   │   └── motion/           # Motion work page
+│   ├── components/
+│   │   ├── ui/               # UI components
+│   │   ├── animations/       # Framer Motion components
+│   │   └── three/            # Three.js/WebGL components
+│   └── lib/
+│       ├── projects.ts       # Project data
+│       ├── types.ts          # TypeScript types
+│       └── shaders/          # Custom shaders
+├── public/                   # Static assets
+└── tailwind.config.ts        # Tailwind configuration
+```
 
-## Learn More
+## Performance
 
-To learn more about Next.js, take a look at the following resources:
+Expected Lighthouse scores:
+- Performance: 95-100
+- Accessibility: 95-100
+- Best Practices: 95-100
+- SEO: 95-100
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Vercel (Recommended)
 
-## Deploy on Vercel
+1. Push your code to GitHub
+2. Import repository in Vercel
+3. Deploy with zero configuration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Or use Vercel CLI
+npm i -g vercel
+vercel
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Other Platforms
+
+The site works on any platform that supports Next.js:
+- Netlify
+- AWS Amplify
+- Cloudflare Pages
+- Railway
+
+## Customization
+
+### Adding Projects
+
+Edit `src/lib/projects.ts`:
+
+```typescript
+{
+  id: 'project-slug',
+  title: 'Project Title',
+  subtitle: 'Client/Company',
+  description: 'Project description',
+  image: '/images/projects/your-image.jpg',
+  tags: ['Tag1', 'Tag2'],
+  year: '2024',
+  featured: true,
+}
+```
+
+### Customizing Colors
+
+Edit `src/app/globals.css`:
+
+```css
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+```
+
+### Adding Custom Animations
+
+Use the `FadeIn` component or create new animation components in `src/components/animations/`.
+
+## License
+
+© 2024 Ehsan Atiq. All rights reserved.
