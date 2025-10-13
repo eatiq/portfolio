@@ -7,8 +7,6 @@ import VideoSwiper from '@/components/ui/VideoSwiper';
 import VideoOverlay from '@/components/ui/VideoOverlay';
 import VideoSidebar from '@/components/ui/VideoSidebar';
 
-export const runtime = 'edge';
-
 type ProjectData = {
   company: string;
   title: string;
