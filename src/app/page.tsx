@@ -22,7 +22,7 @@ export default function Home() {
           </FadeIn>
           
           <FadeIn delay={0.4}>
-            <p className="text-xl md:text-2xl text-foreground/80 tracking-tight leading-normal text-gray-600">
+            <p className="text-xl md:text-2xl text-foreground/80 tracking-tight leading-normal">
               I am a front end developer turned product designer with over ten years 
               of experience. I operate at the intersection of design and code, currently at Meta.
             </p>
