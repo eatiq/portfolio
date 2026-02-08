@@ -15,13 +15,13 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
         const Lenis = (await import('@studio-freight/lenis')).default;
         
         const lenis = new Lenis({
-          duration: 1.2,
-          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          duration: 0.6,
+          easing: (t: number) => 1 - Math.pow(1 - t, 3),
           orientation: 'vertical',
           gestureOrientation: 'vertical',
           smoothWheel: true,
-          wheelMultiplier: 1,
-          touchMultiplier: 2,
+          wheelMultiplier: 1.2,
+          touchMultiplier: 1.5,
         });
 
         lenisRef.current = lenis;
@@ -33,7 +33,6 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
 
         requestAnimationFrame(raf);
       } catch (e) {
-        // Gracefully degrade if Lenis fails to load
         console.warn('Smooth scroll not available:', e);
       }
     };
