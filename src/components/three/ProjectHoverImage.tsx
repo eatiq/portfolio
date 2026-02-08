@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 
 type ProjectHoverImageProps = {
@@ -9,13 +10,17 @@ type ProjectHoverImageProps = {
 };
 
 export default function ProjectHoverImage({ activeProject, projectImages }: ProjectHoverImageProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   
   // Spring-based smooth following with inertia
   const springX = useSpring(mouseX, { stiffness: 150, damping: 25, mass: 0.5 });
   const springY = useSpring(mouseY, { stiffness: 150, damping: 25, mass: 0.5 });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     mouseX.set(e.clientX + 20);
@@ -27,8 +32,10 @@ export default function ProjectHoverImage({ activeProject, projectImages }: Proj
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [handleMouseMove]);
 
-  return (
-    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-40">
+  if (!mounted) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 pointer-events-none z-40">
       <AnimatePresence mode="wait">
         {activeProject && projectImages[activeProject] && (
           <motion.div
@@ -60,6 +67,7 @@ export default function ProjectHoverImage({ activeProject, projectImages }: Proj
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </div>,
+    document.body
   );
 }

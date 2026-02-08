@@ -76,7 +76,7 @@ export default function Home() {
 
           {/* Archives Link */}
           <FadeIn delay={0.5}>
-            <div className="mt-16 pt-8 border-t border-foreground/10">
+            <div className="mt-16 pt-8">
               <Link 
                 href="/work/archives" 
                 className="text-foreground/40 hover:text-foreground transition-colors text-lg flex items-center gap-2 group"
