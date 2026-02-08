@@ -5,6 +5,7 @@ import PageTransition from '@/components/animations/PageTransition';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
 import Link from 'next/link';
+import { assets } from '@/lib/assets';
 
 type MotionItem = {
   title: string;
@@ -16,30 +17,37 @@ const fullPrototypes: MotionItem[] = [
   {
     title: 'Microsoft Live Shopping',
     description: 'Browsing through live streams and having a clear view of the product offers available along with a smart timed introduction of products.',
+    videoUrl: assets.motion.msLiveProto,
   },
   {
-    title: 'Google Maps Live View',
-    description: 'Prototype utilizing the camera and gyroscope data, the idea is to suggest different activities depending on which direction you choose to start walking towards, along with spontaneous recommendations.',
+    title: 'Microsoft Start Shopping — PDP',
+    description: 'Walkthrough of a product detail page featuring multiple merchants including price insights such as a higher/lower price.',
+    videoUrl: assets.motion.msPdpPrototype,
   },
   {
-    title: 'Microsoft Start Shopping',
-    description: 'Walkthrough of a product detail page featuring multiple merchants including price insights such as a higher/lower price, further.',
+    title: 'Microsoft Products On Hover',
+    description: 'Hovering over products to reveal additional information and details.',
+    videoUrl: assets.motion.msProductsOnHover,
+  },
+  {
+    title: 'Microsoft Trending',
+    description: 'Trending products animation showcasing popular items.',
+    videoUrl: assets.motion.msTrending,
   },
   {
     title: "Carter's Cart and Checkout",
     description: 'Stressing on having minimal distraction on the product cards and a simplified checkout flow contained within the drawer.',
+    videoUrl: assets.motion.carCheckout,
   },
   {
     title: "Carter's Redesigned Search",
-    description: 'Simplified search and search results page with minimal filters to help guide more attention towards product images and help onboard a third party for suggestions.',
+    description: 'Simplified search and search results page with minimal filters to help guide more attention towards product images.',
+    videoUrl: assets.motion.carSearch,
   },
   {
     title: "Carter's Redesigned Home",
     description: 'Final home design that is enabled through motion with appear on scroll, starting from broader offers at the top ending with editorials at the bottom.',
-  },
-  {
-    title: "Carter's Favorites to Purchase",
-    description: 'A quick example of a lottie animation of a broken heart + sunburst that I created was implemented in the app.',
+    videoUrl: assets.motion.carHomeScroll,
   },
 ];
 
@@ -47,45 +55,84 @@ const microInteractions: MotionItem[] = [
   {
     title: 'Microsoft Cashback — Activation',
     description: 'Fun little animation to show when activating cash back making use of the program\'s blue tag logo.',
+    videoUrl: assets.motion.msCbActivated,
   },
   {
     title: 'Microsoft Cashback — Boost',
     description: 'Utilizing an overlay animation, along with text and confetti-ish icons to help really sell the boost.',
+    videoUrl: assets.motion.msCashbackBoosted,
   },
   {
-    title: 'Microsoft Cashback — Card Drop',
-    description: 'Card dropping animation, color change to indicate success along with the confetti to drop to accentuate the message.',
+    title: 'Microsoft Coupon',
+    description: 'Coupon animation micro-interaction.',
+    videoUrl: assets.motion.msCouponMicro,
+  },
+  {
+    title: 'Microsoft Card Link',
+    description: 'Card dropping animation, color change to indicate success along with the confetti to accentuate the message.',
+    videoUrl: assets.motion.msCardlink,
+  },
+  {
+    title: 'Microsoft Drag to Cart',
+    description: 'Drag and drop products to a universal cart concept.',
+    videoUrl: assets.motion.msDragToCart,
+  },
+  {
+    title: "Carter's Wishlist",
+    description: 'Wishlist interaction animation.',
+    videoUrl: assets.motion.carWishlist,
   },
   {
     title: "Carter's Order Completion",
-    description: 'A rocket taking off indicating success in the state yet utilizing the theme of child-like illustrations to go with the theme of the Carter\'s app.',
-  },
-  {
-    title: 'Microsoft Live Shopping — Entry Point',
-    description: 'This card was an entry point on the Edge browser new tab page, the idea was to look at some products at offer when hovering over.',
-  },
-  {
-    title: 'Microsoft Edge New Tab Page',
-    description: 'Another entry point in a crowded page utilizing subtle motion to indicate the trending nature of the product.',
-  },
-  {
-    title: 'Windows Shopping Concept',
-    description: 'Drag and drop products to a universal cart on Windows task bar to either save or go through a Microsoft Wallet purchase flow.',
+    description: 'A rocket taking off indicating success utilizing the theme of child-like illustrations.',
+    videoUrl: assets.motion.carRocketTakeoff,
   },
 ];
 
 const logoAnimations: MotionItem[] = [
-  { title: 'Poker App Splash Screen', description: 'Splash screen animation for a Poker app.' },
-  { title: "Carter's Logo Drop", description: "Carter's three logo drop splash animation." },
-  { title: "Carter's Logo Animation", description: "Carter's logo animation — this one has some audio going on too." },
+  {
+    title: 'Poker App Splash Screen',
+    description: 'Splash screen animation for a Poker app.',
+    videoUrl: assets.motion.igePokerolla,
+  },
+  {
+    title: "Carter's Logo Drop",
+    description: "Carter's three logo drop splash animation.",
+    videoUrl: assets.motion.carLogo,
+  },
+  {
+    title: "Carter's Logo Burst",
+    description: "Carter's logo burst animation.",
+    videoUrl: assets.motion.carBurst,
+  },
+  {
+    title: "Carter's Plane",
+    description: "Carter's plane logo animation.",
+    videoUrl: assets.motion.carPlane,
+  },
 ];
 
 const animationLoops: MotionItem[] = [
-  { title: 'Heart', description: 'Heart micro-interaction.' },
-  { title: 'Heart Break', description: 'Heart break micro-interaction.' },
-  { title: 'Burst', description: 'Burst micro-interaction.' },
-  { title: 'Coupon', description: 'Coupon animation.' },
-  { title: 'Rocket', description: 'Rocket animation loop.' },
+  {
+    title: 'Heart',
+    description: 'Heart micro-interaction.',
+    videoUrl: assets.motion.carHeart,
+  },
+  {
+    title: 'Heart Break',
+    description: 'Heart break micro-interaction.',
+    videoUrl: assets.motion.carHeartbreak,
+  },
+  {
+    title: 'Splash',
+    description: 'Splash animation.',
+    videoUrl: assets.motion.carSplash,
+  },
+  {
+    title: 'Google Maps',
+    description: 'Google Maps live view animation.',
+    videoUrl: assets.motion.gooMapFinal,
+  },
 ];
 
 function MotionSection({ title, items, startDelay = 0 }: { title: string; items: MotionItem[]; startDelay?: number }) {
@@ -101,9 +148,20 @@ function MotionSection({ title, items, startDelay = 0 }: { title: string; items:
         {items.map((item, idx) => (
           <FadeIn key={item.title} delay={startDelay + 0.05 + idx * 0.05}>
             <div className="group rounded-2xl border border-foreground/10 overflow-hidden hover:border-foreground/20 transition-colors">
-              {/* Video placeholder */}
-              <div className="aspect-[4/3] bg-foreground/5 flex items-center justify-center">
-                <div className="text-foreground/20 text-sm">Video</div>
+              {/* Video */}
+              <div className="aspect-[4/3] bg-foreground/5 flex items-center justify-center overflow-hidden">
+                {item.videoUrl ? (
+                  <video
+                    src={item.videoUrl}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="text-foreground/20 text-sm">Video</div>
+                )}
               </div>
               <div className="p-5">
                 <h3 className="text-lg font-semibold tracking-tight mb-2">

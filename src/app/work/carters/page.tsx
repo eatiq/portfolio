@@ -3,6 +3,8 @@
 import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
 import CaseStudySection from '@/components/ui/CaseStudySection';
 import ParallaxImage from '@/components/animations/ParallaxImage';
+import ScrollReveal from '@/components/animations/ScrollReveal';
+import { assets } from '@/lib/assets';
 
 export default function CartersPage() {
   return (
@@ -33,6 +35,16 @@ export default function CartersPage() {
       }
       prevProject={{ label: 'Archives', href: '/work/archives' }}
     >
+      {/* Hero Image */}
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <img src={assets.carters.hero} alt="Carter's Mobile App Redesign" className="w-full rounded-2xl" />
+      </ParallaxImage>
+
+      {/* Overview Image */}
+      <ScrollReveal>
+        <img src={assets.carters.overview} alt="Carter's app overview" className="w-full rounded-2xl mb-16 md:mb-24" />
+      </ScrollReveal>
+
       {/* Scope */}
       <CaseStudySection label="01" title="App Redesign Scope">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -54,13 +66,6 @@ export default function CartersPage() {
           </div>
         </div>
       </CaseStudySection>
-
-      {/* Image placeholder with parallax */}
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
-          <span className="text-foreground/20 text-sm">App redesign overview visual</span>
-        </div>
-      </ParallaxImage>
 
       {/* Problem */}
       <CaseStudySection label="02" title="The Problem: Cart & Checkout">
@@ -99,14 +104,14 @@ export default function CartersPage() {
         </div>
       </CaseStudySection>
 
-      {/* Image placeholder with parallax */}
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
-          <span className="text-foreground/20 text-sm">Research & exploration visual</span>
-        </div>
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.carters.research} alt="Research process" className="w-full rounded-2xl" />
       </ParallaxImage>
+      <ScrollReveal>
+        <img src={assets.carters.researchDetail} alt="Research detail" className="w-full rounded-2xl mb-16 md:mb-24" />
+      </ScrollReveal>
 
-      {/* Solution */}
+      {/* Redesign */}
       <CaseStudySection label="04" title="Solution">
         <p>
           The final design introduced a dramatically shorter cart with a sticky checkout 
@@ -122,9 +127,61 @@ export default function CartersPage() {
         </p>
       </CaseStudySection>
 
+      {/* Redesign images */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 md:mb-12">
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.redesign1} alt="Redesign exploration 1" className="w-full rounded-2xl" />
+        </ParallaxImage>
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.redesign2} alt="Redesign exploration 2" className="w-full rounded-2xl" />
+        </ParallaxImage>
+      </div>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.carters.redesign3} alt="Redesign exploration 3" className="w-full rounded-2xl" />
+      </ParallaxImage>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16 md:mb-24">
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.redesign4} alt="Redesign exploration 4" className="w-full rounded-2xl" />
+        </ParallaxImage>
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.redesign5} alt="Redesign exploration 5" className="w-full rounded-2xl" />
+        </ParallaxImage>
+      </div>
+
+      {/* Prototype videos */}
+      <CaseStudySection label="" title="Prototypes">
+        <p>
+          High-fidelity prototypes were created to validate the new checkout flow and 
+          demonstrate the interactions to stakeholders and the engineering team.
+        </p>
+      </CaseStudySection>
+
+      <ScrollReveal>
+        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+          <video src={assets.carters.videoCheckout} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        </div>
+        <p className="text-sm text-foreground/50 mb-8 text-center">Checkout flow prototype</p>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+          <video src={assets.carters.videoHomeScroll} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        </div>
+        <p className="text-sm text-foreground/50 mb-8 text-center">Home page scroll prototype</p>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+          <video src={assets.carters.videoSearch} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        </div>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Search experience prototype</p>
+      </ScrollReveal>
+
       {/* Impact */}
       <CaseStudySection label="05" title="Impact">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div className="p-6 rounded-xl border border-foreground/10">
             <p className="text-3xl md:text-4xl font-bold tracking-tight mb-2">4.8/5</p>
             <p className="text-sm text-foreground/50">App Store rating after redesign</p>
@@ -135,6 +192,57 @@ export default function CartersPage() {
           </div>
         </div>
       </CaseStudySection>
+
+      {/* Impact images */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 md:mb-12">
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.impact1} alt="Impact visual 1" className="w-full rounded-2xl" />
+        </ParallaxImage>
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.impact2} alt="Impact visual 2" className="w-full rounded-2xl" />
+        </ParallaxImage>
+      </div>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.carters.impact3} alt="Impact visual 3" className="w-full rounded-2xl" />
+      </ParallaxImage>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 md:mb-12">
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.impact4} alt="Impact visual 4" className="w-full rounded-2xl" />
+        </ParallaxImage>
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.impact5} alt="Impact visual 5" className="w-full rounded-2xl" />
+        </ParallaxImage>
+      </div>
+
+      {/* Extra images */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 md:mb-12">
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.extra1} alt="Additional work 1" className="w-full rounded-2xl" />
+        </ParallaxImage>
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.extra2} alt="Additional work 2" className="w-full rounded-2xl" />
+        </ParallaxImage>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 md:mb-12">
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.extra3} alt="Additional work 3" className="w-full rounded-2xl" />
+        </ParallaxImage>
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.extra4} alt="Additional work 4" className="w-full rounded-2xl" />
+        </ParallaxImage>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16 md:mb-24">
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.extra5} alt="Additional work 5" className="w-full rounded-2xl" />
+        </ParallaxImage>
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.carters.extra6} alt="Additional work 6" className="w-full rounded-2xl" />
+        </ParallaxImage>
+      </div>
     </CaseStudyLayout>
   );
 }

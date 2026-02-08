@@ -2,8 +2,10 @@
 
 import FadeIn from '@/components/animations/FadeIn';
 import PageTransition from '@/components/animations/PageTransition';
+import ParallaxImage from '@/components/animations/ParallaxImage';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
+import { assets } from '@/lib/assets';
 
 export default function AboutPage() {
   return (
@@ -59,6 +61,11 @@ export default function AboutPage() {
             </p>
           </FadeIn>
 
+          {/* Photo 1 */}
+          <ParallaxImage className="rounded-2xl overflow-hidden">
+            <img src={assets.about.photo1} alt="Ehsan Atiq" className="w-full rounded-2xl" />
+          </ParallaxImage>
+
           <FadeIn delay={0.1}>
             <p className="text-2xl md:text-4xl font-medium tracking-tight leading-snug">
               My design journey started in high school, where I would obsessively watch 
@@ -68,6 +75,11 @@ export default function AboutPage() {
             </p>
           </FadeIn>
 
+          {/* Photo 2 */}
+          <ParallaxImage className="rounded-2xl overflow-hidden">
+            <img src={assets.about.photo2} alt="Ehsan Atiq" className="w-full rounded-2xl" />
+          </ParallaxImage>
+
           <FadeIn delay={0.1}>
             <p className="text-2xl md:text-4xl font-medium tracking-tight leading-snug text-foreground/70">
               My computer science degree deeply influenced my design philosophy, and in 
@@ -75,6 +87,11 @@ export default function AboutPage() {
               Hunt. This really cemented my love for UX and my pursuit of it as a career.
             </p>
           </FadeIn>
+
+          {/* Photo 3 */}
+          <ParallaxImage className="rounded-2xl overflow-hidden">
+            <img src={assets.about.photo3} alt="Ehsan Atiq" className="w-full rounded-2xl" />
+          </ParallaxImage>
 
           <FadeIn delay={0.1}>
             <p className="text-2xl md:text-4xl font-medium tracking-tight leading-snug">

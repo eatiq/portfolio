@@ -33,7 +33,7 @@ export default function ProjectHoverImage({ activeProject, projectImages }: Proj
         {activeProject && projectImages[activeProject] && (
           <motion.div
             key={activeProject}
-            className="absolute w-[320px] h-[200px] overflow-hidden rounded-lg"
+            className="absolute w-[320px] h-[200px] overflow-hidden rounded-lg shadow-2xl"
             style={{
               x: springX,
               y: springY,
@@ -48,20 +48,15 @@ export default function ProjectHoverImage({ activeProject, projectImages }: Proj
               mass: 0.8,
             }}
           >
-            {/* Gradient overlay for the glass/refraction look */}
+            {/* Subtle glass overlay for the refraction look */}
             <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 to-foreground/10 z-10 mix-blend-overlay" />
             
-            {/* Placeholder with project-specific gradient since we don't have real images yet */}
-            <div 
-              className="w-full h-full flex items-center justify-center"
-              style={{
-                background: projectImages[activeProject],
-              }}
-            >
-              <span className="text-white/60 text-sm font-medium tracking-wider uppercase">
-                {activeProject.replace('-', ' ')}
-              </span>
-            </div>
+            {/* Real project thumbnail image */}
+            <img
+              src={projectImages[activeProject]}
+              alt={activeProject.replace('-', ' ')}
+              className="w-full h-full object-cover"
+            />
           </motion.div>
         )}
       </AnimatePresence>

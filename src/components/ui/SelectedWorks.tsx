@@ -5,6 +5,7 @@ import ProjectHoverImage from '@/components/three/ProjectHoverImage';
 import Link from 'next/link';
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { assets } from '@/lib/assets';
 
 type SelectedWorkItem = {
   company: string;
@@ -16,11 +17,11 @@ interface SelectedWorksProps {
   items?: SelectedWorkItem[];
 }
 
-// Gradient placeholders for each project (will be replaced with real images later)
+// Real project thumbnail images from R2
 const projectImages: Record<string, string> = {
-  'meta-ai': 'linear-gradient(135deg, #0668E1 0%, #1877F2 50%, #4599FF 100%)',
-  'copilot-shopping': 'linear-gradient(135deg, #0F6CBD 0%, #115EA3 50%, #0078D4 100%)',
-  'windows-search': 'linear-gradient(135deg, #2D2D2D 0%, #404040 50%, #505050 100%)',
+  'meta-ai': assets.homepage.metaThumb,
+  'copilot-shopping': assets.homepage.copilotThumb,
+  'windows-search': assets.homepage.windowsThumb,
 };
 
 export default function SelectedWorks({

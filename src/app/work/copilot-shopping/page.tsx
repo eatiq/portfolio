@@ -4,6 +4,8 @@ import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
 import CaseStudySection from '@/components/ui/CaseStudySection';
 import ParallaxImage from '@/components/animations/ParallaxImage';
 import AnimatedCounter from '@/components/animations/AnimatedCounter';
+import ScrollReveal from '@/components/animations/ScrollReveal';
+import { assets } from '@/lib/assets';
 
 export default function CopilotShoppingPage() {
   return (
@@ -37,86 +39,270 @@ export default function CopilotShoppingPage() {
       prevProject={{ label: 'Meta AI', href: '/work/meta-ai' }}
       nextProject={{ label: 'Windows Search', href: '/work/windows-search' }}
     >
+      {/* Hero Image */}
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.hero} alt="Copilot Shopping hero" className="w-full rounded-2xl" />
+      </ParallaxImage>
+
+      {/* Overview Image */}
+      <ScrollReveal>
+        <img src={assets.copilot.overview} alt="Copilot Shopping overview" className="w-full rounded-2xl mb-16 md:mb-24" />
+      </ScrollReveal>
+
       {/* Problem */}
       <CaseStudySection label="01" title="Chat isn&apos;t ideal for shopping">
         <p>
-          The core challenge was that a conversational chat interface is fundamentally 
-          not designed for shopping. Users received long paragraphs of text that lacked 
-          images, pricing, and product metadata — the very things shoppers need to make 
-          decisions.
+          For shopping queries, we found that users often received long paragraphs of text, 
+          which, while informative, lacked crucial elements like images, pricing, and metadata, 
+          making it difficult to lead to a buying decision — it didn&apos;t give a sense of a shoppable product.
+        </p>
+      </CaseStudySection>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.problemChatResponse} alt="Initial responses for shopping prompts were lengthy, lacked visual aids and metadata" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Initial responses for shopping prompts were lengthy, lacked visual aids and metadata.</p>
+      </ScrollReveal>
+
+      <CaseStudySection label="" title="">
+        <p>
+          We had some preliminary research that was done as part of other Microsoft Shopping 
+          products and we had some insights about our customers&apos; preferences:
         </p>
         <ul className="list-disc list-inside space-y-2 ml-2">
-          <li>Users received long paragraphs of text lacking images, pricing, and metadata</li>
-          <li>Customers loved to compare products side by side</li>
-          <li>Customers wanted to be told which products are best, with clear advantages</li>
-          <li>Displaying large data sets in a limited chat interface space was challenging</li>
-          <li>The engineering team had attempted solutions without design support</li>
+          <li><strong>Customers loved to compare products</strong> — They enjoyed examining the various attributes of an item and comparing with others to make an informed decision.</li>
+          <li><strong>Tell me which products are the best</strong> — They wouldn&apos;t object to being informed about the superior option, provided the advantages were explained clearly.</li>
         </ul>
       </CaseStudySection>
 
-      {/* Image placeholder with parallax */}
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
-          <span className="text-foreground/20 text-sm">Case study visual</span>
-        </div>
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.problemMsStartShopping} alt="Microsoft Start shopping was a product that we used for research" className="w-full rounded-2xl" />
       </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Microsoft Start shopping was a product that we used for research</p>
+      </ScrollReveal>
 
-      {/* Process */}
-      <CaseStudySection label="02" title="Process">
+      <CaseStudySection label="" title="Displaying large data sets">
         <p>
-          The process began with an initial exploration based on the engineering team&apos;s 
-          prior attempts. I researched existing paradigms, including Cortana&apos;s virtual 
-          assistant chat interfaces, to understand what had been tried before.
+          Copilot would be the first time that GPT goodness was being grounded in real time search data. 
+          This generated an overwhelming number of data points but restricted to the limited space of the 
+          chat interface. During beta pre-launch, our customers indicated that a table format for such 
+          longer sets of data is preferred.
         </p>
         <p>
-          A key insight emerged early: <strong>&ldquo;Less is more — let the customer decide.&rdquo;</strong> 
-          This principle guided the design through multiple layout explorations.
-        </p>
-        <p>
-          We conducted a user survey presenting four layout options (A, B, C, D). Options 
-          A and D were the most preferred. A follow-up qualitative study confirmed that 
-          7 out of 10 participants preferred Concept D — the horizontal layout — which 
-          became the foundation of the final design.
-        </p>
-        <p>
-          The design was then refined with product attributes, summarized reviews, and 
-          filter pills to give users quick access to the information they needed.
+          Our engineering team had a head start in trying to figure how to incorporate images and displaying 
+          this table but were doing so without any design support. We also had executive feedback to 
+          incorporate newer functionalities like filter/sort, reviews etc.
         </p>
       </CaseStudySection>
 
-      {/* Image placeholder with parallax */}
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
-          <span className="text-foreground/20 text-sm">Process exploration visual</span>
-        </div>
-      </ParallaxImage>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 md:mb-12">
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.copilot.problemEngAttempt1} alt="Early engineering attempt 1" className="w-full rounded-2xl" />
+        </ParallaxImage>
+        <ParallaxImage className="rounded-2xl overflow-hidden">
+          <img src={assets.copilot.problemEngAttempt2} alt="Early engineering attempt 2" className="w-full rounded-2xl" />
+        </ParallaxImage>
+      </div>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Early attempts made by the engineering team with no design support</p>
+      </ScrollReveal>
 
       {/* Solution */}
-      <CaseStudySection label="03" title="A well rounded, shopping answer">
+      <CaseStudySection label="02" title="A well rounded, shopping answer">
         <p>
-          The final solution introduced a horizontal format layout that displayed product 
-          images, metadata, and GPT-generated summaries in a scannable format. Key 
-          features included:
+          The final design features a layout that accommodated varying amounts of product information 
+          in a horizontal format to clearly display images, metadata, and GPT summaries.
         </p>
-        <ul className="list-disc list-inside space-y-2 ml-2">
-          <li>Horizontal product tiles with images, pricing, and key attributes</li>
-          <li>Digested reviews — a GPT-powered summary of public reviews</li>
-          <li>Progressive disclosure via overlay for comparison tables and product detail pages</li>
-          <li>Adapted layouts for mobile and Edge browser (narrower format)</li>
-          <li>Product carousel optimized for mobile interaction</li>
-        </ul>
+        <p>
+          Throughout the process, we learnt about the capabilities of GPT, one of the ideas that I 
+          added as part of the final solution was a digested review — a summary of all the publicly 
+          available reviews.
+        </p>
       </CaseStudySection>
 
-      {/* Image placeholder with parallax */}
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
-          <span className="text-foreground/20 text-sm">Final solution visual</span>
-        </div>
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.solutionFinal} alt="Final Solution - A short intro and conclusion helps tie the natural response of the assistant together" className="w-full rounded-2xl" />
       </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Final Solution — A short intro and conclusion helps tie the natural response of the assistant together.</p>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <img src={assets.copilot.solutionDetails} alt="Details of the final answer" className="w-full rounded-2xl mb-8 md:mb-12" />
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Details of the final answer</p>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <img src={assets.copilot.solutionTileVariants} alt="Horizontal Product tile variants" className="w-full rounded-2xl mb-8 md:mb-12" />
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Horizontal Product tile variants</p>
+      </ScrollReveal>
+
+      <CaseStudySection label="" title="More to what meets the eye">
+        <p>
+          Through user testing we consistently found that progressive disclosure of information worked 
+          best to handle larger data sets. I utilized an overlay to display further details such as the 
+          comparison table and even a product detail page.
+        </p>
+      </CaseStudySection>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.solutionComparisonTable} alt="Comparison table and detailed attributes as part of an overlay" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Comparison table and detailed attributes as part of an overlay</p>
+      </ScrollReveal>
+
+      {/* Videos */}
+      <ScrollReveal>
+        <div className="mb-16 md:mb-24 space-y-8">
+          <div className="rounded-2xl overflow-hidden">
+            <video src={assets.copilot.videoTableCompar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+          </div>
+          <p className="text-sm text-foreground/50 text-center">Variations of the product cards for the table</p>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <div className="mb-16 md:mb-24 space-y-8">
+          <div className="rounded-2xl overflow-hidden">
+            <video src={assets.copilot.videoTablePdp} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+          </div>
+          <p className="text-sm text-foreground/50 text-center">Clicking on the product tiles leads you to the PDP</p>
+        </div>
+      </ScrollReveal>
+
+      <CaseStudySection label="" title="Adapted for different formats">
+        <p>
+          The design had to be adapted for a narrower format, for mobile and the Edge web browser. 
+          I decided to focus on the image and metadata which gives a sense of the product, truncating 
+          the summary with the ability to see more if necessary.
+        </p>
+      </CaseStudySection>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.solutionEdgeBrowser} alt="Clicking on any product opens the respective web page on the left" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Clicking on any product opens the respective web page on the left</p>
+      </ScrollReveal>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.solutionMobileCarousel} alt="For the mobile version, going with a product carousel made best sense" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">For the mobile version, going with a product carousel made best sense</p>
+      </ScrollReveal>
+
+      {/* Process */}
+      <CaseStudySection label="03" title="Initial exploration">
+        <p>
+          To begin I used the engineering team&apos;s attempts to base my explorations. I began by going 
+          through existing research for Cortana the virtual assistant that also utilized chat-like 
+          interfaces. I found an insight that was helpful:
+        </p>
+        <blockquote className="border-l-2 border-foreground/20 pl-4 my-4 italic text-foreground/70">
+          Insight: Less is more, let the customer decide. Most customers don&apos;t want to be overwhelmed 
+          with information up front and would much rather choose how much information is visible to 
+          them with explicit inputs.
+        </blockquote>
+      </CaseStudySection>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.processExploration} alt="I developed multiple layouts of information, some made sense, some absolutely did not" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">I developed multiple layouts of information, some made sense, some absolutely did not</p>
+      </ScrollReveal>
+
+      <CaseStudySection label="" title="Feedback and user survey">
+        <p>
+          After presenting these initial ideas and going through an initial review with my stakeholders, 
+          I had a good idea of which options had potential. I decided to narrow down to four options and 
+          conduct a user survey using our internal tool.
+        </p>
+      </CaseStudySection>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.processSurveyOptions} alt="Option A and C look into a vertical layout whereas B and D look at a horizontal layout" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-8 text-center">Option A and C look into a vertical layout of the image and information whereas B and D look at a horizontal layout</p>
+      </ScrollReveal>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.processSurveyResults} alt="Concept A and D were the most preferred" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Result Screenshots — Concept A and D (outlined in green) from the above screenshot were the most preferred</p>
+      </ScrollReveal>
+
+      <CaseStudySection label="" title="Qualitative study">
+        <p>
+          The results from the survey were encouraging. Just to be sure I wanted to run a qualitative 
+          user test so that I can be double sure and have some additional user insights.
+        </p>
+      </CaseStudySection>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.processQualitativeStudy} alt="Three concepts with the same information that were used to validate" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-8 text-center">Three concepts with the same information that were used to validate the internal feedback tool</p>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <img src={assets.copilot.processQualitativeResults} alt="Results from the qualitative study" className="w-full rounded-2xl mb-8 md:mb-12" />
+        <p className="text-sm text-foreground/50 mb-8 text-center">Results from the qualitative study</p>
+      </ScrollReveal>
+
+      <CaseStudySection label="" title="">
+        <p>
+          Most participants (7 out of 10) had a clear preference for Concept D (Horizontal Layout). 
+          One of the reasons that was mentioned was that information in rows is easier to read as 
+          that&apos;s the natural manner of how our eyes go about reading a sentence.
+        </p>
+        <blockquote className="border-l-2 border-foreground/20 pl-4 my-4 italic text-foreground/70">
+          &ldquo;I think it looks simple and kind of easy to go through the information. It would 
+          definitely help go through the information, kind of more distinct.&rdquo;
+          <footer className="text-sm mt-2 not-italic text-foreground/40">— Male participant, 30</footer>
+        </blockquote>
+        <blockquote className="border-l-2 border-foreground/20 pl-4 my-4 italic text-foreground/70">
+          &ldquo;I don&apos;t need to search by myself separately. I can get those details in that place 
+          when I click on it so I feel like that would be sufficient.&rdquo;
+          <footer className="text-sm mt-2 not-italic text-foreground/40">— Female participant, 35</footer>
+        </blockquote>
+      </CaseStudySection>
+
+      <CaseStudySection label="" title="Refinement">
+        <p>
+          Now that it was validated that the horizontally laid out concept was the most preferred, 
+          I started fine tuning that direction. At this stage, I was exploring newer ideas such as 
+          adding attributes in a row below, incorporating a summarized review and more.
+        </p>
+      </CaseStudySection>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.processRefinement} alt="Adding highlights: Trying out different pieces of information such as attributes, accolades in the form of a pill" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Adding highlights: Trying out different pieces of information such as attributes, accolades in the form of a pill</p>
+      </ScrollReveal>
 
       {/* Impact */}
-      <CaseStudySection label="04" title="Impact">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <CaseStudySection label="04" title="Impact and learnings">
+        <p>
+          Upon launch, Copilot attracted ~5M+ daily active users, demonstrating its immediate 
+          popularity and relevance. Shopping queries had a contributing factor to the same.
+        </p>
+        <p>
+          Working on this project helped me understand the complexities of integrating design with 
+          AI-generated content in the e-commerce space. It was a high-stakes, fast-paced project 
+          that challenged me to balance stakeholder needs and deliver a design but all in all 
+          it&apos;s a time I was excited.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
           <div className="p-6 rounded-xl border border-foreground/10">
             <div className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
               ~<AnimatedCounter value={5000000} suffix="+" className="tabular-nums" />

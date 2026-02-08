@@ -4,6 +4,8 @@ import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
 import CaseStudySection from '@/components/ui/CaseStudySection';
 import ParallaxImage from '@/components/animations/ParallaxImage';
 import AnimatedCounter from '@/components/animations/AnimatedCounter';
+import ScrollReveal from '@/components/animations/ScrollReveal';
+import { assets } from '@/lib/assets';
 
 export default function WindowsSearchPage() {
   return (
@@ -31,6 +33,11 @@ export default function WindowsSearchPage() {
       prevProject={{ label: 'Copilot Shopping', href: '/work/copilot-shopping' }}
       nextProject={{ label: 'Archives', href: '/work/archives' }}
     >
+      {/* Hero Image */}
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <img src={assets.windows.hero} alt="Windows Search hero" className="w-full rounded-2xl" />
+      </ParallaxImage>
+
       {/* Scope */}
       <CaseStudySection label="01" title="Scope of Work">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -53,12 +60,12 @@ export default function WindowsSearchPage() {
         </div>
       </CaseStudySection>
 
-      {/* Image placeholder with parallax */}
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
-          <span className="text-foreground/20 text-sm">Windows Search overview visual</span>
-        </div>
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.windows.scope} alt="Windows Search scope overview" className="w-full rounded-2xl" />
       </ParallaxImage>
+      <ScrollReveal>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Overview of the Windows Search experience</p>
+      </ScrollReveal>
 
       {/* Case Study: Loading Indicator */}
       <CaseStudySection label="02" title="Creating a Loading Indicator">
@@ -69,6 +76,10 @@ export default function WindowsSearchPage() {
           entirely because they assumed the documents simply weren&apos;t there.
         </p>
       </CaseStudySection>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.windows.loadingStates} alt="Loading states exploration" className="w-full rounded-2xl" />
+      </ParallaxImage>
 
       {/* Process */}
       <CaseStudySection label="03" title="Process">
@@ -83,24 +94,59 @@ export default function WindowsSearchPage() {
           in favor of a progress bar — a widely recognized pattern that remains visible 
           even at the millisecond range.
         </p>
+      </CaseStudySection>
+
+      {/* Videos showing the shimmer and variants */}
+      <ScrollReveal>
+        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+          <video src={assets.windows.videoShimmer} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        </div>
+        <p className="text-sm text-foreground/50 mb-8 text-center">Shimmer effect exploration</p>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+          <video src={assets.windows.videoShimVar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        </div>
+        <p className="text-sm text-foreground/50 mb-8 text-center">Shimmer variants</p>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+          <video src={assets.windows.videoDropdown} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        </div>
+        <p className="text-sm text-foreground/50 mb-8 text-center">Dropdown animation</p>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+          <video src={assets.windows.videoProviderbar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        </div>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Provider bar loading</p>
+      </ScrollReveal>
+
+      <CaseStudySection label="" title="">
         <p>
           The placement was carefully considered. Since user attention naturally goes to 
           the &ldquo;Best Match&rdquo; result at the top, the progress bar was placed at the top 
           edge of the search panel. It only triggers when the user completes typing, 
           avoiding unnecessary visual noise during active input.
         </p>
-        <p>
-          Multiple variants were explored with different thicknesses and padding from the 
-          edges to find the right balance of visibility and subtlety.
-        </p>
       </CaseStudySection>
 
-      {/* Image placeholder with parallax */}
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
-          <span className="text-foreground/20 text-sm">Loading indicator exploration visual</span>
+      <ScrollReveal>
+        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+          <video src={assets.windows.videoTopEdge} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
-      </ParallaxImage>
+        <p className="text-sm text-foreground/50 mb-8 text-center">Top edge progress bar placement</p>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+          <video src={assets.windows.videoTopWkey} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        </div>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Progress bar with Windows key activation</p>
+      </ScrollReveal>
 
       {/* Solution */}
       <CaseStudySection label="04" title="Solution">
@@ -111,6 +157,25 @@ export default function WindowsSearchPage() {
         </p>
       </CaseStudySection>
 
+      <ScrollReveal>
+        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+          <video src={assets.windows.videoFinal} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        </div>
+        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Final solution — the loading indicator in action</p>
+      </ScrollReveal>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.windows.searchBox} alt="Windows Search box design" className="w-full rounded-2xl" />
+      </ParallaxImage>
+
+      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <img src={assets.windows.details} alt="Design details" className="w-full rounded-2xl" />
+      </ParallaxImage>
+
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <img src={assets.windows.final} alt="Final design" className="w-full rounded-2xl" />
+      </ParallaxImage>
+
       {/* Learnings */}
       <CaseStudySection label="05" title="Learnings">
         <blockquote className="border-l-2 border-foreground/20 pl-6 italic text-lg">
@@ -119,6 +184,10 @@ export default function WindowsSearchPage() {
           kind that users never consciously notice.&rdquo;
         </blockquote>
       </CaseStudySection>
+
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <img src={assets.windows.learnings} alt="Learnings" className="w-full rounded-2xl" />
+      </ParallaxImage>
 
       {/* Impact */}
       <CaseStudySection label="06" title="Impact">
