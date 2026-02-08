@@ -13,22 +13,22 @@ export const metadata: Metadata = {
     default: "Ehsan Atiq - Product Designer & Frontend Developer",
     template: "%s | Ehsan Atiq",
   },
-  description: "Front end developer turned product designer with over eight years of experience. Operating at the intersection of design and code, most recently with Microsoft.",
-  keywords: ["Product Designer", "Frontend Developer", "UI/UX", "Microsoft", "Portfolio"],
+  description: "Front end developer turned product designer with over ten years of experience. Operating at the intersection of design and code, currently at Meta.",
+  keywords: ["Product Designer", "Frontend Developer", "UI/UX", "Meta", "Microsoft", "Portfolio"],
   authors: [{ name: "Ehsan Atiq" }],
   creator: "Ehsan Atiq",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ehsanatiq.com",
+    url: "https://ehsan.fyi",
     title: "Ehsan Atiq - Product Designer & Frontend Developer",
-    description: "Front end developer turned product designer with over eight years of experience.",
+    description: "Front end developer turned product designer with over ten years of experience. Currently at Meta.",
     siteName: "Ehsan Atiq Portfolio",
   },
   twitter: {
     card: "summary_large_image",
     title: "Ehsan Atiq - Product Designer & Frontend Developer",
-    description: "Front end developer turned product designer with over eight years of experience.",
+    description: "Front end developer turned product designer with over ten years of experience. Currently at Meta.",
   },
 };
 

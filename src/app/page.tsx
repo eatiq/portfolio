@@ -2,6 +2,9 @@
 
 import FadeIn from '@/components/animations/FadeIn';
 import SelectedWorks from '@/components/ui/SelectedWorks';
+import Navigation from '@/components/ui/Navigation';
+import Footer from '@/components/ui/Footer';
+import Link from 'next/link';
 
 export default function Home() {
   const scrollToSection = () => {
@@ -12,8 +15,10 @@ export default function Home() {
 
   return (
     <div>
+      <Navigation />
+
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-12 relative">
+      <section className="min-h-screen flex flex-col items-center justify-center px-6 md:px-12 relative">
         <div className="max-w-4xl w-full">
           <FadeIn delay={0.2}>
             <h1 className="text-5xl font-medium md:text-8xl tracking-tighter leading-normal">
@@ -51,11 +56,36 @@ export default function Home() {
       </section>
 
       {/* Work Section */}
-      <section id="work-section" className="min-h-screen flex items-center justify-center px-12 py-24">
+      <section id="work-section" className="min-h-screen flex flex-col items-center justify-center px-6 md:px-12 py-24">
         <div className="max-w-5xl w-full">
           <SelectedWorks />
+
+          {/* Archives Link */}
+          <FadeIn delay={0.5}>
+            <div className="mt-16 pt-8 border-t border-foreground/10">
+              <Link 
+                href="/work/archives" 
+                className="text-foreground/40 hover:text-foreground transition-colors text-lg flex items-center gap-2 group"
+              >
+                <span>From the archives</span>
+                <svg 
+                  className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                  fill="none" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth="2" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path d="M9 5l7 7-7 7"></path>
+                </svg>
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
