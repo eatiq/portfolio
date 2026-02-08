@@ -18,7 +18,7 @@ export default function ProjectHoverImage({ activeProject, projectImages }: Proj
   const springY = useSpring(mouseY, { stiffness: 150, damping: 25, mass: 0.5 });
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    mouseX.set(e.clientX - 160);
+    mouseX.set(e.clientX + 20);
     mouseY.set(e.clientY - 100);
   }, [mouseX, mouseY]);
 
