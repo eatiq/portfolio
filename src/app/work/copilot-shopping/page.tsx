@@ -2,7 +2,8 @@
 
 import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
 import CaseStudySection from '@/components/ui/CaseStudySection';
-import FadeIn from '@/components/animations/FadeIn';
+import ParallaxImage from '@/components/animations/ParallaxImage';
+import AnimatedCounter from '@/components/animations/AnimatedCounter';
 
 export default function CopilotShoppingPage() {
   return (
@@ -53,12 +54,12 @@ export default function CopilotShoppingPage() {
         </ul>
       </CaseStudySection>
 
-      {/* Image placeholder */}
-      <FadeIn delay={0.1}>
-        <div className="mb-16 md:mb-24 rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
+      {/* Image placeholder with parallax */}
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
           <span className="text-foreground/20 text-sm">Case study visual</span>
         </div>
-      </FadeIn>
+      </ParallaxImage>
 
       {/* Process */}
       <CaseStudySection label="02" title="Process">
@@ -83,12 +84,12 @@ export default function CopilotShoppingPage() {
         </p>
       </CaseStudySection>
 
-      {/* Image placeholder */}
-      <FadeIn delay={0.1}>
-        <div className="mb-16 md:mb-24 rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
+      {/* Image placeholder with parallax */}
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
           <span className="text-foreground/20 text-sm">Process exploration visual</span>
         </div>
-      </FadeIn>
+      </ParallaxImage>
 
       {/* Solution */}
       <CaseStudySection label="03" title="A well rounded, shopping answer">
@@ -106,18 +107,20 @@ export default function CopilotShoppingPage() {
         </ul>
       </CaseStudySection>
 
-      {/* Image placeholder */}
-      <FadeIn delay={0.1}>
-        <div className="mb-16 md:mb-24 rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
+      {/* Image placeholder with parallax */}
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
           <span className="text-foreground/20 text-sm">Final solution visual</span>
         </div>
-      </FadeIn>
+      </ParallaxImage>
 
       {/* Impact */}
       <CaseStudySection label="04" title="Impact">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="p-6 rounded-xl border border-foreground/10">
-            <p className="text-3xl md:text-4xl font-bold tracking-tight mb-2">~5M+</p>
+            <div className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+              ~<AnimatedCounter value={5000000} suffix="+" className="tabular-nums" />
+            </div>
             <p className="text-sm text-foreground/50">Daily active users upon launch</p>
           </div>
           <div className="p-6 rounded-xl border border-foreground/10">

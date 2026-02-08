@@ -1,6 +1,7 @@
 'use client';
 
 import FadeIn from '@/components/animations/FadeIn';
+import PageTransition from '@/components/animations/PageTransition';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
 import Link from 'next/link';
@@ -38,7 +39,7 @@ const archiveProjects: ArchiveProject[] = [
 
 export default function ArchivesPage() {
   return (
-    <div>
+    <PageTransition>
       <Navigation />
 
       {/* Hero */}
@@ -103,6 +104,6 @@ export default function ArchivesPage() {
       </section>
 
       <Footer />
-    </div>
+    </PageTransition>
   );
 }

@@ -1,7 +1,10 @@
 'use client';
 
 import FadeIn from '@/components/animations/FadeIn';
+import ProjectHoverImage from '@/components/three/ProjectHoverImage';
 import Link from 'next/link';
+import { useState, useCallback } from 'react';
+import { motion } from 'framer-motion';
 
 type SelectedWorkItem = {
   company: string;
@@ -13,6 +16,13 @@ interface SelectedWorksProps {
   items?: SelectedWorkItem[];
 }
 
+// Gradient placeholders for each project (will be replaced with real images later)
+const projectImages: Record<string, string> = {
+  'meta-ai': 'linear-gradient(135deg, #0668E1 0%, #1877F2 50%, #4599FF 100%)',
+  'copilot-shopping': 'linear-gradient(135deg, #0F6CBD 0%, #115EA3 50%, #0078D4 100%)',
+  'windows-search': 'linear-gradient(135deg, #2D2D2D 0%, #404040 50%, #505050 100%)',
+};
+
 export default function SelectedWorks({
   items = [
     { company: 'Meta', project: 'Facebook Search + Meta AI', slug: 'meta-ai' },
@@ -20,6 +30,18 @@ export default function SelectedWorks({
     { company: 'Microsoft', project: 'Windows Search', slug: 'windows-search' },
   ],
 }: SelectedWorksProps) {
+  const [activeProject, setActiveProject] = useState<string | null>(null);
+
+  const handleHoverStart = useCallback((slug: string) => {
+    setActiveProject(slug);
+    window.dispatchEvent(new CustomEvent('projectHoverStart'));
+  }, []);
+
+  const handleHoverEnd = useCallback(() => {
+    setActiveProject(null);
+    window.dispatchEvent(new CustomEvent('projectHoverEnd'));
+  }, []);
+
   return (
     <div className="w-full">
       <FadeIn delay={0.1}>
@@ -28,19 +50,57 @@ export default function SelectedWorks({
         </h2>
       </FadeIn>
 
-      <ul className="space-y-5 md:space-y-7">
+      <ProjectHoverImage activeProject={activeProject} projectImages={projectImages} />
+
+      <ul className="space-y-2 md:space-y-0">
         {items.map((item, idx) => (
           <FadeIn key={`${item.company}-${item.project}`} delay={0.15 + idx * 0.1}>
             <li>
-              <Link 
+              <Link
                 href={`/work/${item.slug}`}
-                className="text-xl md:text-3xl leading-tight flex flex-wrap items-baseline gap-x-4 hover:opacity-60 transition-opacity group"
+                className="group block"
+                onMouseEnter={() => handleHoverStart(item.slug)}
+                onMouseLeave={handleHoverEnd}
               >
-                <span className="font-extrabold tracking-tight">
-                  {item.company}
-                </span>
-                <span className="text-foreground/50">//</span>
-                <span className="tracking-tight">{item.project}</span>
+                <motion.div
+                  className="py-5 md:py-7 border-b border-foreground/[0.06] flex flex-wrap items-baseline gap-x-4 transition-colors group-hover:border-foreground/20"
+                  whileHover={{ x: 12 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                >
+                  <span className="text-xl md:text-3xl font-extrabold tracking-tight group-hover:text-foreground transition-colors">
+                    {item.company}
+                  </span>
+                  <motion.span
+                    className="text-foreground/20 group-hover:text-foreground/40 transition-colors"
+                    animate={activeProject === item.slug ? { rotate: 90 } : { rotate: 0 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  >
+                    //
+                  </motion.span>
+                  <span className="text-xl md:text-3xl tracking-tight text-foreground/60 group-hover:text-foreground/90 transition-colors">
+                    {item.project}
+                  </span>
+
+                  {/* Arrow indicator on hover */}
+                  <motion.span
+                    className="ml-auto text-foreground/0 group-hover:text-foreground/50 transition-colors"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                  >
+                    <svg
+                      className="w-5 h-5 md:w-6 md:h-6"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </motion.span>
+                </motion.div>
               </Link>
             </li>
           </FadeIn>
@@ -49,5 +109,3 @@ export default function SelectedWorks({
     </div>
   );
 }
-
-

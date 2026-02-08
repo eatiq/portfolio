@@ -1,12 +1,13 @@
 'use client';
 
 import FadeIn from '@/components/animations/FadeIn';
+import PageTransition from '@/components/animations/PageTransition';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
 
 export default function AboutPage() {
   return (
-    <div>
+    <PageTransition>
       <Navigation />
 
       {/* Hero */}
@@ -88,6 +89,6 @@ export default function AboutPage() {
       </section>
 
       <Footer />
-    </div>
+    </PageTransition>
   );
 }

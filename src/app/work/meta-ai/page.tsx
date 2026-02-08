@@ -2,7 +2,7 @@
 
 import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
 import CaseStudySection from '@/components/ui/CaseStudySection';
-import FadeIn from '@/components/animations/FadeIn';
+import ParallaxImage from '@/components/animations/ParallaxImage';
 
 export default function MetaAIPage() {
   return (
@@ -49,12 +49,12 @@ export default function MetaAIPage() {
         </p>
       </CaseStudySection>
 
-      {/* Image placeholder */}
-      <FadeIn delay={0.1}>
-        <div className="mb-16 md:mb-24 rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
+      {/* Image placeholder with parallax */}
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
           <span className="text-foreground/20 text-sm">Case study visual — coming soon</span>
         </div>
-      </FadeIn>
+      </ParallaxImage>
 
       {/* Approach */}
       <CaseStudySection label="02" title="Approach">
@@ -71,12 +71,12 @@ export default function MetaAIPage() {
         </p>
       </CaseStudySection>
 
-      {/* Image placeholder */}
-      <FadeIn delay={0.1}>
-        <div className="mb-16 md:mb-24 rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
+      {/* Image placeholder with parallax */}
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
           <span className="text-foreground/20 text-sm">Design exploration visual — coming soon</span>
         </div>
-      </FadeIn>
+      </ParallaxImage>
 
       {/* Note */}
       <CaseStudySection label="03" title="More Details Coming Soon">

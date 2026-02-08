@@ -1,6 +1,7 @@
 'use client';
 
 import FadeIn from '@/components/animations/FadeIn';
+import PageTransition from '@/components/animations/PageTransition';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
 import Link from 'next/link';
@@ -122,7 +123,7 @@ function MotionSection({ title, items, startDelay = 0 }: { title: string; items:
 
 export default function MotionPage() {
   return (
-    <div>
+    <PageTransition>
       <Navigation />
 
       {/* Hero */}
@@ -175,6 +176,6 @@ export default function MotionPage() {
       </section>
 
       <Footer />
-    </div>
+    </PageTransition>
   );
 }

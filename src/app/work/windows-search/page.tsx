@@ -2,7 +2,8 @@
 
 import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
 import CaseStudySection from '@/components/ui/CaseStudySection';
-import FadeIn from '@/components/animations/FadeIn';
+import ParallaxImage from '@/components/animations/ParallaxImage';
+import AnimatedCounter from '@/components/animations/AnimatedCounter';
 
 export default function WindowsSearchPage() {
   return (
@@ -52,12 +53,12 @@ export default function WindowsSearchPage() {
         </div>
       </CaseStudySection>
 
-      {/* Image placeholder */}
-      <FadeIn delay={0.1}>
-        <div className="mb-16 md:mb-24 rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
+      {/* Image placeholder with parallax */}
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
           <span className="text-foreground/20 text-sm">Windows Search overview visual</span>
         </div>
-      </FadeIn>
+      </ParallaxImage>
 
       {/* Case Study: Loading Indicator */}
       <CaseStudySection label="02" title="Creating a Loading Indicator">
@@ -94,12 +95,12 @@ export default function WindowsSearchPage() {
         </p>
       </CaseStudySection>
 
-      {/* Image placeholder */}
-      <FadeIn delay={0.1}>
-        <div className="mb-16 md:mb-24 rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
+      {/* Image placeholder with parallax */}
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
           <span className="text-foreground/20 text-sm">Loading indicator exploration visual</span>
         </div>
-      </FadeIn>
+      </ParallaxImage>
 
       {/* Solution */}
       <CaseStudySection label="04" title="Solution">
@@ -122,7 +123,9 @@ export default function WindowsSearchPage() {
       {/* Impact */}
       <CaseStudySection label="06" title="Impact">
         <div className="p-6 rounded-xl border border-foreground/10">
-          <p className="text-3xl md:text-4xl font-bold tracking-tight mb-2">~1B</p>
+          <div className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+            ~<AnimatedCounter value={1000000000} className="tabular-nums" />
+          </div>
           <p className="text-sm text-foreground/50">Active Windows devices benefiting from the improved search experience</p>
         </div>
       </CaseStudySection>

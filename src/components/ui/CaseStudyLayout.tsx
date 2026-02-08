@@ -1,10 +1,12 @@
 'use client';
 
 import FadeIn from '@/components/animations/FadeIn';
+import PageTransition from '@/components/animations/PageTransition';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 
 type CaseStudyLayoutProps = {
   company: string;
@@ -31,8 +33,21 @@ export default function CaseStudyLayout({
   prevProject,
   nextProject,
 }: CaseStudyLayoutProps) {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
-    <div>
+    <PageTransition>
+      {/* Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[2px] bg-foreground/60 origin-left z-[60]"
+        style={{ scaleX }}
+      />
+
       <Navigation />
 
       {/* Hero */}
@@ -101,7 +116,9 @@ export default function CaseStudyLayout({
 
       {/* Divider */}
       <div className="px-6 md:px-12">
-        <div className="max-w-4xl mx-auto border-t border-foreground/10" />
+        <FadeIn>
+          <div className="max-w-4xl mx-auto border-t border-foreground/10" />
+        </FadeIn>
       </div>
 
       {/* Case Study Content */}
@@ -113,25 +130,50 @@ export default function CaseStudyLayout({
 
       {/* Page Navigation */}
       <section className="px-6 md:px-12 pb-12">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          {prevProject ? (
-            <Link href={prevProject.href} className="text-foreground/50 hover:text-foreground transition-colors">
-              ← {prevProject.label}
-            </Link>
-          ) : (
-            <Link href="/" className="text-foreground/50 hover:text-foreground transition-colors">
-              ← Back to Home
-            </Link>
-          )}
-          {nextProject && (
-            <Link href={nextProject.href} className="text-foreground/50 hover:text-foreground transition-colors">
-              {nextProject.label} →
-            </Link>
-          )}
+        <div className="max-w-4xl mx-auto">
+          <FadeIn>
+            <div className="flex items-center justify-between border-t border-foreground/10 pt-8">
+              {prevProject ? (
+                <Link href={prevProject.href} className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors">
+                  <motion.span
+                    className="inline-block"
+                    whileHover={{ x: -4 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  >
+                    ←
+                  </motion.span>
+                  {prevProject.label}
+                </Link>
+              ) : (
+                <Link href="/" className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors">
+                  <motion.span
+                    className="inline-block"
+                    whileHover={{ x: -4 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  >
+                    ←
+                  </motion.span>
+                  Back to Home
+                </Link>
+              )}
+              {nextProject && (
+                <Link href={nextProject.href} className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors">
+                  {nextProject.label}
+                  <motion.span
+                    className="inline-block"
+                    whileHover={{ x: 4 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  >
+                    →
+                  </motion.span>
+                </Link>
+              )}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       <Footer />
-    </div>
+    </PageTransition>
   );
 }

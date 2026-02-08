@@ -1,6 +1,7 @@
 'use client';
 
 import FadeIn from '@/components/animations/FadeIn';
+import PageTransition from '@/components/animations/PageTransition';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
 import Link from 'next/link';
@@ -55,7 +56,7 @@ const chapters: VideoChapter[] = [
 
 export default function VideoPage() {
   return (
-    <div>
+    <PageTransition>
       <Navigation />
 
       {/* Hero */}
@@ -154,6 +155,6 @@ export default function VideoPage() {
       </section>
 
       <Footer />
-    </div>
+    </PageTransition>
   );
 }

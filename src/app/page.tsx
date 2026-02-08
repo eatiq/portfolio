@@ -1,10 +1,19 @@
 'use client';
 
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import FadeIn from '@/components/animations/FadeIn';
+import PageTransition from '@/components/animations/PageTransition';
 import SelectedWorks from '@/components/ui/SelectedWorks';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
 import Link from 'next/link';
+
+// Dynamic import for WebGL to avoid SSR issues
+const WebGLBackground = dynamic(
+  () => import('@/components/three/WebGLBackground'),
+  { ssr: false }
+);
 
 export default function Home() {
   const scrollToSection = () => {
@@ -14,7 +23,12 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <PageTransition>
+      {/* WebGL Background */}
+      <Suspense fallback={null}>
+        <WebGLBackground />
+      </Suspense>
+
       <Navigation />
 
       {/* Hero Section */}
@@ -86,6 +100,6 @@ export default function Home() {
       </section>
 
       <Footer />
-    </div>
+    </PageTransition>
   );
 }
