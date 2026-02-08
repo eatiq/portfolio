@@ -159,21 +159,21 @@ export default function CartersPage() {
       </CaseStudySection>
 
       <ScrollReveal>
-        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <div className="mb-2 rounded-2xl overflow-hidden">
           <video src={assets.carters.videoCheckout} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
         <p className="text-sm text-foreground/50 mb-8 text-center">Checkout flow prototype</p>
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <div className="mb-2 rounded-2xl overflow-hidden">
           <video src={assets.carters.videoHomeScroll} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
         <p className="text-sm text-foreground/50 mb-8 text-center">Home page scroll prototype</p>
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <div className="mb-2 rounded-2xl overflow-hidden">
           <video src={assets.carters.videoSearch} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
         <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Search experience prototype</p>

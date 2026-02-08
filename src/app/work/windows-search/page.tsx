@@ -60,7 +60,7 @@ export default function WindowsSearchPage() {
         </div>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.windows.scope} alt="Windows Search scope overview" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
@@ -98,28 +98,28 @@ export default function WindowsSearchPage() {
 
       {/* Videos showing the shimmer and variants */}
       <ScrollReveal>
-        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <div className="mb-2 rounded-2xl overflow-hidden">
           <video src={assets.windows.videoShimmer} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
         <p className="text-sm text-foreground/50 mb-8 text-center">Shimmer effect exploration</p>
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <div className="mb-2 rounded-2xl overflow-hidden">
           <video src={assets.windows.videoShimVar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
         <p className="text-sm text-foreground/50 mb-8 text-center">Shimmer variants</p>
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <div className="mb-2 rounded-2xl overflow-hidden">
           <video src={assets.windows.videoDropdown} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
         <p className="text-sm text-foreground/50 mb-8 text-center">Dropdown animation</p>
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <div className="mb-2 rounded-2xl overflow-hidden">
           <video src={assets.windows.videoProviderbar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
         <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Provider bar loading</p>
@@ -135,14 +135,14 @@ export default function WindowsSearchPage() {
       </CaseStudySection>
 
       <ScrollReveal>
-        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <div className="mb-2 rounded-2xl overflow-hidden">
           <video src={assets.windows.videoTopEdge} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
         <p className="text-sm text-foreground/50 mb-8 text-center">Top edge progress bar placement</p>
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <div className="mb-2 rounded-2xl overflow-hidden">
           <video src={assets.windows.videoTopWkey} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
         <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Progress bar with Windows key activation</p>
@@ -158,7 +158,7 @@ export default function WindowsSearchPage() {
       </CaseStudySection>
 
       <ScrollReveal>
-        <div className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+        <div className="mb-2 rounded-2xl overflow-hidden">
           <video src={assets.windows.videoFinal} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
         <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Final solution — the loading indicator in action</p>

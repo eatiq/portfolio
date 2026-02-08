@@ -58,7 +58,7 @@ export default function CopilotShoppingPage() {
         </p>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.problemChatResponse} alt="Initial responses for shopping prompts were lengthy, lacked visual aids and metadata" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
@@ -76,7 +76,7 @@ export default function CopilotShoppingPage() {
         </ul>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.problemMsStartShopping} alt="Microsoft Start shopping was a product that we used for research" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
@@ -97,7 +97,7 @@ export default function CopilotShoppingPage() {
         </p>
       </CaseStudySection>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 md:mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
         <ParallaxImage className="rounded-2xl overflow-hidden">
           <img src={assets.copilot.problemEngAttempt1} alt="Early engineering attempt 1" className="w-full rounded-2xl" />
         </ParallaxImage>
@@ -122,7 +122,7 @@ export default function CopilotShoppingPage() {
         </p>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.solutionFinal} alt="Final Solution - A short intro and conclusion helps tie the natural response of the assistant together" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
@@ -130,12 +130,12 @@ export default function CopilotShoppingPage() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <img src={assets.copilot.solutionDetails} alt="Details of the final answer" className="w-full rounded-2xl mb-8 md:mb-12" />
+        <img src={assets.copilot.solutionDetails} alt="Details of the final answer" className="w-full rounded-2xl mb-2" />
         <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Details of the final answer</p>
       </ScrollReveal>
 
       <ScrollReveal>
-        <img src={assets.copilot.solutionTileVariants} alt="Horizontal Product tile variants" className="w-full rounded-2xl mb-8 md:mb-12" />
+        <img src={assets.copilot.solutionTileVariants} alt="Horizontal Product tile variants" className="w-full rounded-2xl mb-2" />
         <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Horizontal Product tile variants</p>
       </ScrollReveal>
 
@@ -147,7 +147,7 @@ export default function CopilotShoppingPage() {
         </p>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.solutionComparisonTable} alt="Comparison table and detailed attributes as part of an overlay" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
@@ -156,7 +156,7 @@ export default function CopilotShoppingPage() {
 
       {/* Videos */}
       <ScrollReveal>
-        <div className="mb-16 md:mb-24 space-y-8">
+        <div className="mb-16 md:mb-24 space-y-2">
           <div className="rounded-2xl overflow-hidden">
             <video src={assets.copilot.videoTableCompar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
           </div>
@@ -165,7 +165,7 @@ export default function CopilotShoppingPage() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="mb-16 md:mb-24 space-y-8">
+        <div className="mb-16 md:mb-24 space-y-2">
           <div className="rounded-2xl overflow-hidden">
             <video src={assets.copilot.videoTablePdp} autoPlay loop muted playsInline className="w-full rounded-2xl" />
           </div>
@@ -181,14 +181,14 @@ export default function CopilotShoppingPage() {
         </p>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.solutionEdgeBrowser} alt="Clicking on any product opens the respective web page on the left" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
         <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Clicking on any product opens the respective web page on the left</p>
       </ScrollReveal>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.solutionMobileCarousel} alt="For the mobile version, going with a product carousel made best sense" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
@@ -209,7 +209,7 @@ export default function CopilotShoppingPage() {
         </blockquote>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.processExploration} alt="I developed multiple layouts of information, some made sense, some absolutely did not" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
@@ -224,14 +224,14 @@ export default function CopilotShoppingPage() {
         </p>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.processSurveyOptions} alt="Option A and C look into a vertical layout whereas B and D look at a horizontal layout" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
         <p className="text-sm text-foreground/50 mb-8 text-center">Option A and C look into a vertical layout of the image and information whereas B and D look at a horizontal layout</p>
       </ScrollReveal>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.processSurveyResults} alt="Concept A and D were the most preferred" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
@@ -245,7 +245,7 @@ export default function CopilotShoppingPage() {
         </p>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.processQualitativeStudy} alt="Three concepts with the same information that were used to validate" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
@@ -253,7 +253,7 @@ export default function CopilotShoppingPage() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <img src={assets.copilot.processQualitativeResults} alt="Results from the qualitative study" className="w-full rounded-2xl mb-8 md:mb-12" />
+        <img src={assets.copilot.processQualitativeResults} alt="Results from the qualitative study" className="w-full rounded-2xl mb-2" />
         <p className="text-sm text-foreground/50 mb-8 text-center">Results from the qualitative study</p>
       </ScrollReveal>
 
@@ -283,7 +283,7 @@ export default function CopilotShoppingPage() {
         </p>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
+      <ParallaxImage className="mb-2 rounded-2xl overflow-hidden">
         <img src={assets.copilot.processRefinement} alt="Adding highlights: Trying out different pieces of information such as attributes, accolades in the form of a pill" className="w-full rounded-2xl" />
       </ParallaxImage>
       <ScrollReveal>
