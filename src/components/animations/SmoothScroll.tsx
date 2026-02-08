@@ -15,7 +15,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
         const Lenis = (await import('@studio-freight/lenis')).default;
         
         const lenis = new Lenis({
-          duration: 0.6,
+          duration: 0.3,
           easing: (t: number) => 1 - Math.pow(1 - t, 3),
           orientation: 'vertical',
           gestureOrientation: 'vertical',
