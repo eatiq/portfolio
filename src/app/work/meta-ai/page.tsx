@@ -1,10 +1,17 @@
 'use client';
 
 import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
-import CaseStudySection from '@/components/ui/CaseStudySection';
-import ParallaxImage from '@/components/animations/ParallaxImage';
+import PageTransition from '@/components/animations/PageTransition';
 
 export default function MetaAIPage() {
+  const videos = [
+    {
+      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/video1.mov',
+      caption:
+        'From watching to shopping— circling objects in a video to surface contextual results for products and places utilizing Apple\u2019s Vision Framework along with Llama API for auto-generated text summaries',
+    },
+  ];
+
   return (
     <CaseStudyLayout
       company="Meta"
@@ -20,14 +27,14 @@ export default function MetaAIPage() {
       overview={
         <>
           <p>
-            At Meta, I work on Facebook Search and the integration of Meta AI into the 
-            search experience. The goal is to design the next generation of AI-powered 
-            search for billions of users across Facebook platforms, making it more 
+            At Meta, I work on Facebook Search and the integration of Meta AI into the
+            search experience. The goal is to design the next generation of AI-powered
+            search for billions of users across Facebook platforms, making it more
             intuitive, conversational, and useful.
           </p>
           <p>
-            This involves rethinking how people discover content, people, and information 
-            on one of the world&apos;s largest social platforms — balancing the power of AI 
+            This involves rethinking how people discover content, people, and information
+            on one of the world&apos;s largest social platforms — balancing the power of AI
             with the simplicity users expect.
           </p>
         </>
@@ -36,59 +43,37 @@ export default function MetaAIPage() {
       locked
       combination={[24, 8, 16]}
     >
-      {/* Context */}
-      <CaseStudySection label="01" title="The Challenge">
-        <p>
-          Facebook Search serves billions of queries across a diverse set of intents — 
-          from finding people and groups to discovering posts, videos, and marketplace 
-          listings. With the introduction of Meta AI, the opportunity emerged to 
-          fundamentally transform how search works on the platform.
-        </p>
-        <p>
-          The challenge was to integrate AI capabilities in a way that enhances the 
-          existing search experience without disrupting the patterns that billions of 
-          users have come to rely on.
-        </p>
-      </CaseStudySection>
+      {/* Prototype Videos */}
+      <div className="mb-16 md:mb-24">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-12">Prototypes</h2>
 
-      {/* Image placeholder with parallax */}
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
-          <span className="text-foreground/20 text-sm">Case study visual — coming soon</span>
+        <div className="space-y-16">
+          {videos.map((video, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <div className="mb-3 rounded-2xl overflow-hidden w-full max-w-sm mx-auto">
+                <video
+                  src={video.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full rounded-2xl"
+                />
+              </div>
+              <p className="text-sm text-foreground/50 text-center max-w-2xl">
+                {video.caption}
+              </p>
+            </div>
+          ))}
         </div>
-      </ParallaxImage>
+      </div>
 
-      {/* Approach */}
-      <CaseStudySection label="02" title="Approach">
-        <p>
-          Working closely with engineering, research, and product teams, I focused on 
-          understanding the diverse search intents on Facebook and identifying where AI 
-          could add the most value. This involved extensive user research, competitive 
-          analysis, and rapid prototyping.
+      {/* More coming soon */}
+      <div className="p-8 rounded-xl border border-foreground/10 text-center mb-16 md:mb-24">
+        <p className="text-foreground/50 text-lg">
+          More prototypes and detailed case study content will be added as the project progresses.
         </p>
-        <p>
-          The design process emphasized progressive enhancement — layering AI capabilities 
-          on top of the existing search infrastructure rather than replacing it entirely. 
-          This approach allowed us to ship iteratively and measure impact at each stage.
-        </p>
-      </CaseStudySection>
-
-      {/* Image placeholder with parallax */}
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <div className="rounded-2xl border border-foreground/10 aspect-[16/9] bg-foreground/5 flex items-center justify-center">
-          <span className="text-foreground/20 text-sm">Design exploration visual — coming soon</span>
-        </div>
-      </ParallaxImage>
-
-      {/* Note */}
-      <CaseStudySection label="03" title="More Details Coming Soon">
-        <div className="p-8 rounded-xl border border-foreground/10 text-center">
-          <p className="text-foreground/50 text-lg">
-            This case study is currently being developed. Detailed process documentation, 
-            visuals, and impact metrics will be added as the project progresses.
-          </p>
-        </div>
-      </CaseStudySection>
+      </div>
     </CaseStudyLayout>
   );
 }
