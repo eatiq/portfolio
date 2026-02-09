@@ -29,7 +29,7 @@ const archiveProjects: ArchiveProject[] = [
     title: 'The Sublime within Islam',
     year: '2018',
     description: 'An exploration of the philosophical branch of Aesthetics within Islamic Artistic Expression. This project connects Islamic Geometric Patterns with the Western idea of the Sublime — consisting of a research paper, digital illustrations, motion explorations, and a projection mapping installation. The animated geometric patterns were printed on steel and sold to donate to local causes. Won a Communication Arts Design Annual award.',
-    externalLink: 'https://ehsanswonderfulportfolio.on.drv.tw/ehsthetic/sublime.html',
+    slug: 'sublime',
   },
   {
     company: 'Personal',
