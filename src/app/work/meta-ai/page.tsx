@@ -33,6 +33,8 @@ export default function MetaAIPage() {
         </>
       }
       nextProject={{ label: 'Copilot Shopping', href: '/work/copilot-shopping' }}
+      locked
+      combination={[24, 8, 16]}
     >
       {/* Context */}
       <CaseStudySection label="01" title="The Challenge">

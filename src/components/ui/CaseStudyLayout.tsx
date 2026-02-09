@@ -4,6 +4,7 @@ import FadeIn from '@/components/animations/FadeIn';
 import PageTransition from '@/components/animations/PageTransition';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
+import CombinationLock from '@/components/ui/CombinationLock';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
@@ -19,6 +20,8 @@ type CaseStudyLayoutProps = {
   children: ReactNode;
   prevProject?: { label: string; href: string };
   nextProject?: { label: string; href: string };
+  locked?: boolean;
+  combination?: [number, number, number];
 };
 
 export default function CaseStudyLayout({
@@ -32,6 +35,8 @@ export default function CaseStudyLayout({
   children,
   prevProject,
   nextProject,
+  locked,
+  combination,
 }: CaseStudyLayoutProps) {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -39,6 +44,67 @@ export default function CaseStudyLayout({
     damping: 30,
     restDelta: 0.001,
   });
+
+  const caseStudyContent = (
+    <>
+      <section className="px-6 md:px-12 py-16 md:py-24">
+        <div className="max-w-4xl mx-auto">{children}</div>
+      </section>
+
+      <section className="px-6 md:px-12 pb-12">
+        <div className="max-w-4xl mx-auto">
+          <FadeIn>
+            <div className="flex items-center justify-between border-t border-foreground/10 pt-8">
+              {prevProject ? (
+                <Link
+                  href={prevProject.href}
+                  className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors"
+                >
+                  <motion.span
+                    className="inline-block"
+                    whileHover={{ x: -4 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  >
+                    ←
+                  </motion.span>
+                  {prevProject.label}
+                </Link>
+              ) : (
+                <Link
+                  href="/"
+                  className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors"
+                >
+                  <motion.span
+                    className="inline-block"
+                    whileHover={{ x: -4 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  >
+                    ←
+                  </motion.span>
+                  Back to Home
+                </Link>
+              )}
+              {nextProject && (
+                <Link
+                  href={nextProject.href}
+                  className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors"
+                >
+                  {nextProject.label}
+                  <motion.span
+                    className="inline-block"
+                    whileHover={{ x: 4 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  >
+                    →
+                  </motion.span>
+                </Link>
+              )}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+    </>
+  );
 
   return (
     <PageTransition>
@@ -121,57 +187,17 @@ export default function CaseStudyLayout({
         </FadeIn>
       </div>
 
-      {/* Case Study Content */}
-      <section className="px-6 md:px-12 py-16 md:py-24">
-        <div className="max-w-4xl mx-auto">
-          {children}
-        </div>
-      </section>
-
-      {/* Page Navigation */}
-      <section className="px-6 md:px-12 pb-12">
-        <div className="max-w-4xl mx-auto">
-          <FadeIn>
-            <div className="flex items-center justify-between border-t border-foreground/10 pt-8">
-              {prevProject ? (
-                <Link href={prevProject.href} className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors">
-                  <motion.span
-                    className="inline-block"
-                    whileHover={{ x: -4 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                  >
-                    ←
-                  </motion.span>
-                  {prevProject.label}
-                </Link>
-              ) : (
-                <Link href="/" className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors">
-                  <motion.span
-                    className="inline-block"
-                    whileHover={{ x: -4 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                  >
-                    ←
-                  </motion.span>
-                  Back to Home
-                </Link>
-              )}
-              {nextProject && (
-                <Link href={nextProject.href} className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors">
-                  {nextProject.label}
-                  <motion.span
-                    className="inline-block"
-                    whileHover={{ x: 4 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                  >
-                    →
-                  </motion.span>
-                </Link>
-              )}
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      {/* Case Study Content + Page Navigation */}
+      {locked && combination ? (
+        <CombinationLock
+          combination={combination}
+          storageKey={`lock-${company.toLowerCase().replace(/\s+/g, '-')}`}
+        >
+          {caseStudyContent}
+        </CombinationLock>
+      ) : (
+        caseStudyContent
+      )}
 
       <Footer />
     </PageTransition>
