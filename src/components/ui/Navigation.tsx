@@ -37,7 +37,7 @@ export default function Navigation() {
           </Link>
         ))}
         <a
-          href="https://www.linkedin.com/in/ehsanatiq/"
+          href="https://www.linkedin.com/in/eatiq"
           target="_blank"
           rel="noopener noreferrer"
           className="text-sm tracking-tight px-4 py-2 rounded-full bg-foreground text-background hover:opacity-80 transition-opacity"
