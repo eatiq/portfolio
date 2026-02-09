@@ -77,7 +77,13 @@ export function useCombinationLock({ combination, onUnlock }: UseCombinationLock
       prevAngleRef.current = angle;
       cumulativeRotationRef.current += delta;
 
-      dialRotation.set(cumulativeRotationRef.current);
+      // Detent snapping: pull toward nearest number position while dragging
+      const raw = cumulativeRotationRef.current;
+      const nearest = Math.round(raw / DEGREES_PER_NUMBER) * DEGREES_PER_NUMBER;
+      const distToNearest = nearest - raw;
+      const snappedRotation = raw + distToNearest * 0.35;
+
+      dialRotation.set(snappedRotation);
       setCurrentNumber(normalizeNumber(cumulativeRotationRef.current));
     },
     [dialRotation],

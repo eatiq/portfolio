@@ -22,7 +22,7 @@ export default function CombinationLock({
   const [hasCheckedStorage, setHasCheckedStorage] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem(storageKey) === 'unlocked') {
+    if (sessionStorage.getItem(storageKey) === 'unlocked') {
       setLockState('unlocked');
     }
     setHasCheckedStorage(true);
@@ -33,7 +33,7 @@ export default function CombinationLock({
       setLockState('unlocking');
       setTimeout(() => {
         setLockState('unlocked');
-        localStorage.setItem(storageKey, 'unlocked');
+        sessionStorage.setItem(storageKey, 'unlocked');
       }, 800);
     }, 600);
   };
@@ -58,7 +58,7 @@ export default function CombinationLock({
   return (
     <div className="relative">
       {/* Blurred content preview */}
-      <div className="relative max-h-[500px] overflow-hidden">
+      <div className="relative max-h-[100px] overflow-hidden">
         <div className="blur-sm select-none pointer-events-none opacity-40">
           {children}
         </div>
