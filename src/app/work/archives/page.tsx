@@ -12,6 +12,7 @@ type ArchiveProject = {
   year: string;
   description: string;
   slug?: string;
+  externalLink?: string;
 };
 
 const archiveProjects: ArchiveProject[] = [
@@ -25,9 +26,10 @@ const archiveProjects: ArchiveProject[] = [
   },
   {
     company: 'Personal',
-    title: 'Sublime',
-    year: '2019',
-    description: 'My thesis and projection mapping installation — an exploration of light, space, and identity.',
+    title: 'The Sublime within Islam',
+    year: '2018',
+    description: 'An exploration of the philosophical branch of Aesthetics within Islamic Artistic Expression. This project connects Islamic Geometric Patterns with the Western idea of the Sublime — consisting of a research paper, digital illustrations, motion explorations, and a projection mapping installation. The animated geometric patterns were printed on steel and sold to donate to local causes. Won a Communication Arts Design Annual award.',
+    externalLink: 'https://ehsanswonderfulportfolio.on.drv.tw/ehsthetic/sublime.html',
   },
   {
     company: 'Personal',
@@ -83,6 +85,16 @@ export default function ArchivesPage() {
                     >
                       View case study →
                     </Link>
+                  )}
+                  {project.externalLink && (
+                    <a
+                      href={project.externalLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-foreground/50 hover:text-foreground transition-colors whitespace-nowrap"
+                    >
+                      View project →
+                    </a>
                   )}
                 </div>
                 <p className="text-foreground/60 leading-relaxed max-w-3xl">
