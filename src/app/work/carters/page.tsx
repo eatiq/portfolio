@@ -41,9 +41,7 @@ export default function CartersPage() {
       </ParallaxImage>
 
       {/* Overview Image */}
-      <ScrollReveal>
-        <img src={assets.carters.overview} alt="Carter's app overview" className="w-full rounded-2xl mb-16 md:mb-24" />
-      </ScrollReveal>
+      <img src={assets.carters.overview} alt="Carter's app overview" className="w-full rounded-2xl mb-16 md:mb-24" />
 
       {/* Scope */}
       <CaseStudySection label="01" title="App Redesign Scope">
@@ -107,9 +105,7 @@ export default function CartersPage() {
       <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
         <img src={assets.carters.research} alt="Research process" className="w-full rounded-2xl" />
       </ParallaxImage>
-      <ScrollReveal>
-        <img src={assets.carters.researchDetail} alt="Research detail" className="w-full rounded-2xl mb-16 md:mb-24" />
-      </ScrollReveal>
+      <img src={assets.carters.researchDetail} alt="Research detail" className="w-full rounded-2xl mb-16 md:mb-24" />
 
       {/* Redesign */}
       <CaseStudySection label="04" title="Solution">
@@ -158,26 +154,20 @@ export default function CartersPage() {
         </p>
       </CaseStudySection>
 
-      <ScrollReveal>
-        <div className="mb-2 rounded-2xl overflow-hidden">
-          <video src={assets.carters.videoCheckout} autoPlay loop muted playsInline className="w-full rounded-2xl" />
-        </div>
-        <p className="text-sm text-foreground/50 mb-8 text-center">Checkout flow prototype</p>
-      </ScrollReveal>
+      <div className="mb-3 rounded-2xl overflow-hidden">
+        <video src={assets.carters.videoCheckout} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+      </div>
+      <p className="text-sm text-foreground/50 mb-8 text-center">Checkout flow prototype</p>
 
-      <ScrollReveal>
-        <div className="mb-2 rounded-2xl overflow-hidden">
-          <video src={assets.carters.videoHomeScroll} autoPlay loop muted playsInline className="w-full rounded-2xl" />
-        </div>
-        <p className="text-sm text-foreground/50 mb-8 text-center">Home page scroll prototype</p>
-      </ScrollReveal>
+      <div className="mb-3 rounded-2xl overflow-hidden">
+        <video src={assets.carters.videoHomeScroll} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+      </div>
+      <p className="text-sm text-foreground/50 mb-8 text-center">Home page scroll prototype</p>
 
-      <ScrollReveal>
-        <div className="mb-2 rounded-2xl overflow-hidden">
-          <video src={assets.carters.videoSearch} autoPlay loop muted playsInline className="w-full rounded-2xl" />
-        </div>
-        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Search experience prototype</p>
-      </ScrollReveal>
+      <div className="mb-3 rounded-2xl overflow-hidden">
+        <video src={assets.carters.videoSearch} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+      </div>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Search experience prototype</p>
 
       {/* Impact */}
       <CaseStudySection label="05" title="Impact">
