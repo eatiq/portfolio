@@ -1,7 +1,8 @@
 'use client';
 
 import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
-import PageTransition from '@/components/animations/PageTransition';
+import CaseStudySection from '@/components/ui/CaseStudySection';
+import VideoPlayer from '@/components/ui/VideoPlayer';
 
 export default function MetaAIPage() {
   const videos = [
@@ -9,6 +10,11 @@ export default function MetaAIPage() {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/video1.mov',
       caption:
         'From watching to shopping— circling objects in a video to surface contextual results for products and places utilizing Apple\u2019s Vision Framework along with Llama API for auto-generated text summaries',
+    },
+    {
+      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/vivint-floaty.mov',
+      caption:
+        'Ambient AI commerce \u2014 a floating agent that initiates contextual sales conversations without disrupting the browsing experience',
     },
   ];
 
@@ -43,22 +49,23 @@ export default function MetaAIPage() {
       locked
       combination={[24, 8, 16]}
     >
+      {/* Intro Section */}
+      <CaseStudySection title="Things I've Been Building">
+        <p>
+          My day-to-day at Meta lives at the intersection of design and engineering.
+          I work primarily in Cursor, prototyping interactions in SwiftUI and shipping
+          production diffs in Swift and Meta&apos;s proprietary Bloks framework. Below
+          are some of the concepts I&apos;ve been exploring:
+        </p>
+      </CaseStudySection>
+
       {/* Prototype Videos */}
       <div className="mb-16 md:mb-24">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-12">Prototypes</h2>
-
         <div className="space-y-16">
           {videos.map((video, index) => (
             <div key={index} className="flex flex-col items-center">
               <div className="mb-3 rounded-2xl overflow-hidden w-full max-w-sm mx-auto">
-                <video
-                  src={video.src}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full rounded-2xl"
-                />
+                <VideoPlayer src={video.src} />
               </div>
               <p className="text-sm text-foreground/50 text-center max-w-2xl">
                 {video.caption}
@@ -71,7 +78,7 @@ export default function MetaAIPage() {
       {/* More coming soon */}
       <div className="p-8 rounded-xl border border-foreground/10 text-center mb-16 md:mb-24">
         <p className="text-foreground/50 text-lg">
-          More prototypes and detailed case study content will be added as the project progresses.
+          More prototypes added over time. For in-depth case studies, reach out.
         </p>
       </div>
     </CaseStudyLayout>
