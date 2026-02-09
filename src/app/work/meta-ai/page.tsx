@@ -7,11 +7,6 @@ import VideoPlayer from '@/components/ui/VideoPlayer';
 export default function MetaAIPage() {
   const videos = [
     {
-      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/video1.mov',
-      caption:
-        'From watching to shopping\u2014 circling objects in a video to surface contextual results for products and places utilizing Apple\u2019s Vision Framework along with Llama API for auto-generated text summaries',
-    },
-    {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/vivint-floaty.mov',
       caption:
         'Ambient AI commerce \u2014 a floating agent that initiates contextual sales conversations without disrupting the browsing experience',
@@ -19,12 +14,12 @@ export default function MetaAIPage() {
     {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/circletosearch.mp4',
       caption:
-        'Circle to search \u2014 pause any video and draw around what catches your eye. AI identifies the selection and surfaces relevant results in a bottom sheet, no context switch required',
+        'Draw to Search \u2014 A SwiftUI + AVKit prototype where long-pressing freezes the frame and lets you draw over anything. The enclosed region gets extracted and classified through Apple\u2019s Vision framework, then routed to a search API. The whole transition \u2014 from full-bleed video to floating card with results \u2014 uses matched geometry to keep things feeling continuous, with a Metal shader driving the background blur',
     },
     {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/pillstosearch.mp4',
       caption:
-        'Contextual entity pills \u2014 AI automatically detects and labels people, places, and objects in video with tappable overlays, turning passive viewing into an interactive discovery layer',
+        'Pause the video and AI does the rest \u2014 the frame runs through object detection and face recognition, picking up people, places, and products. Each one gets a tappable pill overlay pinned to the subject, with anchor points that follow their position across frames',
     },
   ];
 
