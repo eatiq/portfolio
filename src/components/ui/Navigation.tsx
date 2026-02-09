@@ -42,7 +42,7 @@ export default function Navigation() {
           rel="noopener noreferrer"
           className="text-sm tracking-tight px-4 py-2 rounded-full bg-foreground text-background hover:opacity-80 transition-opacity"
         >
-          Let&apos;s talk
+          Reach out
         </a>
       </div>
     </nav>
