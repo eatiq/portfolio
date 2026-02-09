@@ -8,8 +8,6 @@ export default function Navigation() {
 
   const links = [
     { href: '/', label: 'Home' },
-    { href: '/motion', label: 'Motion' },
-    { href: '/video', label: 'Video' },
     { href: '/about', label: 'About' },
   ];
 

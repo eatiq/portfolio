@@ -11,7 +11,7 @@ type CombinationLockProps = {
   children: React.ReactNode;
 };
 
-const STEP_LABELS = ['Turn right to', 'Turn left to', 'Turn right to'];
+const STEP_LABELS = ['Turn right', 'Turn left', 'Turn right'];
 
 export default function CombinationLock({
   combination,
@@ -98,9 +98,9 @@ export default function CombinationLock({
               Enter the combination to unlock this case study
             </p>
 
-            {/* Combination display */}
+            {/* Step progress */}
             <div className="flex items-center gap-3 mb-10 text-sm font-mono">
-              {combination.map((num, i) => (
+              {[0, 1, 2].map((i) => (
                 <span key={i} className="flex items-center gap-3">
                   <span
                     className={`transition-colors duration-300 ${
@@ -111,9 +111,9 @@ export default function CombinationLock({
                           : 'text-foreground/30'
                     }`}
                   >
-                    {num}
+                    {step > i ? '\u2713' : '\u2022\u2022'}
                   </span>
-                  {i < 2 && <span className="text-foreground/20">–</span>}
+                  {i < 2 && <span className="text-foreground/20">&ndash;</span>}
                 </span>
               ))}
             </div>
@@ -149,14 +149,7 @@ export default function CombinationLock({
 
             {/* Current instruction */}
             <p className="mt-4 text-sm text-foreground/40">
-              {step < 3 && (
-                <>
-                  {STEP_LABELS[step]}{' '}
-                  <span className="text-foreground/70 font-mono font-medium">
-                    {combination[step as 0 | 1 | 2]}
-                  </span>
-                </>
-              )}
+              {step < 3 && STEP_LABELS[step]}
             </p>
           </motion.div>
         )}
