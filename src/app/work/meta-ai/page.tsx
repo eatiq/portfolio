@@ -9,12 +9,22 @@ export default function MetaAIPage() {
     {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/video1.mov',
       caption:
-        'From watching to shopping— circling objects in a video to surface contextual results for products and places utilizing Apple\u2019s Vision Framework along with Llama API for auto-generated text summaries',
+        'From watching to shopping\u2014 circling objects in a video to surface contextual results for products and places utilizing Apple\u2019s Vision Framework along with Llama API for auto-generated text summaries',
     },
     {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/vivint-floaty.mov',
       caption:
         'Ambient AI commerce \u2014 a floating agent that initiates contextual sales conversations without disrupting the browsing experience',
+    },
+    {
+      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/circletosearch.mp4',
+      caption:
+        'Circle to search \u2014 pause any video and draw around what catches your eye. AI identifies the selection and surfaces relevant results in a bottom sheet, no context switch required',
+    },
+    {
+      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/pillstosearch.mp4',
+      caption:
+        'Contextual entity pills \u2014 AI automatically detects and labels people, places, and objects in video with tappable overlays, turning passive viewing into an interactive discovery layer',
     },
   ];
 
@@ -22,7 +32,7 @@ export default function MetaAIPage() {
     <CaseStudyLayout
       company="Meta"
       title="Facebook Search + Meta AI"
-      year="2024–Present"
+      year="2024\u2013Present"
       role="Product Designer"
       responsibilities={[
         'End to end product design',
