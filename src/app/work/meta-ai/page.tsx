@@ -27,7 +27,7 @@ export default function MetaAIPage() {
     <CaseStudyLayout
       company="Meta"
       title="Facebook Search + Meta AI"
-      year="2024\u2013Present"
+      year="2024 - Present"
       role="Product Designer"
       responsibilities={[
         'End to end product design',
