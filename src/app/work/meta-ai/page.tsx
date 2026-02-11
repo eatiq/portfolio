@@ -16,7 +16,7 @@ export default function MetaAIPage() {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/circletosearch.mp4',
       title: 'Draw to Search',
       description:
-        'A SwiftUI + AVKit prototype where long-pressing freezes the frame and lets you draw over anything. The enclosed region gets extracted and classified through Apple\'s Vision framework, then routed to a search API. The whole transition — from full-bleed video to floating card with results — uses matched geometry to keep things feeling continuous, with a Metal shader driving the background blur.',
+        'A SwiftUI + AVKit prototype where long-pressing freezes the frame and lets you draw over anything. The enclosed region gets extracted and classified through Apple's Vision framework, then routed to a search API. The whole transition — from full-bleed video to floating card with results — uses matched geometry to keep things feeling continuous, with a Metal shader driving the background blur.',
     },
     {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/pillstosearch.mp4',
@@ -48,7 +48,7 @@ export default function MetaAIPage() {
           </p>
           <p>
             This involves rethinking how people discover content, people, and information
-            on one of the world\'s largest social platforms — balancing the power of AI
+            on one of the world's largest social platforms — balancing the power of AI
             with the simplicity users expect.
           </p>
         </>
@@ -58,12 +58,12 @@ export default function MetaAIPage() {
       combination={[24, 8, 16]}
     >
       {/* Intro Section */}
-      <CaseStudySection title="Things I\'ve Been Building">
+      <CaseStudySection title="Things I've Been Building">
         <p>
           My day-to-day at Meta lives at the intersection of design and engineering.
           I work primarily in Cursor, prototyping interactions in SwiftUI and shipping
-          production diffs in Swift and Meta\'s proprietary Bloks framework. Below
-          are some of the concepts I\'ve been exploring:
+          production diffs in Swift and Meta's proprietary Bloks framework. Below
+          are some of the concepts I've been exploring:
         </p>
       </CaseStudySection>
 
