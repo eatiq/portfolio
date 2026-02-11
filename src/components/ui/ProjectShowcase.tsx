@@ -78,15 +78,7 @@ export default function ProjectShowcase({
             </div>
           </div>
 
-          {/* Index number - subtle decoration */}
-          <motion.div
-            className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-foreground/5 border border-foreground/10 flex items-center justify-center"
-            whileHover={{ scale: 1.1 }}
-          >
-            <span className="text-sm font-mono text-foreground/40">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-          </motion.div>
+
         </div>
 
         {/* Content Section */}

@@ -7,27 +7,28 @@ import ProjectShowcase from '@/components/ui/ProjectShowcase';
 export default function MetaAIPage() {
   const projects = [
     {
-      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/vivint-floaty.mov',
-      title: 'Ambient AI Commerce',
+      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/videosearch.mp4',
+      title: 'Conversational Video Search',
       description:
-        'A floating agent that initiates contextual sales conversations without disrupting the browsing experience. The AI seamlessly integrates into the interface, providing helpful suggestions at the right moment.',
-    },
-    {
-      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/circletosearch.mp4',
-      title: 'Draw to Search',
-      description:
-        'A SwiftUI + AVKit prototype where long-pressing freezes the frame and lets you draw over anything. The enclosed region gets extracted and classified through Apple's Vision framework, then routed to a search API. The whole transition — from full-bleed video to floating card with results — uses matched geometry to keep things feeling continuous, with a Metal shader driving the background blur.',
+        'A conversational AI overlay for Reels \u2014 pause a video and AI identifies what\u2019s in frame with tappable quick actions. Ask who someone is, get a detailed answer powered by the Llama API in real time, then follow up with \u2018Shop\u2019 to see a breakdown of visible products and pricing. All inline, all contextual.',
     },
     {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/pillstosearch.mp4',
       title: 'Intelligent Frame Analysis',
       description:
-        'Pause the video and AI does the rest — the frame runs through object detection and face recognition, picking up people, places, and products. Each one gets a tappable pill overlay pinned to the subject, with anchor points that follow their position across frames.',
+        'Pause the video and AI does the rest \u2014 the frame runs through object detection and face recognition, picking up people, places, and products. Each one gets a tappable pill overlay pinned to the subject, with anchor points that follow their position across frames.',
     },
     {
-      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/videosearch.mp4',
-      caption:
-        'A conversational AI overlay for Reels \u2014 pause a video and AI identifies what\u2019s in frame with tappable quick actions. Ask who someone is, get a detailed answer powered by the Llama API in real time, then follow up with \u2018Shop\u2019 to see a breakdown of visible products and pricing. All inline, all contextual',
+      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/circletosearch.mp4',
+      title: 'Draw to Search',
+      description:
+        'A SwiftUI + AVKit prototype where long-pressing freezes the frame and lets you draw over anything. The enclosed region gets extracted and classified through Apple\u2019s Vision framework, then routed to a search API. The whole transition \u2014 from full-bleed video to floating card with results \u2014 uses matched geometry to keep things feeling continuous, with a Metal shader driving the background blur.',
+    },
+    {
+      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/vivint-floaty.mov',
+      title: 'Ambient AI Commerce',
+      description:
+        'A floating agent that initiates contextual sales conversations without disrupting the browsing experience. The AI seamlessly integrates into the interface, providing helpful suggestions at the right moment.',
     },
   ];
 
