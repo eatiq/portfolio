@@ -24,6 +24,11 @@ export default function MetaAIPage() {
       description:
         'Pause the video and AI does the rest — the frame runs through object detection and face recognition, picking up people, places, and products. Each one gets a tappable pill overlay pinned to the subject, with anchor points that follow their position across frames.',
     },
+    {
+      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/videosearch.mp4',
+      caption:
+        'A conversational AI overlay for Reels \u2014 pause a video and AI identifies what\u2019s in frame with tappable quick actions. Ask who someone is, get a detailed answer powered by the Llama API in real time, then follow up with \u2018Shop\u2019 to see a breakdown of visible products and pricing. All inline, all contextual',
+    },
   ];
 
   return (
