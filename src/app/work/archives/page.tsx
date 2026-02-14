@@ -33,6 +33,14 @@ const archiveProjects: ArchiveProject[] = [
   },
   {
     company: 'Personal',
+    title: 'Project Awaaz',
+    year: '2014',
+    description:
+      'A collection of graphic artwork primarily based around music. Awaaz is Urdu for Sound — this project helped define my design style over the years.',
+    slug: 'awaaz',
+  },
+  {
+    company: 'Personal',
     title: 'Snoop',
     year: '2016',
     description: 'A CCTV app that I co-founded, which reached the #2 spot on Product Hunt.',

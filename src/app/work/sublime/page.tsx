@@ -40,7 +40,7 @@ export default function SublimePage() {
         </>
       }
       prevProject={{ label: "Carter's", href: '/work/carters' }}
-      nextProject={{ label: 'Archives', href: '/work/archives' }}
+      nextProject={{ label: 'Project Awaaz', href: '/work/awaaz' }}
     >
       {/* Project Montage Video */}
       <ScrollReveal>
