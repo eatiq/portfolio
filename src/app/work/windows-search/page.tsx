@@ -25,8 +25,9 @@ export default function WindowsSearchPage() {
         <>
           <p>
             Windows Search is a critical feature of the operating system, used by nearly 
-            a billion daily active users. My work spanned multiple verticals within the 
-            search experience.
+            a billion daily active users. Given its crucial nature, most work that happens 
+            on search is scrutinized heavily, going through multiple release cycles before 
+            making it to production.
           </p>
         </>
       }
@@ -38,135 +39,204 @@ export default function WindowsSearchPage() {
         <img src={assets.windows.hero} alt="Windows Search hero" className="w-full rounded-2xl" />
       </ParallaxImage>
 
-      {/* Scope */}
-      <CaseStudySection label="01" title="Scope of Work">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-5 rounded-xl border border-foreground/10">
-            <h4 className="font-semibold mb-2">Core Search Functions</h4>
-            <p className="text-sm">Natural language parsing, semantic search, and latency optimizations.</p>
-          </div>
-          <div className="p-5 rounded-xl border border-foreground/10">
-            <h4 className="font-semibold mb-2">Monetization</h4>
-            <p className="text-sm">Content browsing experience powered by Bing, refreshed daily like a Google Doodle.</p>
-          </div>
-          <div className="p-5 rounded-xl border border-foreground/10">
-            <h4 className="font-semibold mb-2">Partner Integration</h4>
-            <p className="text-sm">Helping partners integrate their services into the Windows search box.</p>
-          </div>
-          <div className="p-5 rounded-xl border border-foreground/10">
-            <h4 className="font-semibold mb-2">Motion Design</h4>
-            <p className="text-sm">Establishing motion guidelines and improving UX with purposeful animations.</p>
-          </div>
-        </div>
+      {/* Overview */}
+      <CaseStudySection label="Overview" title="">
+        <p>
+          During my time on the Windows design team, I worked on core search functions like 
+          natural language parsing, semantic search and optimizations to address latency.
+        </p>
       </CaseStudySection>
 
       <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
-        <img src={assets.windows.scope} alt="Windows Search scope overview" className="w-full rounded-2xl" />
+        <img src={assets.windows.scope} alt="Different variants of the search box depending on the type of query" className="w-full rounded-2xl" />
       </ParallaxImage>
-      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Overview of the Windows Search experience</p>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Different variants of the search box depending on the type of query</p>
 
-      {/* Case Study: Loading Indicator */}
-      <CaseStudySection label="02" title="Creating a Loading Indicator">
+      <CaseStudySection label="" title="">
         <p>
-          Windows Search integrates various providers — local files, apps, web results — 
-          each with differing response speeds. Users experienced confusion when local 
-          documents didn&apos;t appear immediately, leading them to abandon their search 
-          entirely because they assumed the documents simply weren&apos;t there.
+          I also worked on the monetization vertical within Windows Search, primarily focused 
+          on the content browsing experience powered by Bing. I helped design experiments to 
+          increase engagement and track growth.
         </p>
       </CaseStudySection>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
-        <img src={assets.windows.loadingStates} alt="Loading states exploration" className="w-full rounded-2xl" />
+      <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
+        <img src={assets.windows.overview} alt="The content browsing experience refreshed everyday similar to the Google Doodle" className="w-full rounded-2xl" />
       </ParallaxImage>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">The content browsing experience refreshed everyday similar to the Google Doodle</p>
+
+      <CaseStudySection label="" title="">
+        <p>
+          Another role that I carried out involved helping partners integrate their services 
+          into the search box. I worked with them through their process and educated them on 
+          the best practices before eventually reviewing their proposed designs.
+        </p>
+      </CaseStudySection>
+
+      <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
+        <img src={assets.windows.searchBox} alt="Different elements to help integrate Microsoft Store apps within the search box" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Different elements to help integrate Microsoft Store apps within the search box</p>
+
+      <CaseStudySection label="" title="">
+        <p>
+          Finally, one of my larger efforts involved incorporating motion design into the search 
+          box, as I was the only designer with the required skill. Apart from establishing the 
+          motion guidelines, I focused on improving overall UX by adding animations with the 
+          intent to make the search experience better. The following is one such case study:
+        </p>
+      </CaseStudySection>
+
+      {/* Case Study */}
+      <CaseStudySection label="Case study" title="Creating a loading indicator">
+        <p>
+          This motion design project taught me the complexities of shipping at scale, working 
+          with legacy code and arriving at a solution from an idea all the way to handing off code.
+        </p>
+      </CaseStudySection>
+
+      {/* Problem */}
+      <CaseStudySection label="Problem" title="">
+        <p>
+          Windows Search integrates various providers or data indexes such as local applications, 
+          locally indexed files, cloud storage files, web results etc. When a user searches, the 
+          engine attempts to find matches across all these providers and give a result. Now these 
+          providers have differing speeds, which results in certain providers (like applications, 
+          web results..) to be shown more than others because they come in quicker.
+        </p>
+      </CaseStudySection>
+
+      <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
+        <img src={assets.windows.loadingStates} alt="Provider speeds were in the milliseconds range" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Provider speeds were in the milliseconds range, which in practice is very hard for customers to decipher</p>
+
+      <CaseStudySection label="" title="">
+        <p>
+          We ran a research study that revealed our customers often experienced confusion when 
+          local documents did not appear immediately in search results. This frequently led users 
+          to abandon their search because their documents wouldn&apos;t show up immediately.
+        </p>
+        <p>
+          To improve this we brainstormed and one proposed solution I had was to implement a 
+          loading indicator when searches would take too long. This would inform users that the 
+          search was ongoing, and they could expect results to appear shortly.
+        </p>
+      </CaseStudySection>
 
       {/* Process */}
-      <CaseStudySection label="03" title="Process">
+      <CaseStudySection label="Process" title="Initial exploration">
         <p>
-          The initial exploration involved using a shimmer effect as a placeholder along 
-          with progressive disclosure of providers as they returned results. However, a 
-          key realization changed the direction entirely: search returns results in 
-          milliseconds, making most animations too fast to even notice.
-        </p>
-        <p>
-          This led to simplifying the approach. Text-based loading indicators were dropped 
-          in favor of a progress bar — a widely recognized pattern that remains visible 
-          even at the millisecond range.
+          I began by investigating the constraints of the search box, utilizing existing research 
+          materials and specifications provided by my PM. This gave me a clear understanding of 
+          what an initial attempt at a loader might be, looking at some commonly used paradigms.
         </p>
       </CaseStudySection>
 
-      {/* Videos showing the shimmer and variants */}
       <div className="mb-3 rounded-2xl overflow-hidden">
         <video src={assets.windows.videoShimmer} autoPlay loop muted playsInline className="w-full rounded-2xl" />
       </div>
-      <p className="text-sm text-foreground/50 mb-8 text-center">Shimmer effect exploration</p>
+      <p className="text-sm text-foreground/50 mb-8 text-center">My first idea was the shimmer effect, an animating placeholder that helps create an illusion of loading</p>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
         <video src={assets.windows.videoShimVar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
       </div>
-      <p className="text-sm text-foreground/50 mb-8 text-center">Shimmer variants</p>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Different variants of the shimmer I tried using speed and scale</p>
+
+      <CaseStudySection label="" title="">
+        <p>
+          My PM partner had asked if we could show to the user which provider was being searched 
+          at a given point in time. I considered using progressive disclosure of information to 
+          clearly indicate this without overwhelming the user.
+        </p>
+      </CaseStudySection>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
         <video src={assets.windows.videoDropdown} autoPlay loop muted playsInline className="w-full rounded-2xl" />
       </div>
-      <p className="text-sm text-foreground/50 mb-8 text-center">Dropdown animation</p>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">This idea begins by displaying all the different providers, then drops down to show content as they finish loading.</p>
+
+      <CaseStudySection label="" title="">
+        <p>
+          At this point, I realized that search returned results in the milliseconds range, which 
+          suggests most of these animations that I shared above would be too fast to notice. The 
+          human eye generally requires about a second to register movement.
+        </p>
+      </CaseStudySection>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
         <video src={assets.windows.videoProviderbar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
       </div>
-      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Provider bar loading</p>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">This concept accurately reflects the speed at which search returned results. You easily miss the loader at the bottom left corner and there is a noticeable stutter while loading.</p>
 
-      <CaseStudySection label="" title="">
+      {/* Simplifying the approach */}
+      <CaseStudySection label="" title="Simplifying the approach">
         <p>
-          The placement was carefully considered. Since user attention naturally goes to 
-          the &ldquo;Best Match&rdquo; result at the top, the progress bar was placed at the top 
-          edge of the search panel. It only triggers when the user completes typing, 
-          avoiding unnecessary visual noise during active input.
+          I dropped the idea of showing text and realized we needed something that was clearly 
+          visible in the millisecond range. The progress bar came to mind, as it is widely 
+          recognized by users and conveys a sense of loading without the need for text.
         </p>
       </CaseStudySection>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
         <video src={assets.windows.videoTopEdge} autoPlay loop muted playsInline className="w-full rounded-2xl" />
       </div>
-      <p className="text-sm text-foreground/50 mb-8 text-center">Top edge progress bar placement</p>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">First version of the progress bar, common and effectively visible at higher load times</p>
+
+      <CaseStudySection label="" title="">
+        <p>
+          We preferred displaying the progress bar at the top edge because of the customer&apos;s 
+          attention went to Best Match usually. Now, I was looking at implementation details such 
+          as when to trigger the animation, how it would behave while a user is typing.
+        </p>
+      </CaseStudySection>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
         <video src={assets.windows.videoTopWkey} autoPlay loop muted playsInline className="w-full rounded-2xl" />
       </div>
-      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Progress bar with Windows key activation</p>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">The progress bar is triggered only when the user completes typing. A blue dot on the left of the file name also indicates which file loaded last.</p>
+
+      <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
+        <img src={assets.windows.details} alt="Multiple variants of the progress bar" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Multiple variants of the progress bar, experimenting with different thicknesses and padding from the edges</p>
 
       {/* Solution */}
-      <CaseStudySection label="04" title="Solution">
+      <CaseStudySection label="Solution" title="">
         <p>
-          The final solution was a subtle top-edge progress indicator aligned with 
-          Windows 11 design principles. The timing parameters were fine-tuned to feel 
-          natural and responsive, and the solution was implemented directly in code.
+          We had multiple reviews with our stakeholders and decided on the most subtle 
+          implementation keeping in line with the Windows 11 design principles. The final 
+          solution incorporated a few more tweaks and changes to the motion parameters to 
+          ensure it was both effective and non-intrusive.
         </p>
       </CaseStudySection>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
         <video src={assets.windows.videoFinal} autoPlay loop muted playsInline className="w-full rounded-2xl" />
       </div>
-      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Final solution — the loading indicator in action</p>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Final Design: A refined top edge progress indicator that is subtle yet effective.</p>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
-        <img src={assets.windows.searchBox} alt="Windows Search box design" className="w-full rounded-2xl" />
+      <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
+        <img src={assets.windows.final} alt="Implementation Details" className="w-full rounded-2xl" />
       </ParallaxImage>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Implementation Details: Specific parameters on when and how long the loader should be displayed.</p>
 
-      <ParallaxImage className="mb-8 md:mb-12 rounded-2xl overflow-hidden">
-        <img src={assets.windows.details} alt="Design details" className="w-full rounded-2xl" />
-      </ParallaxImage>
-
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <img src={assets.windows.final} alt="Final design" className="w-full rounded-2xl" />
-      </ParallaxImage>
+      <CaseStudySection label="" title="">
+        <p>
+          The next step was to implement the design in code and fine-tune the timing to ensure 
+          it was smooth. I dedicated extra time to this task, looking at existing references and 
+          tried out different parameters to ensure that the animation ran smooth.
+        </p>
+      </CaseStudySection>
 
       {/* Learnings */}
-      <CaseStudySection label="05" title="Learnings">
-        <blockquote className="border-l-2 border-foreground/20 pl-6 italic text-lg">
-          &ldquo;This project reinforced the importance of subtle design solutions, even 
-          for large-scale problems. Sometimes the most impactful design work is the 
-          kind that users never consciously notice.&rdquo;
-        </blockquote>
+      <CaseStudySection label="Learnings" title="">
+        <p>
+          This project reinforced the importance of subtle design solutions, even for large-scale 
+          problems. Working on this taught me invaluable lessons about cross-functional collaboration 
+          with product partners, design system leaders, and engineering teams, as well as the 
+          complexities involved with large-scale design implementation.
+        </p>
       </CaseStudySection>
 
       <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
@@ -174,7 +244,7 @@ export default function WindowsSearchPage() {
       </ParallaxImage>
 
       {/* Impact */}
-      <CaseStudySection label="06" title="Impact">
+      <CaseStudySection label="" title="Impact">
         <div className="p-6 rounded-xl border border-foreground/10">
           <div className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
             ~<AnimatedCounter value={1000000000} className="tabular-nums" />

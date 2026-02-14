@@ -48,7 +48,7 @@ export default function CopilotShoppingPage() {
       <img src={assets.copilot.overview} alt="Copilot Shopping overview" className="w-full rounded-2xl mb-16 md:mb-24" />
 
       {/* Problem */}
-      <CaseStudySection label="01" title="Chat isn&apos;t ideal for shopping">
+      <CaseStudySection label="Problem" title="Chat isn&apos;t ideal for shopping">
         <p>
           For shopping queries, we found that users often received long paragraphs of text, 
           which, while informative, lacked crucial elements like images, pricing, and metadata, 
@@ -102,7 +102,7 @@ export default function CopilotShoppingPage() {
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Early attempts made by the engineering team with no design support</p>
 
       {/* Solution */}
-      <CaseStudySection label="02" title="A well rounded, shopping answer">
+      <CaseStudySection label="Solution" title="A well rounded, shopping answer">
         <p>
           The final design features a layout that accommodated varying amounts of product information 
           in a horizontal format to clearly display images, metadata, and GPT summaries.
@@ -143,14 +143,14 @@ export default function CopilotShoppingPage() {
         <div className="rounded-2xl overflow-hidden">
           <video src={assets.copilot.videoTableCompar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
-        <p className="text-sm text-foreground/50 text-center">Comparison table interaction</p>
+        <p className="text-sm text-foreground/50 text-center">Variations of the product cards for the table</p>
       </div>
 
       <div className="mb-16 md:mb-24 space-y-3">
         <div className="rounded-2xl overflow-hidden">
           <video src={assets.copilot.videoTablePdp} autoPlay loop muted playsInline className="w-full rounded-2xl" />
         </div>
-        <p className="text-sm text-foreground/50 text-center">Product detail page interaction</p>
+        <p className="text-sm text-foreground/50 text-center">Clicking on the product tiles leads you to the PDP</p>
       </div>
 
       <CaseStudySection label="" title="Adapted for different formats">
@@ -172,7 +172,7 @@ export default function CopilotShoppingPage() {
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">For the mobile version, going with a product carousel made best sense</p>
 
       {/* Process */}
-      <CaseStudySection label="03" title="Initial exploration">
+      <CaseStudySection label="Process" title="Initial exploration">
         <p>
           To begin I used the engineering team&apos;s attempts to base my explorations. I began by going 
           through existing research for Cortana the virtual assistant that also utilized chat-like 
@@ -241,6 +241,11 @@ export default function CopilotShoppingPage() {
         </blockquote>
       </CaseStudySection>
 
+      <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
+        <img src={assets.copilot.processQualitativeResults} alt="Qualitative Research" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Qualitative Research — I ended up running the entire study as we didn&apos;t have any resources for UXR</p>
+
       <CaseStudySection label="" title="Refinement">
         <p>
           Now that it was validated that the horizontally laid out concept was the most preferred, 
@@ -255,7 +260,7 @@ export default function CopilotShoppingPage() {
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Adding highlights: Trying out different pieces of information such as attributes, accolades in the form of a pill</p>
 
       {/* Impact */}
-      <CaseStudySection label="04" title="Impact and learnings">
+      <CaseStudySection label="Impact" title="Impact and learnings">
         <p>
           Upon launch, Copilot attracted ~5M+ daily active users, demonstrating its immediate 
           popularity and relevance. Shopping queries had a contributing factor to the same.
