@@ -65,6 +65,7 @@ export const assets = {
     scope: `${R2_BASE}/portfolio/windows/scope.jpg`,
     loadingStates: `${R2_BASE}/portfolio/windows/loading-states.jpg`,
     searchBox: `${R2_BASE}/portfolio/windows/search-box.jpg`,
+    calculatorSearch: `${R2_BASE}/portfolio/windows/calculator-search.jpg`,
     final: `${R2_BASE}/portfolio/windows/final.jpg`,
     details: `${R2_BASE}/portfolio/windows/details.png`,
     learnings: `${R2_BASE}/portfolio/windows/learnings.jpg`,
