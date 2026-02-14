@@ -7,6 +7,12 @@ import ProjectShowcase from '@/components/ui/ProjectShowcase';
 export default function MetaAIPage() {
   const projects = [
     {
+      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/aisearchoverview.mp4',
+      title: 'Sizzler — AI Video Editor',
+      description:
+        'An AI-powered sizzle reel creator built as a web app. Drop in a video clip and an audio track, type a prompt, and the tool auto-generates beat-synced text overlays with spring animations. The timeline handles text, video, and audio layers independently, and the AI writes and sequences copy to match the rhythm of the music. Built with React, Canvas API, and Web Audio API for beat detection.',
+    },
+    {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/videosearch.mp4',
       title: 'Conversational Video Search',
       description:

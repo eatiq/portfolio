@@ -138,6 +138,10 @@ function getTechTags(description: string): string[] {
     'AI',
     'Object Detection',
     'Face Recognition',
+    'Llama API',
+    'React',
+    'Canvas API',
+    'Web Audio API',
   ];
 
   return techKeywords.filter((keyword) =>

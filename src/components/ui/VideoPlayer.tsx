@@ -46,7 +46,7 @@ export default function VideoPlayer({ src, className = '' }: VideoPlayerProps) {
         loop
         muted
         playsInline
-        className="w-full h-full object-fill rounded-2xl"
+        className="w-full rounded-2xl"
       />
 
       {/* Persistent pause icon when paused */}
