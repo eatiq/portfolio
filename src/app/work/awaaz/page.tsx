@@ -2,7 +2,9 @@
 
 import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
 import CaseStudySection from '@/components/ui/CaseStudySection';
+import ParallaxImage from '@/components/animations/ParallaxImage';
 import ScrollReveal from '@/components/animations/ScrollReveal';
+import { assets } from '@/lib/assets';
 
 export default function AwaazPage() {
   return (
@@ -33,14 +35,12 @@ export default function AwaazPage() {
       nextProject={{ label: 'Archives', href: '/work/archives' }}
     >
       {/* Cover */}
-      <ScrollReveal>
-        <div className="mb-16 md:mb-24 rounded-2xl overflow-hidden bg-foreground/5 aspect-[16/9] flex items-center justify-center">
-          <p className="text-foreground/30 text-sm">Image: awaaz_cover</p>
-        </div>
-      </ScrollReveal>
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <img src={assets.awaaz.cover} alt="Project Awaaz — a collection of event posters" className="w-full rounded-2xl" />
+      </ParallaxImage>
 
       {/* The Work */}
-      <CaseStudySection label="01" title="A Broad Spectrum of Styles">
+      <CaseStudySection label="The Work" title="A Broad Spectrum of Styles">
         <p>
           The artwork covers a broad spectrum of visual styles — each piece trying to
           capture the essence of the music being played on that particular night. Some
@@ -51,27 +51,42 @@ export default function AwaazPage() {
       {/* Poster Grid — 2 columns */}
       <ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
-          {[
-            'awaaz_dnb',
-            'awaaz_ben',
-            'awaaz_adbrown',
-            'awaaz_trash',
-            'awaaz_tri',
-            'awaaz_jody',
-            'awaaz_martinroth',
-            'awaaz_bscumbia',
-            'abstrakt',
-            'afm',
-            'aidc',
-            'sundaze',
-          ].map((name) => (
-            <div
-              key={name}
-              className="rounded-2xl overflow-hidden bg-foreground/5 aspect-[3/4] flex items-center justify-center"
-            >
-              <p className="text-foreground/30 text-sm">{name}</p>
-            </div>
-          ))}
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.dnb} alt="DnB event poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.ben} alt="Ben event poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.adbrown} alt="AD Brown event poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.trash} alt="Trash event poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.tri} alt="Tri event poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.jody} alt="Jody Wisternoff India Tour poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.martinroth} alt="Martin Roth event poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.bscumbia} alt="Bass Sanskriti event poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.abstrakt} alt="Abstrakt event poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.afm} alt="AFM (Arnold From Mumbai) event poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.aidc} alt="All India Dub Conference poster" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.aidcAlt} alt="AIDC alternate poster" className="w-full rounded-2xl" />
+          </div>
         </div>
         <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">
           Event posters — each capturing the mood and genre of the night
@@ -79,7 +94,7 @@ export default function AwaazPage() {
       </ScrollReveal>
 
       {/* Motion */}
-      <CaseStudySection label="02" title="In Motion">
+      <CaseStudySection label="Motion" title="In Motion">
         <p>
           Some of the artwork was also animated to form motion flyers — adding
           another dimension to the visual identity of each event.
@@ -97,14 +112,12 @@ export default function AwaazPage() {
       {/* GIFs */}
       <ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
-          {['awaaz_anky', 'awaaz_minusone'].map((name) => (
-            <div
-              key={name}
-              className="rounded-2xl overflow-hidden bg-foreground/5 aspect-square flex items-center justify-center"
-            >
-              <p className="text-foreground/30 text-sm">{name}</p>
-            </div>
-          ))}
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.anky} alt="Animated poster — Anky" className="w-full rounded-2xl" />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img src={assets.awaaz.minusone} alt="Animated poster — Minus One" className="w-full rounded-2xl" />
+          </div>
         </div>
         <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">
           Animated poster explorations
@@ -112,11 +125,9 @@ export default function AwaazPage() {
       </ScrollReveal>
 
       {/* Bottom Cover */}
-      <ScrollReveal>
-        <div className="mb-16 md:mb-24 rounded-2xl overflow-hidden bg-foreground/5 aspect-[16/9] flex items-center justify-center">
-          <p className="text-foreground/30 text-sm">Image: awaaz_bottomcover</p>
-        </div>
-      </ScrollReveal>
+      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
+        <img src={assets.awaaz.bottomCover} alt="Printed posters" className="w-full rounded-2xl" />
+      </ParallaxImage>
     </CaseStudyLayout>
   );
 }

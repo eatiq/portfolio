@@ -9,6 +9,7 @@
 
 const R2_BASE = "https://pub-5bb086b3946849a39897e875fa7e5fd9.r2.dev";
 const R2_VIDEOS = "https://pub-b3b956d5ced14f8dbb0fff5838bcb4cc.r2.dev";
+const R2_OLD_PORTFOLIO = "https://pub-040ab61a6b7b4f2abdae5983c64e82cd.r2.dev";
 
 export const assets = {
   shared: {
@@ -139,6 +140,25 @@ export const assets = {
 
   meta: {
     video1: "https://meta.r2.dev/video1.mov",
+  },
+
+  awaaz: {
+    cover: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_cover.jpg`,
+    bottomCover: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_bottomcover.jpg`,
+    jody: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_jody.jpg`,
+    dnb: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_dnb.jpg`,
+    aidc: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_aidc.jpg`,
+    adbrown: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_adbrown.jpg`,
+    martinroth: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_martinroth.jpg`,
+    ben: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_ben.jpg`,
+    bscumbia: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_bscumbia.jpg`,
+    trash: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_trash.jpg`,
+    tri: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_tri.jpg`,
+    anky: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_anky.gif`,
+    minusone: `${R2_OLD_PORTFOLIO}/awaaz/awaaz_minusone.gif`,
+    abstrakt: `${R2_OLD_PORTFOLIO}/awaaz/abstrakt.jpg`,
+    afm: `${R2_OLD_PORTFOLIO}/awaaz/afm.jpg`,
+    aidcAlt: `${R2_OLD_PORTFOLIO}/awaaz/aidc.jpg`,
   },
 } as const;
 
