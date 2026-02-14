@@ -31,7 +31,7 @@ export default function CaseStudySection({ label, title, children, delay = 0.1 }
       <motion.div style={{ opacity, y }}>
         {label && (
           <motion.span
-            className="text-sm text-foreground/30 font-mono mb-2 block"
+            className="text-sm font-semibold text-foreground/40 uppercase tracking-wider mb-4 block"
             style={{ x: labelX }}
           >
             {label}

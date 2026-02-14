@@ -107,6 +107,11 @@ export default function WindowsSearchPage() {
       </CaseStudySection>
 
       <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
+        <img src={assets.windows.calculatorSearch} alt="Windows Search showing Calculator app results across multiple providers" className="w-full rounded-2xl" />
+      </ParallaxImage>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Windows Search showing results across multiple providers — apps, documents, web, and settings</p>
+
+      <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
         <img src={assets.windows.loadingStates} alt="Provider speeds were in the milliseconds range" className="w-full rounded-2xl" />
       </ParallaxImage>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Provider speeds were in the milliseconds range, which in practice is very hard for customers to decipher</p>
