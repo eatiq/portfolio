@@ -10,7 +10,7 @@ export default function MetaAIPage() {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/aisearchoverview.mp4',
       title: 'Sizzler — AI Video Editor',
       description:
-        'An AI-powered sizzle reel creator built as a web app. Drop in a video clip and an audio track, type a prompt, and the tool auto-generates beat-synced text overlays with spring animations. The timeline handles text, video, and audio layers independently, and the AI writes and sequences copy to match the rhythm of the music. Built with React, Canvas API, and Web Audio API for beat detection.',
+        'Sizzler \u2014 type a prompt, add a clip and a track, and the AI handles the edit. It writes the copy, breaks it into beat-synced segments, and drops animated text overlays onto a multi-layer timeline. Spring pop animations and Web Audio API beat detection keep everything in rhythm.',
     },
     {
       src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/videosearch.mp4',
