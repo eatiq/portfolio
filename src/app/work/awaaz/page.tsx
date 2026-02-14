@@ -50,7 +50,6 @@ export default function AwaazPage() {
       {/* Poster Grid — 2 columns */}
       <ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
-<<<<<<< Updated upstream
           <div className="rounded-2xl overflow-hidden">
             <img src={assets.awaaz.dnb} alt="DnB event poster" className="w-full rounded-2xl" />
           </div>
@@ -87,57 +86,6 @@ export default function AwaazPage() {
           <div className="rounded-2xl overflow-hidden">
             <img src={assets.awaaz.aidcAlt} alt="AIDC alternate poster" className="w-full rounded-2xl" />
           </div>
-=======
-          {[
-            'awaaz_dnb',
-            'awaaz_ben',
-            'awaaz_adbrown',
-            'awaaz_trash',
-            'awaaz_tri',
-            'awaaz_jody',
-            'awaaz_martinroth',
-            'awaaz_bscumbia',
-            'abstrakt',
-            'afm',
-            'aidc',
-            'sundaze',
-            'awaaz_anky',
-            'awaaz_minusone',
-          ].map((name) => (
-            <div
-              key={name}
-              className="rounded-2xl overflow-hidden bg-foreground/5 aspect-[3/4] flex items-center justify-center"
-            >
-              <p className="text-foreground/30 text-sm">{name}</p>
-            </div>
-          ))}
->>>>>>> Stashed changes
-        </div>
-        <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">
-          Event posters — each capturing the mood and genre of the night
-        </p>
-      </ScrollReveal>
-
-<<<<<<< Updated upstream
-      {/* Motion */}
-      <CaseStudySection label="Motion" title="In Motion">
-        <p>
-          Some of the artwork was also animated to form motion flyers — adding
-          another dimension to the visual identity of each event.
-        </p>
-        <a
-          href="https://vimeo.com/225840309"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block mt-4 px-6 py-3 rounded-lg border border-foreground/20 text-sm hover:bg-foreground/5 transition-colors"
-        >
-          View Motion Flyers →
-        </a>
-      </CaseStudySection>
-
-      {/* GIFs */}
-      <ScrollReveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
           <div className="rounded-2xl overflow-hidden">
             <img src={assets.awaaz.anky} alt="Animated poster — Anky" className="w-full rounded-2xl" />
           </div>
@@ -146,16 +94,9 @@ export default function AwaazPage() {
           </div>
         </div>
         <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">
-          Animated poster explorations
+          Event posters — each capturing the mood and genre of the night
         </p>
       </ScrollReveal>
-
-      {/* Bottom Cover */}
-      <ParallaxImage className="mb-16 md:mb-24 rounded-2xl overflow-hidden">
-        <img src={assets.awaaz.bottomCover} alt="Printed posters" className="w-full rounded-2xl" />
-      </ParallaxImage>
-=======
->>>>>>> Stashed changes
     </CaseStudyLayout>
   );
 }
