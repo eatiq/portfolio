@@ -62,12 +62,11 @@ export default function MetaAIPage() {
       company="Meta"
       title="Facebook Search + Meta AI"
       year="2024 - Present"
-      role="Product Designer"
+      role="Product Designer & Builder"
       responsibilities={[
         'End to end product design',
-        'Search experience design',
-        'AI integration design',
-        'Cross-functional collaboration',
+        'AI-powered search experiences',
+        'Prototyping & shipping with code',
       ]}
       overview={
         <>
