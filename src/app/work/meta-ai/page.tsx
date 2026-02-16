@@ -19,6 +19,7 @@ const allPrototypes = [
     description:
       'A floating agent that initiates contextual sales conversations without disrupting the browsing experience. The AI seamlessly integrates into the interface, providing helpful suggestions at the right moment.',
     layout: 'portrait' as const,
+    aspectRatio: 'square' as const,
   },
 ];
 
@@ -44,8 +45,8 @@ const shopEverythingProjects = [
 ];
 
 const TABS = [
-  { id: 'prototypes', label: 'Prototypes' },
-  { id: 'shop-everything', label: 'Shop Everything' },
+  { id: 'experiments', label: 'Experiments' },
+  { id: 'deep-dive', label: 'Deep Dive' },
 ];
 
 export default function MetaAIPage() {
@@ -80,9 +81,9 @@ export default function MetaAIPage() {
       locked
       combination={[24, 8, 16]}
     >
-      <ContentSwitcher tabs={TABS} defaultTab="prototypes">
+      <ContentSwitcher tabs={TABS} defaultTab="experiments">
         {(activeTab) =>
-          activeTab === 'prototypes' ? (
+          activeTab === 'experiments' ? (
             <PrototypesContent />
           ) : (
             <ShopEverythingContent />
@@ -114,6 +115,7 @@ function PrototypesContent() {
             description={project.description}
             index={index}
             layout={project.layout}
+            aspectRatio={project.aspectRatio}
           />
         ))}
       </div>

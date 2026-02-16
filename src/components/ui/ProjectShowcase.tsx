@@ -10,6 +10,7 @@ type ProjectShowcaseProps = {
   description: string;
   index: number;
   layout?: 'landscape' | 'portrait';
+  aspectRatio?: 'auto' | 'square';
 };
 
 export default function ProjectShowcase({
@@ -18,6 +19,7 @@ export default function ProjectShowcase({
   description,
   index,
   layout = 'portrait',
+  aspectRatio = 'auto',
 }: ProjectShowcaseProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -58,7 +60,7 @@ export default function ProjectShowcase({
 
   const videoContainer = (
     <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
-      <VideoPlayer src={src} />
+      <VideoPlayer src={src} aspectRatio={aspectRatio} />
     </div>
   );
 

@@ -6,9 +6,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 type VideoPlayerProps = {
   src: string;
   className?: string;
+  aspectRatio?: 'auto' | 'square';
 };
 
-export default function VideoPlayer({ src, className = '' }: VideoPlayerProps) {
+export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [showIcon, setShowIcon] = useState(false);
@@ -36,7 +37,7 @@ export default function VideoPlayer({ src, className = '' }: VideoPlayerProps) {
 
   return (
     <div
-      className={`relative cursor-pointer group ${className}`}
+      className={`relative cursor-pointer group ${aspectRatio === 'square' ? 'aspect-square' : ''} overflow-hidden ${className}`}
       onClick={togglePlay}
     >
       <video
@@ -46,7 +47,7 @@ export default function VideoPlayer({ src, className = '' }: VideoPlayerProps) {
         loop
         muted
         playsInline
-        className="w-full rounded-2xl"
+        className={`w-full rounded-2xl ${aspectRatio === 'square' ? 'h-full object-cover' : ''}`}
       />
 
       {/* Persistent pause icon when paused */}
