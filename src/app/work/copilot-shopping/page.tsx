@@ -5,6 +5,7 @@ import CaseStudySection from '@/components/ui/CaseStudySection';
 import ParallaxImage from '@/components/animations/ParallaxImage';
 import AnimatedCounter from '@/components/animations/AnimatedCounter';
 import ScrollReveal from '@/components/animations/ScrollReveal';
+import VideoPlayer from '@/components/ui/VideoPlayer';
 import { assets } from '@/lib/assets';
 
 export default function CopilotShoppingPage() {
@@ -125,6 +126,12 @@ export default function CopilotShoppingPage() {
       <img src={assets.copilot.solutionTileVariants} alt="Horizontal Product tile variants" className="w-full rounded-2xl mb-3" />
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Horizontal Product tile variants</p>
 
+      {/* Video: Variations of the product cards */}
+      <div className="mb-3 rounded-2xl overflow-hidden">
+        <VideoPlayer src={assets.copilot.videoTableCompar} />
+      </div>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Variations of the product cards for the table</p>
+
       <CaseStudySection label="" title="More to what meets the eye">
         <p>
           Through user testing we consistently found that progressive disclosure of information worked 
@@ -138,20 +145,17 @@ export default function CopilotShoppingPage() {
       </ParallaxImage>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Comparison table and detailed attributes as part of an overlay</p>
 
-      {/* Videos */}
-      <div className="mb-16 md:mb-24 space-y-3">
-        <div className="rounded-2xl overflow-hidden">
-          <video src={assets.copilot.videoTableCompar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
-        </div>
-        <p className="text-sm text-foreground/50 text-center">Variations of the product cards for the table</p>
+      {/* Video: PDP */}
+      <div className="mb-3 rounded-2xl overflow-hidden">
+        <VideoPlayer src={assets.copilot.videoTablePdp} />
       </div>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Clicking on any product opens the respective web page on the left</p>
 
-      <div className="mb-16 md:mb-24 space-y-3">
-        <div className="rounded-2xl overflow-hidden">
-          <video src={assets.copilot.videoTablePdp} autoPlay loop muted playsInline className="w-full rounded-2xl" />
-        </div>
-        <p className="text-sm text-foreground/50 text-center">Clicking on the product tiles leads you to the PDP</p>
+      {/* Video: End to end shopping journey */}
+      <div className="mb-3 rounded-2xl overflow-hidden">
+        <VideoPlayer src={assets.copilot.videoTableMockscenario} />
       </div>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">The end to end shopping journey</p>
 
       <CaseStudySection label="" title="Adapted for different formats">
         <p>
@@ -185,10 +189,22 @@ export default function CopilotShoppingPage() {
         </blockquote>
       </CaseStudySection>
 
+      {/* Video: Process exploration 1 */}
+      <div className="mb-3 rounded-2xl overflow-hidden">
+        <VideoPlayer src={assets.copilot.videoTableGpt1} />
+      </div>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Early exploration of the table format within the chat interface</p>
+
       <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
         <img src={assets.copilot.processExploration} alt="I developed multiple layouts of information, some made sense, some absolutely did not" className="w-full rounded-2xl" />
       </ParallaxImage>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">I developed multiple layouts of information, some made sense, some absolutely did not</p>
+
+      {/* Video: Process exploration 2 */}
+      <div className="mb-3 rounded-2xl overflow-hidden">
+        <VideoPlayer src={assets.copilot.videoTableGpt2} />
+      </div>
+      <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Exploring different interaction patterns for the product table</p>
 
       <CaseStudySection label="" title="Feedback and user survey">
         <p>
@@ -211,7 +227,7 @@ export default function CopilotShoppingPage() {
       <CaseStudySection label="" title="Qualitative study">
         <p>
           The results from the survey were encouraging. Just to be sure I wanted to run a qualitative 
-          user test so that I can be double sure and have some additional user insights.
+          study to understand the reasoning behind the preferences and validate the results.
         </p>
       </CaseStudySection>
 

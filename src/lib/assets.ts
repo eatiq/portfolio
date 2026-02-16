@@ -62,13 +62,15 @@ export const assets = {
 
   windows: {
     hero: `${R2_BASE}/portfolio/windows/hero.jpg`,
-    overview: `${R2_BASE}/portfolio/windows/overview.png`,
+    implementationDetails: `${R2_BASE}/portfolio/windows/overview.png`,
     scope: `${R2_BASE}/portfolio/windows/scope.jpg`,
+    monetization: `${R2_BASE}/portfolio/windows/monetization.jpg`,
+    partnerIntegration: `${R2_BASE}/portfolio/windows/search-box.jpg`,
     loadingStates: `${R2_BASE}/portfolio/windows/loading-states.jpg`,
-    searchBox: `${R2_BASE}/portfolio/windows/search-box.jpg`,
+    providerSpeed: `${R2_BASE}/portfolio/windows/details.png`,
     calculatorSearch: `${R2_BASE}/portfolio/windows/calculator-search.jpg`,
+    progressbarVariants: `${R2_BASE}/portfolio/windows/progressbar-variants.jpg`,
     final: `${R2_BASE}/portfolio/windows/final.jpg`,
-    details: `${R2_BASE}/portfolio/windows/details.png`,
     learnings: `${R2_BASE}/portfolio/windows/learnings.jpg`,
     extra: `${R2_BASE}/portfolio/windows/extra.jpg`,
     // Videos (already in R2)

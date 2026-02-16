@@ -5,6 +5,7 @@ import CaseStudySection from '@/components/ui/CaseStudySection';
 import ParallaxImage from '@/components/animations/ParallaxImage';
 import AnimatedCounter from '@/components/animations/AnimatedCounter';
 import ScrollReveal from '@/components/animations/ScrollReveal';
+import VideoPlayer from '@/components/ui/VideoPlayer';
 import { assets } from '@/lib/assets';
 
 export default function WindowsSearchPage() {
@@ -39,7 +40,7 @@ export default function WindowsSearchPage() {
         <img src={assets.windows.hero} alt="Windows Search hero" className="w-full rounded-2xl" />
       </ParallaxImage>
 
-      {/* Overview */}
+      {/* Overview — Core Search */}
       <CaseStudySection label="Overview" title="">
         <p>
           During my time on the Windows design team, I worked on core search functions like 
@@ -52,6 +53,7 @@ export default function WindowsSearchPage() {
       </ParallaxImage>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Different variants of the search box depending on the type of query</p>
 
+      {/* Overview — Monetization */}
       <CaseStudySection label="" title="">
         <p>
           I also worked on the monetization vertical within Windows Search, primarily focused 
@@ -61,10 +63,11 @@ export default function WindowsSearchPage() {
       </CaseStudySection>
 
       <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
-        <img src={assets.windows.overview} alt="The content browsing experience refreshed everyday similar to the Google Doodle" className="w-full rounded-2xl" />
+        <img src={assets.windows.monetization} alt="The content browsing experience refreshed everyday similar to the Google Doodle" className="w-full rounded-2xl" />
       </ParallaxImage>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">The content browsing experience refreshed everyday similar to the Google Doodle</p>
 
+      {/* Overview — Partner Integration */}
       <CaseStudySection label="" title="">
         <p>
           Another role that I carried out involved helping partners integrate their services 
@@ -74,10 +77,11 @@ export default function WindowsSearchPage() {
       </CaseStudySection>
 
       <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
-        <img src={assets.windows.searchBox} alt="Different elements to help integrate Microsoft Store apps within the search box" className="w-full rounded-2xl" />
+        <img src={assets.windows.partnerIntegration} alt="Different elements to help integrate Microsoft Store apps within the search box" className="w-full rounded-2xl" />
       </ParallaxImage>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Different elements to help integrate Microsoft Store apps within the search box</p>
 
+      {/* Overview — Motion Design intro */}
       <CaseStudySection label="" title="">
         <p>
           Finally, one of my larger efforts involved incorporating motion design into the search 
@@ -139,12 +143,12 @@ export default function WindowsSearchPage() {
       </CaseStudySection>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
-        <video src={assets.windows.videoShimmer} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        <VideoPlayer src={assets.windows.videoShimmer} />
       </div>
       <p className="text-sm text-foreground/50 mb-8 text-center">My first idea was the shimmer effect, an animating placeholder that helps create an illusion of loading</p>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
-        <video src={assets.windows.videoShimVar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        <VideoPlayer src={assets.windows.videoShimVar} />
       </div>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Different variants of the shimmer I tried using speed and scale</p>
 
@@ -157,7 +161,7 @@ export default function WindowsSearchPage() {
       </CaseStudySection>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
-        <video src={assets.windows.videoDropdown} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        <VideoPlayer src={assets.windows.videoDropdown} />
       </div>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">This idea begins by displaying all the different providers, then drops down to show content as they finish loading.</p>
 
@@ -170,7 +174,7 @@ export default function WindowsSearchPage() {
       </CaseStudySection>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
-        <video src={assets.windows.videoProviderbar} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        <VideoPlayer src={assets.windows.videoProviderbar} />
       </div>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">This concept accurately reflects the speed at which search returned results. You easily miss the loader at the bottom left corner and there is a noticeable stutter while loading.</p>
 
@@ -184,7 +188,7 @@ export default function WindowsSearchPage() {
       </CaseStudySection>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
-        <video src={assets.windows.videoTopEdge} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        <VideoPlayer src={assets.windows.videoTopEdge} />
       </div>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">First version of the progress bar, common and effectively visible at higher load times</p>
 
@@ -197,12 +201,13 @@ export default function WindowsSearchPage() {
       </CaseStudySection>
 
       <div className="mb-3 rounded-2xl overflow-hidden">
-        <video src={assets.windows.videoTopWkey} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        <VideoPlayer src={assets.windows.videoTopWkey} />
       </div>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">The progress bar is triggered only when the user completes typing. A blue dot on the left of the file name also indicates which file loaded last.</p>
 
+      {/* Progress bar variants image — BEFORE solution video */}
       <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
-        <img src={assets.windows.details} alt="Multiple variants of the progress bar" className="w-full rounded-2xl" />
+        <img src={assets.windows.progressbarVariants} alt="Multiple variants of the progress bar" className="w-full rounded-2xl" />
       </ParallaxImage>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Multiple variants of the progress bar, experimenting with different thicknesses and padding from the edges</p>
 
@@ -216,13 +221,15 @@ export default function WindowsSearchPage() {
         </p>
       </CaseStudySection>
 
+      {/* Final solution video */}
       <div className="mb-3 rounded-2xl overflow-hidden">
-        <video src={assets.windows.videoFinal} autoPlay loop muted playsInline className="w-full rounded-2xl" />
+        <VideoPlayer src={assets.windows.videoFinal} />
       </div>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Final Design: A refined top edge progress indicator that is subtle yet effective.</p>
 
+      {/* Implementation details image — AFTER final video */}
       <ParallaxImage className="mb-3 rounded-2xl overflow-hidden">
-        <img src={assets.windows.final} alt="Implementation Details" className="w-full rounded-2xl" />
+        <img src={assets.windows.implementationDetails} alt="Implementation Details" className="w-full rounded-2xl" />
       </ParallaxImage>
       <p className="text-sm text-foreground/50 mb-16 md:mb-24 text-center">Implementation Details: Specific parameters on when and how long the loader should be displayed.</p>
 
