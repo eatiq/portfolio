@@ -13,7 +13,7 @@ export default function CartersPage() {
       title="Mobile App Redesign"
       year="2021"
       link="https://apps.apple.com/us/app/carters/id1275723118"
-      role="Sole Product Designer"
+      role="Product Designer"
       responsibilities={[
         'End to end app redesign',
         'User research & interviews',

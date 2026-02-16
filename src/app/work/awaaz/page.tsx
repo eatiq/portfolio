@@ -81,12 +81,6 @@ export default function AwaazPage() {
             <img src={assets.awaaz.afm} alt="AFM (Arnold From Mumbai) event poster" className="w-full rounded-2xl" />
           </div>
           <div className="rounded-2xl overflow-hidden">
-            <img src={assets.awaaz.aidc} alt="All India Dub Conference poster" className="w-full rounded-2xl" />
-          </div>
-          <div className="rounded-2xl overflow-hidden">
-            <img src={assets.awaaz.aidcAlt} alt="AIDC alternate poster" className="w-full rounded-2xl" />
-          </div>
-          <div className="rounded-2xl overflow-hidden">
             <img src={assets.awaaz.anky} alt="Animated poster — Anky" className="w-full rounded-2xl" />
           </div>
           <div className="rounded-2xl overflow-hidden">

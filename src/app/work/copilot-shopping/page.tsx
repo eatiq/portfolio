@@ -14,7 +14,7 @@ export default function CopilotShoppingPage() {
       title="Shopping on Microsoft Copilot"
       year="2023"
       link="https://www.copilot.microsoft.com"
-      role="Sole Product Designer"
+      role="Product Designer"
       responsibilities={[
         'Vision and strategy',
         'Executive pitch and presentation',
