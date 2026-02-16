@@ -3,41 +3,52 @@
 import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
 import CaseStudySection from '@/components/ui/CaseStudySection';
 import ProjectShowcase from '@/components/ui/ProjectShowcase';
+import ContentSwitcher from '@/components/ui/ContentSwitcher';
+
+const allPrototypes = [
+  {
+    src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/aisearchoverview.mp4',
+    title: 'Sizzler — AI Video Editor',
+    description:
+      'Sizzler \u2014 type a prompt, add a clip and a track, and the AI handles the edit. It writes the copy, breaks it into beat-synced segments, and drops animated text overlays onto a multi-layer timeline. Spring pop animations and Web Audio API beat detection keep everything in rhythm.',
+    layout: 'landscape' as const,
+  },
+  {
+    src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/vivint-floaty.mov',
+    title: 'Ambient AI Commerce',
+    description:
+      'A floating agent that initiates contextual sales conversations without disrupting the browsing experience. The AI seamlessly integrates into the interface, providing helpful suggestions at the right moment.',
+    layout: 'portrait' as const,
+  },
+];
+
+const shopEverythingProjects = [
+  {
+    src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/videosearch.mp4',
+    title: 'Conversational Video Search',
+    description:
+      'The entry point into Shop Everything. While watching a Reel, users can pause and ask Meta AI about anything on screen. The AI identifies products, people, and context — then surfaces shoppable results inline. No tab switching, no leaving the video.',
+  },
+  {
+    src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/pillstosearch.mp4',
+    title: 'Intelligent Frame Analysis',
+    description:
+      'Once the video is paused, AI runs object detection and face recognition across the frame. Every recognized item — clothing, accessories, furniture — gets a tappable pill pinned directly to it. Users tap to see product matches, pricing, and purchase options without breaking their flow.',
+  },
+  {
+    src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/circletosearch.mp4',
+    title: 'Draw to Search',
+    description:
+      'For items the AI doesn\'t auto-detect, users can long-press and draw around anything in the frame. The selection gets extracted, classified, and matched to products — turning any moment in a video into a shopping opportunity. The gesture feels native and the transition from video to results is seamless.',
+  },
+];
+
+const TABS = [
+  { id: 'prototypes', label: 'Prototypes' },
+  { id: 'shop-everything', label: 'Shop Everything' },
+];
 
 export default function MetaAIPage() {
-  const projects = [
-    {
-      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/aisearchoverview.mp4',
-      title: 'Sizzler — AI Video Editor',
-      description:
-        'Sizzler \u2014 type a prompt, add a clip and a track, and the AI handles the edit. It writes the copy, breaks it into beat-synced segments, and drops animated text overlays onto a multi-layer timeline. Spring pop animations and Web Audio API beat detection keep everything in rhythm.',
-    },
-    {
-      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/videosearch.mp4',
-      title: 'Conversational Video Search',
-      description:
-        'A conversational AI overlay for Reels \u2014 pause a video and AI identifies what\u2019s in frame with tappable quick actions. Ask who someone is, get a detailed answer powered by the Llama API in real time, then follow up with \u2018Shop\u2019 to see a breakdown of visible products and pricing. All inline, all contextual.',
-    },
-    {
-      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/pillstosearch.mp4',
-      title: 'Intelligent Frame Analysis',
-      description:
-        'Pause the video and AI does the rest \u2014 the frame runs through object detection and face recognition, picking up people, places, and products. Each one gets a tappable pill overlay pinned to the subject, with anchor points that follow their position across frames.',
-    },
-    {
-      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/circletosearch.mp4',
-      title: 'Draw to Search',
-      description:
-        'A SwiftUI + AVKit prototype where long-pressing freezes the frame and lets you draw over anything. The enclosed region gets extracted and classified through Apple\u2019s Vision framework, then routed to a search API. The whole transition \u2014 from full-bleed video to floating card with results \u2014 uses matched geometry to keep things feeling continuous, with a Metal shader driving the background blur.',
-    },
-    {
-      src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/vivint-floaty.mov',
-      title: 'Ambient AI Commerce',
-      description:
-        'A floating agent that initiates contextual sales conversations without disrupting the browsing experience. The AI seamlessly integrates into the interface, providing helpful suggestions at the right moment.',
-    },
-  ];
-
   return (
     <CaseStudyLayout
       company="Meta"
@@ -60,7 +71,7 @@ export default function MetaAIPage() {
           </p>
           <p>
             This involves rethinking how people discover content, people, and information
-            on one of the world's largest social platforms — balancing the power of AI
+            on one of the world&apos;s largest social platforms — balancing the power of AI
             with the simplicity users expect.
           </p>
         </>
@@ -69,21 +80,87 @@ export default function MetaAIPage() {
       locked
       combination={[24, 8, 16]}
     >
-      {/* Intro Section */}
+      <ContentSwitcher tabs={TABS} defaultTab="prototypes">
+        {(activeTab) =>
+          activeTab === 'prototypes' ? (
+            <PrototypesContent />
+          ) : (
+            <ShopEverythingContent />
+          )
+        }
+      </ContentSwitcher>
+    </CaseStudyLayout>
+  );
+}
+
+function PrototypesContent() {
+  return (
+    <>
       <CaseStudySection title="Things I've Been Building">
         <p>
           My day-to-day at Meta lives at the intersection of design and engineering.
           I work primarily in Cursor, prototyping interactions in SwiftUI and shipping
-          production diffs in Swift and Meta's proprietary Bloks framework. Below
-          are some of the concepts I've been exploring:
+          production diffs in Swift and Meta&apos;s proprietary Bloks framework. Below
+          are some of the concepts I&apos;ve been exploring:
         </p>
       </CaseStudySection>
 
-      {/* Prototype Showcases */}
       <div className="space-y-32 mb-16 md:mb-24">
-        {projects.map((project, index) => (
+        {allPrototypes.map((project, index) => (
           <ProjectShowcase
-            key={index}
+            key={project.title}
+            src={project.src}
+            title={project.title}
+            description={project.description}
+            index={index}
+            layout={project.layout}
+          />
+        ))}
+      </div>
+
+      <div className="p-8 rounded-xl border border-foreground/10 text-center mb-16 md:mb-24">
+        <p className="text-foreground/50 text-lg">
+          More prototypes added over time. For in-depth case studies, reach out.
+        </p>
+      </div>
+    </>
+  );
+}
+
+function ShopEverythingContent() {
+  return (
+    <>
+      <CaseStudySection title="Shop Everything">
+        <p>
+          What if you could buy anything you see in a video — without ever leaving it?
+          Shop Everything reimagines commerce on Facebook by turning passive video
+          watching into an active shopping experience, powered by Meta AI.
+        </p>
+      </CaseStudySection>
+
+      <CaseStudySection title="Problem">
+        <p>
+          Users frequently discover products in Reels and video content but have no
+          direct path to purchase. The existing flow — screenshot, reverse image search,
+          hope for the best — is fragmented and full of friction. Creators tag products
+          manually, but coverage is low and the experience feels bolted on.
+        </p>
+      </CaseStudySection>
+
+      <CaseStudySection title="Approach">
+        <p>
+          Rather than relying on manual tagging, we designed a system where AI does
+          the heavy lifting. The core idea: any frame in any video becomes shoppable
+          through three complementary interaction patterns — conversational search,
+          automatic detection, and freeform selection. Each one handles a different
+          level of user intent, from casual curiosity to deliberate shopping.
+        </p>
+      </CaseStudySection>
+
+      <div className="space-y-32 mb-16 md:mb-24">
+        {shopEverythingProjects.map((project, index) => (
+          <ProjectShowcase
+            key={project.title}
             src={project.src}
             title={project.title}
             description={project.description}
@@ -92,12 +169,15 @@ export default function MetaAIPage() {
         ))}
       </div>
 
-      {/* More coming soon */}
-      <div className="p-8 rounded-xl border border-foreground/10 text-center mb-16 md:mb-24">
-        <p className="text-foreground/50 text-lg">
-          More prototypes added over time. For in-depth case studies, reach out.
+      <CaseStudySection title="Outcome">
+        <p>
+          Together, these three patterns create a layered shopping experience — from
+          AI-initiated suggestions to user-driven exploration. The prototypes
+          demonstrated that contextual, in-video commerce could feel native rather than
+          intrusive, opening a path toward making every piece of video content on
+          Facebook shoppable by default.
         </p>
-      </div>
-    </CaseStudyLayout>
+      </CaseStudySection>
+    </>
   );
 }
