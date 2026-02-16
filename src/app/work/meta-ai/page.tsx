@@ -14,6 +14,13 @@ const allPrototypes = [
     layout: 'landscape' as const,
   },
   {
+    src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/grid-auravanish.mp4',
+    title: 'Ad Transparency with Meta AI',
+    description:
+      'Long-pressing an ad activates Meta AI to deliver a concise advertiser report, empowering customers with transparency and trust at a glance.',
+    layout: 'portrait' as const,
+  },
+  {
     src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/vivint-floaty.mov',
     title: 'Ambient AI Commerce',
     description:
