@@ -47,7 +47,7 @@ export default function SelectedWorks({
     <div className="w-full">
       <FadeIn delay={0.1}>
         <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-10">
-          Selected works
+          Selected work
         </h2>
       </FadeIn>
 

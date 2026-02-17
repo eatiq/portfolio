@@ -10,7 +10,7 @@ const fontFamily = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   title: {
-    default: "Ehsan Atiq - Product Designer & Frontend Developer",
+    default: "Ehsan Atiq",
     template: "%s | Ehsan Atiq",
   },
   description: "Front end developer turned product designer with over ten years of experience. Operating at the intersection of design and code, currently at Meta.",
