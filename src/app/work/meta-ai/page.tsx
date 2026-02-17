@@ -7,6 +7,13 @@ import ContentSwitcher from '@/components/ui/ContentSwitcher';
 
 const allPrototypes = [
   {
+    src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/dearalgorithm.mp4',
+    title: 'Dear Algorithm',
+    description:
+      'Dear Algorithm \u2014 a personalization layer for Facebook Search. Users pick their interests across topics, content style, and mood, and the algorithm reshapes around them. The intro features a spiral particle animation on a cosmic dark UI, with each selection lighting up in a unique color.',
+    layout: 'portrait' as const,
+  },
+  {
     src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/aisearchoverview.mp4',
     title: 'Sizzler — AI Video Editor',
     description:
