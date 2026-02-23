@@ -39,6 +39,12 @@ const allPrototypes = [
 
 const shopEverythingProjects = [
   {
+    src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/agentic-checkout.mp4',
+    title: 'Browse, Refine, Buy',
+    description:
+      'From Reels to receipt \u2014 tap \u2018Shop similar\u2019 on a detected product and land in a river-like browsing experience with floating product cards. Refine with freeform text or category pills, compare items side-by-side with AI-generated pros and cons, and check out through a verified merchant flow \u2014 all without leaving the app.',
+  },
+  {
     src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/videosearch.mp4',
     title: 'Conversational Video Search',
     description:
@@ -60,7 +66,7 @@ const shopEverythingProjects = [
 
 const TABS = [
   { id: 'experiments', label: 'Experiments' },
-  { id: 'deep-dive', label: 'Deep Dive' },
+  { id: 'case-study', label: 'Case Study' },
 ];
 
 export default function MetaAIPage() {
@@ -94,7 +100,7 @@ export default function MetaAIPage() {
       locked
       combination={[24, 8, 16]}
     >
-      <ContentSwitcher tabs={TABS} defaultTab="experiments">
+      <ContentSwitcher tabs={TABS} defaultTab="case-study">
         {(activeTab) =>
           activeTab === 'experiments' ? (
             <PrototypesContent />
@@ -165,10 +171,11 @@ function ShopEverythingContent() {
       <CaseStudySection title="Approach">
         <p>
           Rather than relying on manual tagging, we designed a system where AI does
-          the heavy lifting. The core idea: any frame in any video becomes shoppable
-          through three complementary interaction patterns — conversational search,
-          automatic detection, and freeform selection. Each one handles a different
-          level of user intent, from casual curiosity to deliberate shopping.
+          the heavy lifting. The core idea: any frame in any video becomes shoppable.
+          Multiple complementary interaction patterns — conversational search,
+          automatic detection, freeform selection, and an end-to-end agentic checkout
+          flow — handle different levels of user intent, from casual curiosity to
+          deliberate purchase.
         </p>
       </CaseStudySection>
 
@@ -186,11 +193,11 @@ function ShopEverythingContent() {
 
       <CaseStudySection title="Outcome">
         <p>
-          Together, these three patterns create a layered shopping experience — from
-          AI-initiated suggestions to user-driven exploration. The prototypes
-          demonstrated that contextual, in-video commerce could feel native rather than
-          intrusive, opening a path toward making every piece of video content on
-          Facebook shoppable by default.
+          Together, these patterns create a layered shopping experience — from
+          AI-initiated suggestions to user-driven exploration, all the way through to
+          agentic checkout. The prototypes demonstrated that contextual, in-video
+          commerce could feel native rather than intrusive, opening a path toward
+          making every piece of video content on Facebook shoppable by default.
         </p>
       </CaseStudySection>
     </>
