@@ -4,6 +4,7 @@ import FadeIn from '@/components/animations/FadeIn';
 import PageTransition from '@/components/animations/PageTransition';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
+import AmbientGradient from '@/components/ui/AmbientGradient';
 import CombinationLock from '@/components/ui/CombinationLock';
 import Link from 'next/link';
 import { ReactNode } from 'react';
@@ -115,6 +116,7 @@ export default function CaseStudyLayout({
       />
 
       <Navigation />
+      <AmbientGradient />
 
       {/* Hero */}
       <section className="pt-32 pb-16 px-6 md:px-12">
