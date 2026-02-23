@@ -65,8 +65,8 @@ const shopEverythingProjects = [
 ];
 
 const TABS = [
-  { id: 'experiments', label: 'Experiments' },
   { id: 'case-study', label: 'Case Study' },
+  { id: 'experiments', label: 'Experiments' },
 ];
 
 export default function MetaAIPage() {

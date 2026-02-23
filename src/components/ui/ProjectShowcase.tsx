@@ -102,10 +102,10 @@ export default function ProjectShowcase({
       <motion.div
         ref={containerRef}
         style={{ opacity, y }}
-        className="relative"
+        className="relative overflow-hidden"
       >
         <div className="space-y-8">
-          <div className="relative">
+          <div className="relative overflow-hidden">
             {gradientOrb}
             {videoContainer}
           </div>
@@ -125,7 +125,7 @@ export default function ProjectShowcase({
     <motion.div
       ref={containerRef}
       style={{ opacity, y }}
-      className="relative"
+      className="relative overflow-hidden"
     >
       <div
         className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center`}
