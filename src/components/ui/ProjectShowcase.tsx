@@ -162,7 +162,6 @@ function getTechTags(description: string): string[] {
     'AVKit',
     'Vision',
     'Metal',
-    'AI',
     'Object Detection',
     'Face Recognition',
     'Llama API',
