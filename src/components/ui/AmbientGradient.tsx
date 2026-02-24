@@ -2,35 +2,40 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const GRADIENT_COLORS = [
-  [99, 102, 241],   // Indigo
-  [139, 92, 246],   // Purple
-  [236, 72, 153],   // Pink
-  [34, 197, 94],    // Green
-  [251, 146, 60],   // Orange
-  [59, 130, 246],   // Blue
-  [99, 102, 241],   // Indigo (loop)
+/**
+ * Ambient scroll gradient — soft color orbs that shift as the user scrolls.
+ *
+ * Key design decisions:
+ * - Three orbs (top-left, center-right, bottom-left) so color is visible
+ *   behind content in the middle of the viewport, not just the edges.
+ * - Colors are applied via inline style with CSS transition (1.2s ease)
+ *   so the browser handles interpolation smoothly — no per-frame JS color math.
+ * - Scroll position is sampled and only triggers a style update when the
+ *   color segment changes (every ~17% of scroll), eliminating flicker.
+ * - Large blur radius (120px) keeps the effect soft and atmospheric.
+ */
+
+const PALETTE = [
+  { r: 99, g: 102, b: 241 },   // Indigo
+  { r: 139, g: 92, b: 246 },   // Purple
+  { r: 236, g: 72, b: 153 },   // Pink
+  { r: 34, g: 197, b: 94 },    // Green
+  { r: 251, g: 146, b: 60 },   // Orange
+  { r: 59, g: 130, b: 246 },   // Blue
 ];
 
-function lerp(a: number, b: number, t: number) {
-  return a + (b - a) * t;
+function colorAt(index: number) {
+  const c = PALETTE[((index % PALETTE.length) + PALETTE.length) % PALETTE.length];
+  return c;
 }
 
-function getColor(t: number): [number, number, number] {
-  const segments = GRADIENT_COLORS.length - 1;
-  const seg = Math.min(Math.floor(t * segments), segments - 1);
-  const localT = (t * segments) - seg;
-  const c1 = GRADIENT_COLORS[seg];
-  const c2 = GRADIENT_COLORS[seg + 1];
-  return [
-    Math.round(lerp(c1[0], c2[0], localT)),
-    Math.round(lerp(c1[1], c2[1], localT)),
-    Math.round(lerp(c1[2], c2[2], localT)),
-  ];
+function rgbaStr(c: { r: number; g: number; b: number }, a: number) {
+  return `rgba(${c.r}, ${c.g}, ${c.b}, ${a})`;
 }
 
 export default function AmbientGradient() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const lastSegmentRef = useRef(-1);
   const rafRef = useRef<number>(0);
   const [mounted, setMounted] = useState(false);
 
@@ -44,35 +49,38 @@ export default function AmbientGradient() {
     const container = containerRef.current;
     if (!container) return;
 
-    const orb1 = container.children[0] as HTMLElement;
-    const orb2 = container.children[1] as HTMLElement;
+    const orbs = Array.from(container.children) as HTMLElement[];
 
-    function update() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+    function applyColors(segment: number) {
+      // Each orb gets a different color from the palette, offset by position
+      const c0 = colorAt(segment);
+      const c1 = colorAt(segment + 2);
+      const c2 = colorAt(segment + 4);
 
-      const c1 = getColor(progress);
-      const c2 = getColor((progress + 0.35) % 1);
-
-      // Opacity ramp: visible immediately, peaks in middle, fades at very bottom
-      let opacity = 0.55;
-      if (progress < 0.02) opacity = lerp(0.4, 0.55, progress / 0.02);
-      else if (progress > 0.95) opacity = lerp(0.55, 0.2, (progress - 0.95) / 0.05);
-
-      orb1.style.background = `radial-gradient(circle at 30% 30%, rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.7) 0%, rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.25) 35%, transparent 65%)`;
-      orb1.style.opacity = String(opacity);
-
-      orb2.style.background = `radial-gradient(circle at 70% 70%, rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.7) 0%, rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.25) 35%, transparent 65%)`;
-      orb2.style.opacity = String(opacity);
+      orbs[0].style.background = `radial-gradient(circle at 30% 40%, ${rgbaStr(c0, 0.45)} 0%, ${rgbaStr(c0, 0.12)} 40%, transparent 70%)`;
+      orbs[1].style.background = `radial-gradient(circle at 60% 50%, ${rgbaStr(c1, 0.35)} 0%, ${rgbaStr(c1, 0.1)} 40%, transparent 70%)`;
+      orbs[2].style.background = `radial-gradient(circle at 40% 60%, ${rgbaStr(c2, 0.4)} 0%, ${rgbaStr(c2, 0.1)} 40%, transparent 70%)`;
     }
 
-    // Run immediately
-    update();
+    // Apply initial colors
+    applyColors(0);
 
     function onScroll() {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(update);
+      rafRef.current = requestAnimationFrame(() => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (docHeight <= 0) return;
+
+        const progress = Math.min(scrollTop / docHeight, 1);
+        // Divide scroll into segments — one per palette color
+        const segment = Math.floor(progress * PALETTE.length);
+
+        if (segment !== lastSegmentRef.current) {
+          lastSegmentRef.current = segment;
+          applyColors(segment);
+        }
+      });
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -84,26 +92,48 @@ export default function AmbientGradient() {
 
   if (!mounted) return null;
 
+  const orbBase: React.CSSProperties = {
+    position: 'absolute',
+    filter: 'blur(120px)',
+    opacity: 0.35,
+    transition: 'background 1.2s ease',
+    willChange: 'background',
+  };
+
   return (
     <div
       ref={containerRef}
       className="fixed inset-0 pointer-events-none overflow-hidden"
       style={{ zIndex: 1 }}
     >
+      {/* Top-left orb */}
       <div
-        className="absolute -top-[200px] -left-[200px] w-[900px] h-[900px]"
         style={{
-          filter: 'blur(90px)',
-          opacity: 0.4,
-          transition: 'background 0.6s ease, opacity 0.4s ease',
+          ...orbBase,
+          top: '-10%',
+          left: '-10%',
+          width: '60%',
+          height: '60%',
         }}
       />
+      {/* Center-right orb — ensures color behind main content area */}
       <div
-        className="absolute -bottom-[200px] -right-[200px] w-[900px] h-[900px]"
         style={{
-          filter: 'blur(90px)',
-          opacity: 0.4,
-          transition: 'background 0.6s ease, opacity 0.4s ease',
+          ...orbBase,
+          top: '20%',
+          right: '-10%',
+          width: '55%',
+          height: '55%',
+        }}
+      />
+      {/* Bottom-left orb */}
+      <div
+        style={{
+          ...orbBase,
+          bottom: '-10%',
+          left: '-5%',
+          width: '60%',
+          height: '60%',
         }}
       />
     </div>
