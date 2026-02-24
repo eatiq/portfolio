@@ -16,7 +16,6 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
   const [showControls, setShowControls] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Update progress bar as video plays
@@ -57,7 +56,6 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
       video.pause();
       setIsPlaying(false);
       setShowControls(true);
-      // Keep controls visible when paused
       if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
     }
   }, [scheduleHideControls]);
@@ -104,7 +102,6 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
   }, [handleScrub, isPlaying, scheduleHideControls]);
 
   const handleContainerClick = useCallback((e: React.MouseEvent) => {
-    // Don't toggle if clicking on the scrubber area
     const scrubber = scrubberRef.current;
     if (scrubber) {
       const rect = scrubber.getBoundingClientRect();
@@ -112,6 +109,62 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
     }
     togglePlay();
   }, [togglePlay]);
+
+  // Play icon SVG — optically centered with slight right offset for the triangle shape
+  const PlayIcon = () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M8 5.14v13.72a1 1 0 0 0 1.53.85l10.22-6.86a1 1 0 0 0 0-1.7L9.53 4.29A1 1 0 0 0 8 5.14z" fill="white" />
+    </svg>
+  );
+
+  const PauseIcon = () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <rect x="6" y="4" width="4" height="16" rx="1" fill="white" />
+      <rect x="14" y="4" width="4" height="16" rx="1" fill="white" />
+    </svg>
+  );
+
+  // Scrubber bar component — reused in both states
+  const ScrubberBar = ({ refProp }: { refProp?: React.RefObject<HTMLDivElement | null> }) => (
+    <div
+      ref={refProp}
+      className="relative h-6 flex items-end cursor-pointer"
+      onClick={(e) => e.stopPropagation()}
+      onMouseDown={(e) => {
+        if (refProp?.current === null && e.currentTarget) {
+          (scrubberRef as React.MutableRefObject<HTMLDivElement | null>).current = e.currentTarget;
+        }
+        handleScrubStart(e);
+      }}
+      onTouchStart={(e) => {
+        if (refProp?.current === null && e.currentTarget) {
+          (scrubberRef as React.MutableRefObject<HTMLDivElement | null>).current = e.currentTarget;
+        }
+        handleScrubStart(e);
+      }}
+    >
+      {/* Track: frosted glass pill for visibility on any background */}
+      <div className="w-full h-[5px] rounded-full bg-black/15 backdrop-blur-md overflow-hidden">
+        {/* Progress fill */}
+        <motion.div
+          className="h-full rounded-full bg-white/80"
+          style={{ width: `${progress * 100}%` }}
+          transition={{ duration: 0.05 }}
+        />
+      </div>
+      {/* Scrub handle */}
+      <motion.div
+        className="absolute top-1/2 -translate-y-1/2 w-[14px] h-[14px] rounded-full bg-white"
+        style={{
+          left: `calc(${progress * 100}% - 7px)`,
+          boxShadow: '0 0 0 2px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.15)',
+        }}
+        initial={false}
+        whileHover={{ scale: 1.3 }}
+        whileTap={{ scale: 1.15 }}
+      />
+    </div>
+  );
 
   return (
     <div
@@ -128,44 +181,17 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
         className={`w-full rounded-2xl ${aspectRatio === 'square' ? 'h-full object-cover' : ''}`}
       />
 
-      {/* Persistent pause overlay when paused */}
+      {/* Persistent pause overlay when paused and controls have faded */}
       {!isPlaying && !showControls && (
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="ml-1">
-              <path d="M8 5v14l11-7L8 5z" fill="white" />
-            </svg>
-          </div>
-        </div>
-      )}
-
-      {/* Scrubber — always visible when paused */}
-      {!isPlaying && !showControls && (
-        <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
-          <div
-            ref={scrubberRef}
-            className="relative h-6 flex items-end cursor-pointer"
-            onClick={(e) => e.stopPropagation()}
-            onMouseDown={handleScrubStart}
-            onTouchStart={handleScrubStart}
-          >
-            {/* Track background */}
-            <div className="w-full h-[3px] rounded-full bg-white/20 backdrop-blur-sm overflow-hidden">
-              {/* Progress fill */}
-              <motion.div
-                className="h-full rounded-full bg-white/70"
-                style={{ width: `${progress * 100}%` }}
-                transition={{ duration: 0.05 }}
-              />
+          <div className="flex-1 flex items-center justify-center w-full">
+            <div className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center pl-[2px]">
+              <PlayIcon />
             </div>
-            {/* Scrub handle */}
-            <motion.div
-              className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white shadow-lg shadow-black/30"
-              style={{ left: `calc(${progress * 100}% - 6px)` }}
-              initial={false}
-              whileHover={{ scale: 1.4 }}
-              whileTap={{ scale: 1.2 }}
-            />
+          </div>
+          {/* Scrubber at bottom */}
+          <div className="w-full px-4 pb-4">
+            <ScrubberBar refProp={scrubberRef} />
           </div>
         </div>
       )}
@@ -184,21 +210,13 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
             <div className="flex-1 flex items-center justify-center">
               <motion.div
                 className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center"
+                style={{ paddingLeft: isPlaying ? '0px' : '2px' }}
                 initial={{ scale: 0.5 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.5 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               >
-                {isPlaying ? (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="ml-1">
-                    <path d="M8 5v14l11-7L8 5z" fill="white" />
-                  </svg>
-                ) : (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="6" y="4" width="4" height="16" rx="1" fill="white" />
-                    <rect x="14" y="4" width="4" height="16" rx="1" fill="white" />
-                  </svg>
-                )}
+                {isPlaying ? <PlayIcon /> : <PauseIcon />}
               </motion.div>
             </div>
 
@@ -210,39 +228,7 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
               exit={{ opacity: 0, y: 8 }}
               transition={{ duration: 0.2, delay: 0.05 }}
             >
-              <div
-                ref={!isPlaying ? undefined : scrubberRef}
-                className="relative h-6 flex items-end cursor-pointer"
-                onClick={(e) => e.stopPropagation()}
-                onMouseDown={(e) => {
-                  // Assign ref dynamically for the playing state scrubber
-                  if (scrubberRef.current === null) {
-                    scrubberRef.current = e.currentTarget;
-                  }
-                  handleScrubStart(e);
-                }}
-                onTouchStart={(e) => {
-                  if (scrubberRef.current === null) {
-                    scrubberRef.current = e.currentTarget;
-                  }
-                  handleScrubStart(e);
-                }}
-              >
-                <div className="w-full h-[3px] rounded-full bg-white/20 backdrop-blur-sm overflow-hidden">
-                  <motion.div
-                    className="h-full rounded-full bg-white/70"
-                    style={{ width: `${progress * 100}%` }}
-                    transition={{ duration: 0.05 }}
-                  />
-                </div>
-                <motion.div
-                  className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white shadow-lg shadow-black/30"
-                  style={{ left: `calc(${progress * 100}% - 6px)` }}
-                  initial={false}
-                  whileHover={{ scale: 1.4 }}
-                  whileTap={{ scale: 1.2 }}
-                />
-              </div>
+              <ScrubberBar />
             </motion.div>
           </motion.div>
         )}
