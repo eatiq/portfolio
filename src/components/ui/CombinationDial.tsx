@@ -16,7 +16,7 @@ const DEG_PER_NUM = 360 / TOTAL_NUMBERS;
 
 function buildTicks() {
   return Array.from({ length: TOTAL_NUMBERS }, (_, i) => {
-    const rad = -(i * DEG_PER_NUM * Math.PI) / 180; // CCW like a real lock
+    const rad = -(i * DEG_PER_NUM * Math.PI) / 180;
     const isMajor = i % 10 === 0;
     const isMedium = i % 5 === 0;
     const outerR = 125;
@@ -45,7 +45,7 @@ function buildNumbers() {
   }[] = [];
 
   for (let i = 0; i < TOTAL_NUMBERS; i += 2) {
-    const deg = -(i * DEG_PER_NUM); // CCW like a real lock
+    const deg = -(i * DEG_PER_NUM);
     const rad = (deg * Math.PI) / 180;
     const r = 96;
     const isMajor = i % 10 === 0;
@@ -98,9 +98,6 @@ export default function CombinationDial({
           <stop offset="0%" stopColor="#333" />
           <stop offset="100%" stopColor="#1a1a1a" />
         </radialGradient>
-        <filter id="dial-shadow">
-          <feDropShadow dx="0" dy="2" stdDeviation="4" floodOpacity="0.4" />
-        </filter>
         <filter id="indicator-glow">
           <feDropShadow
             dx="0"
@@ -142,11 +139,13 @@ export default function CombinationDial({
         strokeLinecap="round"
       />
 
-      {/* Rotating dial group */}
+      {/* Rotating dial group — no SVG filter for performance */}
       <motion.g
-        className="[transform-box:fill-box] origin-center"
-        style={{ rotate: rotation }}
-        filter="url(#dial-shadow)"
+        style={{
+          rotate: rotation,
+          willChange: 'transform',
+          transformOrigin: 'center center',
+        }}
       >
         {/* Dial face */}
         <circle cx="0" cy="0" r="130" fill="url(#dial-face)" />

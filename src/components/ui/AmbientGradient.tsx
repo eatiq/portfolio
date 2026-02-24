@@ -1,98 +1,109 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 const GRADIENT_COLORS = [
-  { r: 99, g: 102, b: 241 },   // Indigo
-  { r: 139, g: 92, b: 246 },   // Purple
-  { r: 236, g: 72, b: 153 },   // Pink
-  { r: 34, g: 197, b: 94 },    // Green
-  { r: 251, g: 146, b: 60 },   // Orange
-  { r: 59, g: 130, b: 246 },   // Blue
-  { r: 99, g: 102, b: 241 },   // Indigo (loop back)
+  [99, 102, 241],   // Indigo
+  [139, 92, 246],   // Purple
+  [236, 72, 153],   // Pink
+  [34, 197, 94],    // Green
+  [251, 146, 60],   // Orange
+  [59, 130, 246],   // Blue
+  [99, 102, 241],   // Indigo (loop)
 ];
 
-function interpolateColor(
-  colors: { r: number; g: number; b: number }[],
-  t: number
-): { r: number; g: number; b: number } {
-  const segments = colors.length - 1;
-  const segment = Math.min(Math.floor(t * segments), segments - 1);
-  const localT = (t * segments) - segment;
+function lerp(a: number, b: number, t: number) {
+  return a + (b - a) * t;
+}
 
-  const c1 = colors[segment];
-  const c2 = colors[segment + 1];
-
-  return {
-    r: Math.round(c1.r + (c2.r - c1.r) * localT),
-    g: Math.round(c1.g + (c2.g - c1.g) * localT),
-    b: Math.round(c1.b + (c2.b - c1.b) * localT),
-  };
+function getColor(t: number): [number, number, number] {
+  const segments = GRADIENT_COLORS.length - 1;
+  const seg = Math.min(Math.floor(t * segments), segments - 1);
+  const localT = (t * segments) - seg;
+  const c1 = GRADIENT_COLORS[seg];
+  const c2 = GRADIENT_COLORS[seg + 1];
+  return [
+    Math.round(lerp(c1[0], c2[0], localT)),
+    Math.round(lerp(c1[1], c2[1], localT)),
+    Math.round(lerp(c1[2], c2[2], localT)),
+  ];
 }
 
 export default function AmbientGradient() {
-  const { scrollYProgress } = useScroll();
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 30,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  const [color1, setColor1] = useState('99, 102, 241');
-  const [color2, setColor2] = useState('236, 72, 153');
-  const [opacity, setOpacity] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = smoothProgress.on('change', (v: number) => {
-      // Cancel any pending frame
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    const orb1 = container.children[0] as HTMLElement;
+    const orb2 = container.children[1] as HTMLElement;
+
+    function update() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+
+      const c1 = getColor(progress);
+      const c2 = getColor((progress + 0.35) % 1);
+
+      // Opacity: fade in from top, stay visible, fade out at bottom
+      let opacity = 0.25;
+      if (progress < 0.03) opacity = lerp(0.15, 0.25, progress / 0.03);
+      else if (progress > 0.97) opacity = lerp(0.25, 0.08, (progress - 0.97) / 0.03);
+
+      orb1.style.background = `radial-gradient(circle at 30% 30%, rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.5) 0%, rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.15) 40%, transparent 70%)`;
+      orb1.style.opacity = String(opacity);
+
+      orb2.style.background = `radial-gradient(circle at 70% 70%, rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.5) 0%, rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.15) 40%, transparent 70%)`;
+      orb2.style.opacity = String(opacity);
+    }
+
+    // Run immediately
+    update();
+
+    function onScroll() {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(update);
+    }
 
-      rafRef.current = requestAnimationFrame(() => {
-        const c1 = interpolateColor(GRADIENT_COLORS, v);
-        const c2 = interpolateColor(GRADIENT_COLORS, (v + 0.35) % 1);
-        setColor1(`${c1.r}, ${c1.g}, ${c1.b}`);
-        setColor2(`${c2.r}, ${c2.g}, ${c2.b}`);
-
-        // Fade in/out at edges
-        let o = 0.18;
-        if (v < 0.05) o = (v / 0.05) * 0.18;
-        else if (v > 0.95) o = ((1 - v) / 0.05) * 0.18;
-        setOpacity(o);
-      });
-    });
-
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
-      unsubscribe();
+      window.removeEventListener('scroll', onScroll);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [smoothProgress]);
+  }, [mounted]);
+
+  if (!mounted) return null;
 
   return (
     <div
-      className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 0 }}
+      ref={containerRef}
+      className="fixed inset-0 pointer-events-none overflow-hidden"
+      style={{ zIndex: 1 }}
     >
-      {/* Top-left orb */}
       <div
-        className="absolute -top-[200px] -left-[200px] w-[800px] h-[800px]"
+        className="absolute -top-[150px] -left-[150px] w-[700px] h-[700px]"
         style={{
-          opacity,
-          background: `radial-gradient(circle at 50% 50%, rgba(${color1}, 0.4) 0%, rgba(${color1}, 0.1) 40%, transparent 70%)`,
-          filter: 'blur(80px)',
-          transition: 'opacity 0.3s ease',
+          filter: 'blur(100px)',
+          opacity: 0.15,
+          transition: 'background 0.8s ease, opacity 0.5s ease',
         }}
       />
-
-      {/* Bottom-right orb */}
       <div
-        className="absolute -bottom-[200px] -right-[200px] w-[800px] h-[800px]"
+        className="absolute -bottom-[150px] -right-[150px] w-[700px] h-[700px]"
         style={{
-          opacity,
-          background: `radial-gradient(circle at 50% 50%, rgba(${color2}, 0.4) 0%, rgba(${color2}, 0.1) 40%, transparent 70%)`,
-          filter: 'blur(80px)',
-          transition: 'opacity 0.3s ease',
+          filter: 'blur(100px)',
+          opacity: 0.15,
+          transition: 'background 0.8s ease, opacity 0.5s ease',
         }}
       />
     </div>

@@ -32,6 +32,7 @@ export function useCombinationLock({ combination, onUnlock }: UseCombinationLock
   const prevAngleRef = useRef(0);
   const cumulativeRotationRef = useRef(0);
   const dragStartRotationRef = useRef(0);
+  const lastDisplayedNumberRef = useRef(0);
 
   const getDragDirection = useCallback((): 'cw' | 'ccw' | null => {
     const net = cumulativeRotationRef.current - dragStartRotationRef.current;
@@ -46,7 +47,6 @@ export function useCombinationLock({ combination, onUnlock }: UseCombinationLock
     el.setPointerCapture(e.pointerId);
     isDraggingRef.current = true;
 
-    // Sync with current animated value in case snap animation was mid-flight
     cumulativeRotationRef.current = dialRotation.get();
     dragStartRotationRef.current = cumulativeRotationRef.current;
 
@@ -70,21 +70,21 @@ export function useCombinationLock({ combination, onUnlock }: UseCombinationLock
         Math.atan2(e.clientY - cy, e.clientX - cx) * (180 / Math.PI);
       let delta = angle - prevAngleRef.current;
 
-      // Handle wrapping around ±180°
       if (delta > 180) delta -= 360;
       if (delta < -180) delta += 360;
 
       prevAngleRef.current = angle;
       cumulativeRotationRef.current += delta;
 
-      // Detent snapping: pull toward nearest number position while dragging
-      const raw = cumulativeRotationRef.current;
-      const nearest = Math.round(raw / DEGREES_PER_NUMBER) * DEGREES_PER_NUMBER;
-      const distToNearest = nearest - raw;
-      const snappedRotation = raw + distToNearest * 0.35;
+      // Direct set without detent snapping during drag for smoother feel
+      dialRotation.set(cumulativeRotationRef.current);
 
-      dialRotation.set(snappedRotation);
-      setCurrentNumber(normalizeNumber(cumulativeRotationRef.current));
+      // Only update the displayed number when it actually changes (avoids unnecessary re-renders)
+      const num = normalizeNumber(cumulativeRotationRef.current);
+      if (num !== lastDisplayedNumberRef.current) {
+        lastDisplayedNumberRef.current = num;
+        setCurrentNumber(num);
+      }
     },
     [dialRotation],
   );
@@ -104,6 +104,7 @@ export function useCombinationLock({ combination, onUnlock }: UseCombinationLock
       damping: 30,
     });
     setCurrentNumber(number);
+    lastDisplayedNumberRef.current = number;
 
     const direction = getDragDirection();
     if (!direction) return;
@@ -129,6 +130,7 @@ export function useCombinationLock({ combination, onUnlock }: UseCombinationLock
     setCurrentNumber(0);
     setIsUnlocked(false);
     cumulativeRotationRef.current = 0;
+    lastDisplayedNumberRef.current = 0;
     dialRotation.set(0);
   }, [dialRotation]);
 
