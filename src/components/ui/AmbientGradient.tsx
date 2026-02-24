@@ -55,15 +55,15 @@ export default function AmbientGradient() {
       const c1 = getColor(progress);
       const c2 = getColor((progress + 0.35) % 1);
 
-      // Opacity: fade in from top, stay visible, fade out at bottom
-      let opacity = 0.25;
-      if (progress < 0.03) opacity = lerp(0.15, 0.25, progress / 0.03);
-      else if (progress > 0.97) opacity = lerp(0.25, 0.08, (progress - 0.97) / 0.03);
+      // Opacity ramp: visible immediately, peaks in middle, fades at very bottom
+      let opacity = 0.55;
+      if (progress < 0.02) opacity = lerp(0.4, 0.55, progress / 0.02);
+      else if (progress > 0.95) opacity = lerp(0.55, 0.2, (progress - 0.95) / 0.05);
 
-      orb1.style.background = `radial-gradient(circle at 30% 30%, rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.5) 0%, rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.15) 40%, transparent 70%)`;
+      orb1.style.background = `radial-gradient(circle at 30% 30%, rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.7) 0%, rgba(${c1[0]}, ${c1[1]}, ${c1[2]}, 0.25) 35%, transparent 65%)`;
       orb1.style.opacity = String(opacity);
 
-      orb2.style.background = `radial-gradient(circle at 70% 70%, rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.5) 0%, rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.15) 40%, transparent 70%)`;
+      orb2.style.background = `radial-gradient(circle at 70% 70%, rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.7) 0%, rgba(${c2[0]}, ${c2[1]}, ${c2[2]}, 0.25) 35%, transparent 65%)`;
       orb2.style.opacity = String(opacity);
     }
 
@@ -91,19 +91,19 @@ export default function AmbientGradient() {
       style={{ zIndex: 1 }}
     >
       <div
-        className="absolute -top-[150px] -left-[150px] w-[700px] h-[700px]"
+        className="absolute -top-[200px] -left-[200px] w-[900px] h-[900px]"
         style={{
-          filter: 'blur(100px)',
-          opacity: 0.15,
-          transition: 'background 0.8s ease, opacity 0.5s ease',
+          filter: 'blur(90px)',
+          opacity: 0.4,
+          transition: 'background 0.6s ease, opacity 0.4s ease',
         }}
       />
       <div
-        className="absolute -bottom-[150px] -right-[150px] w-[700px] h-[700px]"
+        className="absolute -bottom-[200px] -right-[200px] w-[900px] h-[900px]"
         style={{
-          filter: 'blur(100px)',
-          opacity: 0.15,
-          transition: 'background 0.8s ease, opacity 0.5s ease',
+          filter: 'blur(90px)',
+          opacity: 0.4,
+          transition: 'background 0.6s ease, opacity 0.4s ease',
         }}
       />
     </div>
