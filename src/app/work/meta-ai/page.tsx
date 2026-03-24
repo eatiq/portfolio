@@ -7,6 +7,13 @@ import ContentSwitcher from '@/components/ui/ContentSwitcher';
 
 const allPrototypes = [
   {
+    src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/experiment_mar17_2026.mp4',
+    title: 'AR Try-On',
+    description:
+      'What if you could grab a pair of sunglasses from a sponsored post? This prototype takes users from a Ray-Ban ad to a live AR try-on with face tracking, price, reviews, and a purchase path \u2014 all in one seamless flow.',
+    layout: 'portrait' as const,
+  },
+  {
     src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/dearalgorithm.mp4',
     title: 'Dear Algorithm',
     description:
