@@ -17,7 +17,7 @@ const allPrototypes = [
     src: 'https://pub-138dacc1f93142a69067812529622fe3.r2.dev/sidekick_debug_tool.mp4',
     title: 'Sidekick \u2014 An Internal Debugging Tool',
     description:
-      'A lot of designers had just begun to prototype in SwiftUI and were finding it difficult to come up with their own variations. So I went ahead and created Sidekick \u2014 a cloud-deployed, minimal, resizable debug drawer with pre-built components to speed up their prototypes. Downloaded and used by over 100 designers.',
+      'Designers across the org were picking up SwiftUI but struggling to spin up their own component variations fast enough. Sidekick is a cloud-deployed debug drawer I built to fix that \u2014 minimal, resizable, packed with pre-built components so anyone could drop it into a prototype and start iterating immediately. Over 100 designers adopted it.',
     layout: 'portrait' as const,
   },
   {
