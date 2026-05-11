@@ -15,6 +15,9 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
   const [isPlaying, setIsPlaying] = useState(true);
   const [showControls, setShowControls] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isScrubbing, setIsScrubbing] = useState(false);
   const draggingRef = useRef(false);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -26,11 +29,20 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
     const onTimeUpdate = () => {
       if (!draggingRef.current && video.duration) {
         setProgress(video.currentTime / video.duration);
+        setCurrentTime(video.currentTime);
       }
     };
 
+    const onLoadedMetadata = () => {
+      setDuration(video.duration);
+    };
+
     video.addEventListener('timeupdate', onTimeUpdate);
-    return () => video.removeEventListener('timeupdate', onTimeUpdate);
+    video.addEventListener('loadedmetadata', onLoadedMetadata);
+    return () => {
+      video.removeEventListener('timeupdate', onTimeUpdate);
+      video.removeEventListener('loadedmetadata', onLoadedMetadata);
+    };
   }, []);
 
   const clearControlsTimeout = () => {
@@ -66,7 +78,6 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
     }
   }, [scheduleHideControls]);
 
-  // Seek to a position given a clientX coordinate — uses ref directly so it never goes stale
   const seekTo = (clientX: number) => {
     const video = videoRef.current;
     const track = trackRef.current;
@@ -77,20 +88,20 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
     const fraction = x / rect.width;
     video.currentTime = fraction * video.duration;
     setProgress(fraction);
+    setCurrentTime(fraction * video.duration);
   };
 
-  // Pointer down on the scrubber track or handle — starts continuous drag
   const onScrubPointerDown = (e: React.PointerEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    // Capture pointer on the track element for smooth continuous drag
     const target = trackRef.current;
     if (target) {
       target.setPointerCapture(e.pointerId);
     }
 
     draggingRef.current = true;
+    setIsScrubbing(true);
     clearControlsTimeout();
     seekTo(e.clientX);
   };
@@ -104,6 +115,7 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
   const onScrubPointerUp = (e: React.PointerEvent) => {
     if (!draggingRef.current) return;
     draggingRef.current = false;
+    setIsScrubbing(false);
 
     const target = trackRef.current;
     if (target) {
@@ -116,22 +128,42 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
   };
 
   const handleContainerClick = useCallback((e: React.MouseEvent) => {
-    // Don't toggle play if clicking near the bottom scrubber area
     const container = e.currentTarget.getBoundingClientRect();
     const clickY = e.clientY - container.top;
-    if (clickY > container.height - 50) return;
+    // Don't toggle play if clicking in the bottom control bar area
+    if (clickY > container.height - 60) return;
     togglePlay();
   }, [togglePlay]);
 
-  // Optically centered play icon
+  const handleMouseEnter = useCallback(() => {
+    setShowControls(true);
+    if (isPlaying) {
+      scheduleHideControls();
+    }
+  }, [isPlaying, scheduleHideControls]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (isPlaying && !draggingRef.current) {
+      setShowControls(false);
+      clearControlsTimeout();
+    }
+  }, [isPlaying]);
+
+  // Format time as m:ss
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  };
+
   const PlayIcon = () => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
       <path d="M8 5.14v13.72a1 1 0 0 0 1.53.85l10.22-6.86a1 1 0 0 0 0-1.7L9.53 4.29A1 1 0 0 0 8 5.14z" fill="white" />
     </svg>
   );
 
   const PauseIcon = () => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
       <rect x="6" y="4" width="4" height="16" rx="1" fill="white" />
       <rect x="14" y="4" width="4" height="16" rx="1" fill="white" />
     </svg>
@@ -143,6 +175,8 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
     <div
       className={`relative cursor-pointer group ${aspectRatio === 'square' ? 'aspect-square' : ''} overflow-hidden ${className}`}
       onClick={handleContainerClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <video
         ref={videoRef}
@@ -158,37 +192,27 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
       <AnimatePresence>
         {controlsVisible && (
           <motion.div
-            className="absolute inset-0 flex flex-col"
+            className="absolute inset-0 flex flex-col justify-end"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            {/* Center play/pause icon */}
-            <div className="flex-1 flex items-center justify-center">
-              <motion.div
-                className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center"
-                style={{ paddingLeft: isPlaying ? '0px' : '2px' }}
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.5, opacity: 0 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              >
-                {isPlaying ? <PauseIcon /> : <PlayIcon />}
-              </motion.div>
-            </div>
+            {/* Subtle gradient at bottom for contrast */}
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/30 to-transparent rounded-b-2xl pointer-events-none" />
 
-            {/* Scrubber bar at bottom */}
+            {/* Bottom control bar */}
             <motion.div
-              className="px-4 pb-4"
-              initial={{ opacity: 0, y: 8 }}
+              className="relative z-10 px-4 pb-4"
+              initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
+              exit={{ opacity: 0, y: 6 }}
               transition={{ duration: 0.2, delay: 0.05 }}
             >
+              {/* Scrubber track */}
               <div
                 ref={trackRef}
-                className="relative h-8 flex items-end touch-none"
+                className="relative h-6 flex items-center touch-none mb-2"
                 style={{ cursor: 'pointer' }}
                 onClick={(e) => e.stopPropagation()}
                 onPointerDown={onScrubPointerDown}
@@ -196,25 +220,51 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
                 onPointerUp={onScrubPointerUp}
                 onPointerCancel={onScrubPointerUp}
               >
-                {/* Track: frosted glass pill */}
-                <div className="w-full h-[5px] rounded-full bg-black/15 backdrop-blur-md overflow-hidden">
+                {/* Track background */}
+                <div className="w-full h-[3px] rounded-full bg-white/20 overflow-hidden transition-all duration-150"
+                  style={{ height: isScrubbing ? '5px' : '3px' }}
+                >
+                  {/* Progress fill */}
                   <div
-                    className="h-full rounded-full bg-white/80"
+                    className="h-full rounded-full bg-white/90"
                     style={{
                       width: `${progress * 100}%`,
-                      transition: draggingRef.current ? 'none' : 'width 0.1s ease',
+                      transition: draggingRef.current ? 'none' : 'width 0.15s ease-out',
                     }}
                   />
                 </div>
-                {/* Scrub handle */}
-                <div
-                  className="absolute top-1/2 -translate-y-1/2 w-[14px] h-[14px] rounded-full bg-white"
+                {/* Scrub handle — only visible on hover/scrub */}
+                <motion.div
+                  className="absolute top-1/2 -translate-y-1/2 rounded-full bg-white"
                   style={{
-                    left: `calc(${progress * 100}% - 7px)`,
-                    boxShadow: '0 0 0 2px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.15)',
-                    pointerEvents: 'none', // handle is visual only, track captures all events
+                    left: `calc(${progress * 100}% - 5px)`,
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.3)',
+                    pointerEvents: 'none',
                   }}
+                  animate={{
+                    width: isScrubbing ? 12 : 10,
+                    height: isScrubbing ? 12 : 10,
+                    opacity: 1,
+                  }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                 />
+              </div>
+
+              {/* Play/pause button + time */}
+              <div className="flex items-center gap-3">
+                <button
+                  className="w-8 h-8 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center hover:bg-white/25 transition-colors"
+                  style={{ paddingLeft: isPlaying ? '0px' : '1px' }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    togglePlay();
+                  }}
+                >
+                  {isPlaying ? <PauseIcon /> : <PlayIcon />}
+                </button>
+                <span className="text-[11px] font-medium text-white/70 tabular-nums tracking-wide select-none">
+                  {formatTime(currentTime)} / {formatTime(duration)}
+                </span>
               </div>
             </motion.div>
           </motion.div>

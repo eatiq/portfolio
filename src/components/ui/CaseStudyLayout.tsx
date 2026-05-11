@@ -5,6 +5,7 @@ import PageTransition from '@/components/animations/PageTransition';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
 import CombinationLock from '@/components/ui/CombinationLock';
+import AmbientGradient from '@/components/ui/AmbientGradient';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
@@ -108,6 +109,9 @@ export default function CaseStudyLayout({
 
   return (
     <PageTransition>
+      {/* Ambient background gradient */}
+      <AmbientGradient />
+
       {/* Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] bg-foreground/60 origin-left z-[60]"
