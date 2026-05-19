@@ -1,11 +1,9 @@
 'use client';
 
 import FadeIn from '@/components/animations/FadeIn';
-import ProjectHoverImage from '@/components/three/ProjectHoverImage';
 import Link from 'next/link';
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { assets } from '@/lib/assets';
 
 type SelectedWorkItem = {
   company: string;
@@ -16,13 +14,6 @@ type SelectedWorkItem = {
 interface SelectedWorksProps {
   items?: SelectedWorkItem[];
 }
-
-// Real project thumbnail images from R2
-const projectImages: Record<string, string> = {
-  'meta-ai': assets.homepage.metaThumb,
-  'copilot-shopping': assets.homepage.copilotThumb,
-  'windows-search': assets.homepage.windowsThumb,
-};
 
 export default function SelectedWorks({
   items = [
@@ -50,8 +41,6 @@ export default function SelectedWorks({
           Selected work
         </h2>
       </FadeIn>
-
-      <ProjectHoverImage activeProject={activeProject} projectImages={projectImages} />
 
       <ul className="space-y-2 md:space-y-0">
         {items.map((item, idx) => (

@@ -11,6 +11,7 @@ type ProjectShowcaseProps = {
   index: number;
   layout?: 'landscape' | 'portrait';
   aspectRatio?: 'auto' | 'square';
+  compact?: boolean;
 };
 
 export default function ProjectShowcase({
@@ -20,6 +21,7 @@ export default function ProjectShowcase({
   index,
   layout = 'portrait',
   aspectRatio = 'auto',
+  compact = false,
 }: ProjectShowcaseProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -62,6 +64,12 @@ export default function ProjectShowcase({
     <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
       <VideoPlayer src={src} aspectRatio={aspectRatio} />
     </div>
+  );
+
+  const portraitVideoWrapper = compact ? (
+    <div className="max-w-[400px] mx-auto">{videoContainer}</div>
+  ) : (
+    videoContainer
   );
 
   const titleBlock = (
@@ -121,6 +129,13 @@ export default function ProjectShowcase({
     );
   }
 
+  const videoColSpan = 'lg:col-span-7';
+  const videoColStart = isReverse ? 'lg:col-start-6' : 'lg:col-start-1';
+  const textColSpan = 'lg:col-span-5';
+  const textColStart = isReverse
+    ? 'lg:col-start-1 lg:row-start-1'
+    : 'lg:col-start-8';
+
   return (
     <motion.div
       ref={containerRef}
@@ -130,20 +145,12 @@ export default function ProjectShowcase({
       <div
         className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center`}
       >
-        <div
-          className={`lg:col-span-7 relative ${
-            isReverse ? 'lg:col-start-6' : 'lg:col-start-1'
-          }`}
-        >
+        <div className={`${videoColSpan} relative ${videoColStart}`}>
           {gradientOrb}
-          {videoContainer}
+          {portraitVideoWrapper}
         </div>
 
-        <div
-          className={`lg:col-span-5 space-y-6 ${
-            isReverse ? 'lg:col-start-1 lg:row-start-1' : 'lg:col-start-8'
-          }`}
-        >
+        <div className={`${textColSpan} space-y-6 ${textColStart}`}>
           {titleBlock}
           <p className="text-base md:text-lg text-foreground/60 leading-relaxed">
             {description}
