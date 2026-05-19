@@ -560,13 +560,6 @@ function SearchGoBigContent() {
           from weeks to days.
         </p>
         <p>
-          <strong className="text-foreground">What I&apos;d do differently:</strong>{' '}
-          Each pivot required re-deriving ad formats from scratch. If
-          I&apos;d established a format spec framework earlier, pivots
-          would have been faster and cheaper. I&apos;d also build a more
-          direct feedback channel with leadership to reduce rework.
-        </p>
-        <p>
           <strong className="text-foreground">What I learned:</strong> On a
           product doing 2.5B queries a day, the small optimizations are the
           ones that move the needle. Cross-functional trust is the ultimate

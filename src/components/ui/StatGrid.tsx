@@ -24,7 +24,7 @@ export default function StatGrid({ stats, columns = 4 }: StatGridProps) {
     <div className={`grid grid-cols-2 ${colClass} gap-px bg-foreground/10 border border-foreground/10 rounded-xl overflow-hidden mb-16 md:mb-24`}>
       {stats.map((stat, i) => (
         <motion.div
-          key={stat.label}
+          key={i}
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
