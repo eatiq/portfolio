@@ -201,12 +201,6 @@ function ExperimentsContent() {
           />
         ))}
       </div>
-
-      <div className="p-8 rounded-xl border border-foreground/10 text-center mb-16 md:mb-24">
-        <p className="text-foreground/50 text-lg">
-          More prototypes added over time. For in-depth case studies, reach out.
-        </p>
-      </div>
     </>
   );
 }
@@ -427,9 +421,9 @@ function SearchGoBigContent() {
         <p>
           In January 2025, Meta funded a company-wide initiative to build a
           next-generation search experience: a complete redesign of the Search
-          Engine Results Page into a content-first grid. When the new grid
+          Results Page into a content-first grid. When the new grid
           launched, every existing ad format broke. Ad performance dropped
-          <strong className="text-foreground"> 42%</strong> overnight.
+          <strong className="text-foreground"> ~42% EBR</strong> as a result of this pivot.
         </p>
         <p>
           As the sole designer for Search Ads monetization, my job was to
@@ -451,18 +445,28 @@ function SearchGoBigContent() {
       <CaseStudySection title="The Challenge">
         <p>
           The organic Search team pivoted the grid four times based on
-          leadership feedback: Masonry, Dynamic, Blueprint, Minimal.
-          Each pivot meant my ad format work had to adapt or restart. I was
+          leadership feedback: Masonry, Standard, Horizontal + Vertical, Minimal.
+          Each pivot meant the ad format work had to adapt or restart. I was
           also new to Meta, ramping on a complex codebase while being expected
           to deliver P0 outcomes, and some of the fixes I needed couldn&apos;t
           wait weeks for engineering bandwidth.
         </p>
       </CaseStudySection>
 
-      <PlaceholderMedia
-        label="Grid variant comparison: Masonry → Dynamic → Blueprint → Minimal"
-        caption="The four organic Search grid pivots, each requiring new ad format approaches."
-      />
+      <figure className="mb-16 md:mb-24">
+        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+          <Image
+            src="/work/meta-ai/sgb-problem.png"
+            alt="Four mobile Search results screens side by side showing the Masonry, Standard, Horizontal + Vertical, and Minimal grid variants the organic Search team pivoted between."
+            width={1024}
+            height={614}
+            className="w-full h-auto"
+          />
+        </div>
+        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+          Four grids in roughly a year: Masonry &rarr; Standard &rarr; Horizontal + Vertical &rarr; Minimal. Every pivot reset the ad format work.
+        </figcaption>
+      </figure>
 
       <CaseStudySection title="Approach">
         <p>
@@ -483,15 +487,35 @@ function SearchGoBigContent() {
         </p>
       </CaseStudySection>
 
-      <PlaceholderMedia
-        label="Large horizontal ad card: the +20% EBR format win"
-        aspect="video"
-      />
+      <figure className="mb-16 md:mb-24">
+        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+          <Image
+            src="/work/meta-ai/sgb-variations.png"
+            alt="Explorations of different large horizontal ad card variants tested across the Search grid."
+            width={1024}
+            height={614}
+            className="w-full h-auto"
+          />
+        </div>
+        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+          A range of experiments we ran to help determine the right level of density and visual weight.
+        </figcaption>
+      </figure>
 
-      <PlaceholderMedia
-        label="Album 2×2 format and shortened conversion journey"
-        aspect="video"
-      />
+      <figure className="mb-16 md:mb-24">
+        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+          <Image
+            src="/work/meta-ai/sgb-largeformats.png"
+            alt="New ad formats tested in the Search grid: large horizontal card, 2×2 album, and top position ads, all grounded in prior UXR."
+            width={1024}
+            height={614}
+            className="w-full h-auto"
+          />
+        </div>
+        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+          UXR-grounded formats like the large card, 2&times;2 album, and top position ads recovered meaningful EBR.
+        </figcaption>
+      </figure>
 
       <CaseStudySection title="Shipping Code to Unblock">
         <p>
