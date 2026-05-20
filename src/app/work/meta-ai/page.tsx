@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRef, useState } from 'react';
 import CaseStudyLayout from '@/components/ui/CaseStudyLayout';
 import CaseStudySection from '@/components/ui/CaseStudySection';
 import ProjectShowcase from '@/components/ui/ProjectShowcase';
@@ -123,6 +124,26 @@ function PlaceholderMedia({ label, caption, aspect = 'video' }: PlaceholderMedia
 }
 
 export default function MetaAIPage() {
+  const [activeTab, setActiveTab] = useState<string>('shop-everything');
+  const switcherRef = useRef<HTMLDivElement>(null);
+
+  const tabIndex = TABS.findIndex((t) => t.id === activeTab);
+  const prevTab = tabIndex > 0 ? TABS[tabIndex - 1] : null;
+  const nextTab = tabIndex < TABS.length - 1 ? TABS[tabIndex + 1] : null;
+
+  const goToTab = (tabId: string) => {
+    setActiveTab(tabId);
+    switcherRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const prevProject = prevTab
+    ? { label: prevTab.label, onClick: () => goToTab(prevTab.id) }
+    : undefined;
+
+  const nextProject = nextTab
+    ? { label: nextTab.label, onClick: () => goToTab(nextTab.id) }
+    : { label: 'Copilot Shopping', href: '/work/copilot-shopping' };
+
   return (
     <CaseStudyLayout
       company="Meta"
@@ -152,25 +173,32 @@ export default function MetaAIPage() {
           </p>
         </>
       }
-      nextProject={{ label: 'Copilot Shopping', href: '/work/copilot-shopping' }}
+      prevProject={prevProject}
+      nextProject={nextProject}
       locked
       combination={[24, 8, 16]}
     >
-      <ContentSwitcher tabs={TABS} defaultTab="shop-everything">
-        {(activeTab) => {
-          switch (activeTab) {
-            case 'search-go-big':
-              return <SearchGoBigContent />;
-            case 'ai4p':
-              return <AI4PContent />;
-            case 'experiments':
-              return <ExperimentsContent />;
-            case 'shop-everything':
-            default:
-              return <ShopEverythingContent />;
-          }
-        }}
-      </ContentSwitcher>
+      <div ref={switcherRef} className="scroll-mt-24">
+        <ContentSwitcher
+          tabs={TABS}
+          activeTab={activeTab}
+          onChange={setActiveTab}
+        >
+          {(currentTab) => {
+            switch (currentTab) {
+              case 'search-go-big':
+                return <SearchGoBigContent />;
+              case 'ai4p':
+                return <AI4PContent />;
+              case 'experiments':
+                return <ExperimentsContent />;
+              case 'shop-everything':
+              default:
+                return <ShopEverythingContent />;
+            }
+          }}
+        </ContentSwitcher>
+      </div>
     </CaseStudyLayout>
   );
 }
@@ -760,15 +788,6 @@ function AI4PContent() {
           wanted in. Office hours with no prerequisites meant nobody
           was embarrassed to be a beginner. And every session was about
           building something real, never abstract coding exercises.
-        </p>
-        <p>
-          <strong className="text-foreground">What I&apos;d do differently:</strong>{' '}
-          The program grew organically, which meant I became a bottleneck.
-          I should have formalized a curriculum earlier so people could
-          self-assess progress, identified &ldquo;graduates&rdquo; to run
-          their own office hours, and tracked outcomes more rigorously:
-          time to first prototype, prototypes shipped per designer,
-          before and after.
         </p>
         <p>
           <strong className="text-foreground">What I learned:</strong>{' '}

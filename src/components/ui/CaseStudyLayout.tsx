@@ -10,6 +10,12 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 
+type NavTarget = {
+  label: string;
+  href?: string;
+  onClick?: () => void;
+};
+
 type CaseStudyLayoutProps = {
   company: string;
   title: string;
@@ -19,11 +25,59 @@ type CaseStudyLayoutProps = {
   responsibilities: string[];
   overview: ReactNode;
   children: ReactNode;
-  prevProject?: { label: string; href: string };
-  nextProject?: { label: string; href: string };
+  prevProject?: NavTarget;
+  nextProject?: NavTarget;
   locked?: boolean;
   combination?: [number, number, number];
 };
+
+const navLinkClass =
+  'group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors cursor-pointer';
+
+function FooterNavLink({
+  target,
+  direction,
+}: {
+  target: NavTarget;
+  direction: 'prev' | 'next';
+}) {
+  const arrow = (
+    <motion.span
+      className="inline-block"
+      whileHover={{ x: direction === 'prev' ? -4 : 4 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+    >
+      {direction === 'prev' ? '←' : '→'}
+    </motion.span>
+  );
+
+  const content =
+    direction === 'prev' ? (
+      <>
+        {arrow}
+        {target.label}
+      </>
+    ) : (
+      <>
+        {target.label}
+        {arrow}
+      </>
+    );
+
+  if (target.href) {
+    return (
+      <Link href={target.href} className={navLinkClass}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button type="button" onClick={target.onClick} className={navLinkClass}>
+      {content}
+    </button>
+  );
+}
 
 export default function CaseStudyLayout({
   company,
@@ -56,49 +110,12 @@ export default function CaseStudyLayout({
         <div className="max-w-4xl mx-auto">
           <FadeIn>
             <div className="flex items-center justify-between border-t border-foreground/10 pt-8">
-              {prevProject ? (
-                <Link
-                  href={prevProject.href}
-                  className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors"
-                >
-                  <motion.span
-                    className="inline-block"
-                    whileHover={{ x: -4 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                  >
-                    ←
-                  </motion.span>
-                  {prevProject.label}
-                </Link>
-              ) : (
-                <Link
-                  href="/"
-                  className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors"
-                >
-                  <motion.span
-                    className="inline-block"
-                    whileHover={{ x: -4 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                  >
-                    ←
-                  </motion.span>
-                  Back to Home
-                </Link>
-              )}
+              <FooterNavLink
+                target={prevProject ?? { label: 'Back to Home', href: '/' }}
+                direction="prev"
+              />
               {nextProject && (
-                <Link
-                  href={nextProject.href}
-                  className="group flex items-center gap-2 text-foreground/50 hover:text-foreground transition-colors"
-                >
-                  {nextProject.label}
-                  <motion.span
-                    className="inline-block"
-                    whileHover={{ x: 4 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                  >
-                    →
-                  </motion.span>
-                </Link>
+                <FooterNavLink target={nextProject} direction="next" />
               )}
             </div>
           </FadeIn>

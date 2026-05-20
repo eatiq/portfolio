@@ -11,15 +11,25 @@ type Tab = {
 type ContentSwitcherProps = {
   tabs: Tab[];
   defaultTab?: string;
+  activeTab?: string;
+  onChange?: (tab: string) => void;
   children: (activeTab: string) => ReactNode;
 };
 
 export default function ContentSwitcher({
   tabs,
   defaultTab,
+  activeTab: controlledTab,
+  onChange,
   children,
 }: ContentSwitcherProps) {
-  const [activeTab, setActiveTab] = useState(defaultTab ?? tabs[0].id);
+  const [internalTab, setInternalTab] = useState(defaultTab ?? tabs[0].id);
+  const activeTab = controlledTab ?? internalTab;
+
+  const handleSelect = (tabId: string) => {
+    if (controlledTab === undefined) setInternalTab(tabId);
+    onChange?.(tabId);
+  };
 
   return (
     <div>
@@ -30,7 +40,7 @@ export default function ContentSwitcher({
           return (
             <motion.button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleSelect(tab.id)}
               className={`px-4 py-2 text-sm font-medium rounded-full border cursor-pointer transition-colors duration-200 ${
                 isActive
                   ? 'bg-foreground/10 border-foreground/20 text-foreground'
