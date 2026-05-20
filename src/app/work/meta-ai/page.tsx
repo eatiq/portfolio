@@ -519,14 +519,75 @@ function SearchGoBigContent() {
 
       <CaseStudySection title="Shipping Code to Unblock">
         <p>
-          Some problems weren&apos;t purely design problems. When the album
-          format had a border rendering issue that would have taken weeks
-          through normal engineering prioritization, I shipped the fix
-          myself. When the Async Ads launch was threatened by concerns from
-          organic Search, I synced directly with their team to understand
-          the issue and helped the team adjust in time to hit latency goals.
+          Not every opportunity gets engineering bandwidth. Alongside the
+          experiments above, I kept finding fixes the roadmap had skipped
+          and sometimes shipping the code myself was the only way to
+          to act on them. One example: on the Pages tab, ads were still
+          rendering in a legacy feed format taking up roughly 10&times;
+          more viewport area than the surrounding organic results.
+          Traffic was too low to ever win engineering bandwidth, so I
+          designed a smaller, text-based ad unit, ran it through review,
+          and shipped it via AI-powered diffs.
         </p>
       </CaseStudySection>
+
+      <figure className="mb-16 md:mb-24">
+        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+          <Image
+            src="/work/meta-ai/sgb-page1.png"
+            alt="The Pages tab in Facebook Search rendering ads in a legacy feed format that took up roughly 10× more viewport area than the surrounding organic results."
+            width={1024}
+            height={614}
+            className="w-full h-auto"
+          />
+        </div>
+        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+          Before: legacy feed ad format on the Pages tab, ~10&times; the viewport weight of the organic results around it.
+        </figcaption>
+      </figure>
+
+      <FadeIn>
+        <div className="mb-16 md:mb-24 space-y-4 text-foreground/70 leading-relaxed">
+          <p>
+            The change contributed a{' '}
+            <strong className="text-foreground">+0.8% revenue lift at Main Search</strong>,
+            feeding directly into the EBR recovery above. The bigger
+            story was the unlock: a designer could now drive a launch
+            from idea to shipped experiment without waiting on a full
+            engineering cycle.
+          </p>
+        </div>
+      </FadeIn>
+
+      <figure className="mb-16 md:mb-24">
+        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+          <Image
+            src="/work/meta-ai/sgb-page2.png"
+            alt="The redesigned Pages tab ad: a smaller, text-based unit consistent with the rest of the page, shipped via AI-powered diffs."
+            width={1024}
+            height={614}
+            className="w-full h-auto"
+          />
+        </div>
+        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+          After: a smaller, text-based ad unit consistent with the rest of the page, shipped via AI-powered diffs.
+        </figcaption>
+      </figure>
+
+      <figure className="mb-16 md:mb-24">
+        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+          <Image
+            src="/work/meta-ai/page-diff.png"
+            alt="The actual code diff that shipped the new Pages tab ad format, authored end-to-end with AI-powered diffs."
+            width={1024}
+            height={614}
+            className="w-full h-auto"
+          />
+        </div>
+        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+          The diff itself; authored end to end using AI and shipped without waiting on engineering bandwidth.
+        </figcaption>
+      </figure>
 
       <CaseStudySection title="Results">
         <p>
