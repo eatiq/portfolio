@@ -10,6 +10,7 @@ import StatGrid from '@/components/ui/StatGrid';
 import PullQuote from '@/components/ui/PullQuote';
 import VideoPlayer from '@/components/ui/VideoPlayer';
 import FadeIn from '@/components/animations/FadeIn';
+import ScrollFade from '@/components/animations/ScrollFade';
 
 const allPrototypes = [
   {
@@ -240,21 +241,23 @@ function ShopEverythingContent() {
         </p>
       </CaseStudySection>
 
-      <figure className="mb-16 md:mb-24">
-        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
-          <Image
-            src="/work/meta-ai/current-flow-friction.png"
-            alt="Today's broken shopping flow: a user spots a pegboard in a Reel, screenshots it, reverse-image-searches in a separate tab, and lands on a generic IKEA product page."
-            width={1024}
-            height={614}
-            className="w-full h-auto"
-            priority
-          />
-        </div>
-        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
-          Today&apos;s flow: Reel &rarr; identified products &rarr; product page. Two jumps, and the exact item from the video rarely makes the list.
-        </figcaption>
-      </figure>
+      <ScrollFade className="mb-16 md:mb-24">
+        <figure>
+          <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+            <Image
+              src="/work/meta-ai/current-flow-friction.png"
+              alt="Today's broken shopping flow: a user spots a pegboard in a Reel, screenshots it, reverse-image-searches in a separate tab, and lands on a generic IKEA product page."
+              width={1024}
+              height={614}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
+          <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+            Today&apos;s flow: Reel &rarr; identified products &rarr; product page. Two jumps, and the exact item from the video rarely makes the list.
+          </figcaption>
+        </figure>
+      </ScrollFade>
 
       <CaseStudySection title="Approach">
         <p>
@@ -348,8 +351,8 @@ function ShopEverythingContent() {
         </div>
       </FadeIn>
 
-      <FadeIn>
-        <figure className="mb-16 md:mb-24">
+      <ScrollFade className="mb-16 md:mb-24">
+        <figure>
           <div className="aspect-video rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
             <iframe
               src="https://www.youtube.com/embed/JPD7NW557uQ?rel=0&modestbranding=1&controls=0&autoplay=1&mute=1&loop=1&playlist=JPD7NW557uQ&playsinline=1&iv_load_policy=3"
@@ -359,7 +362,7 @@ function ShopEverythingContent() {
             />
           </div>
         </figure>
-      </FadeIn>
+      </ScrollFade>
 
       <CaseStudySection title="Outcome at the Top">
         <p>
@@ -449,20 +452,22 @@ function SearchGoBigContent() {
         </p>
       </CaseStudySection>
 
-      <figure className="mb-16 md:mb-24">
-        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
-          <Image
-            src="/work/meta-ai/sgb-problem.png"
-            alt="Four mobile Search results screens side by side showing the Masonry, Standard, Horizontal + Vertical, and Minimal grid variants the organic Search team pivoted between."
-            width={1024}
-            height={614}
-            className="w-full h-auto"
-          />
-        </div>
-        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
-          Four grids in roughly a year: Masonry &rarr; Standard &rarr; Horizontal + Vertical &rarr; Minimal. Every pivot reset the ad format work.
-        </figcaption>
-      </figure>
+      <ScrollFade className="mb-16 md:mb-24">
+        <figure>
+          <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+            <Image
+              src="/work/meta-ai/sgb-problem.png"
+              alt="Four mobile Search results screens side by side showing the Masonry, Standard, Horizontal + Vertical, and Minimal grid variants the organic Search team pivoted between."
+              width={1024}
+              height={614}
+              className="w-full h-auto"
+            />
+          </div>
+          <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+            Four grids in roughly a year: Masonry &rarr; Standard &rarr; Horizontal + Vertical &rarr; Minimal. Every pivot reset the ad format work.
+          </figcaption>
+        </figure>
+      </ScrollFade>
 
       <CaseStudySection title="Approach">
         <p>
@@ -483,35 +488,39 @@ function SearchGoBigContent() {
         </p>
       </CaseStudySection>
 
-      <figure className="mb-16 md:mb-24">
-        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
-          <Image
-            src="/work/meta-ai/sgb-variations.png"
-            alt="Explorations of different large horizontal ad card variants tested across the Search grid."
-            width={1024}
-            height={614}
-            className="w-full h-auto"
-          />
-        </div>
-        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
-          A range of experiments we ran to help determine the right level of density and visual weight.
-        </figcaption>
-      </figure>
+      <ScrollFade className="mb-16 md:mb-24">
+        <figure>
+          <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+            <Image
+              src="/work/meta-ai/sgb-variations.png"
+              alt="Explorations of different large horizontal ad card variants tested across the Search grid."
+              width={1024}
+              height={614}
+              className="w-full h-auto"
+            />
+          </div>
+          <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+            A range of experiments we ran to help determine the right level of density and visual weight.
+          </figcaption>
+        </figure>
+      </ScrollFade>
 
-      <figure className="mb-16 md:mb-24">
-        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
-          <Image
-            src="/work/meta-ai/sgb-largeformats.png"
-            alt="New ad formats tested in the Search grid: large horizontal card, 2×2 album, and top position ads, all grounded in prior UXR."
-            width={1024}
-            height={614}
-            className="w-full h-auto"
-          />
-        </div>
-        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
-          UXR-grounded formats like the large card, 2&times;2 album, and top position ads recovered meaningful EBR.
-        </figcaption>
-      </figure>
+      <ScrollFade className="mb-16 md:mb-24">
+        <figure>
+          <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+            <Image
+              src="/work/meta-ai/sgb-largeformats.png"
+              alt="New ad formats tested in the Search grid: large horizontal card, 2×2 album, and top position ads, all grounded in prior UXR."
+              width={1024}
+              height={614}
+              className="w-full h-auto"
+            />
+          </div>
+          <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+            UXR-grounded formats like the large card, 2&times;2 album, and top position ads recovered meaningful EBR.
+          </figcaption>
+        </figure>
+      </ScrollFade>
 
       <CaseStudySection title="Shipping Code to Unblock">
         <p>
@@ -527,20 +536,22 @@ function SearchGoBigContent() {
         </p>
       </CaseStudySection>
 
-      <figure className="mb-16 md:mb-24">
-        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
-          <Image
-            src="/work/meta-ai/sgb-page1.png"
-            alt="The Pages tab in Facebook Search rendering ads in a legacy feed format that took up roughly 10× more viewport area than the surrounding organic results."
-            width={1024}
-            height={614}
-            className="w-full h-auto"
-          />
-        </div>
-        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
-          Before: legacy feed ad format on the Pages tab, ~10&times; the viewport weight of the organic results around it.
-        </figcaption>
-      </figure>
+      <ScrollFade className="mb-16 md:mb-24">
+        <figure>
+          <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+            <Image
+              src="/work/meta-ai/sgb-page1.png"
+              alt="The Pages tab in Facebook Search rendering ads in a legacy feed format that took up roughly 10× more viewport area than the surrounding organic results."
+              width={1024}
+              height={614}
+              className="w-full h-auto"
+            />
+          </div>
+          <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+            Before: legacy feed ad format on the Pages tab, ~10&times; the viewport weight of the organic results around it.
+          </figcaption>
+        </figure>
+      </ScrollFade>
 
       <FadeIn>
         <div className="mb-16 md:mb-24 space-y-4 text-foreground/70 leading-relaxed">
@@ -555,35 +566,39 @@ function SearchGoBigContent() {
         </div>
       </FadeIn>
 
-      <figure className="mb-16 md:mb-24">
-        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
-          <Image
-            src="/work/meta-ai/sgb-page2.png"
-            alt="The redesigned Pages tab ad: a smaller, text-based unit consistent with the rest of the page, shipped via AI-powered diffs."
-            width={1024}
-            height={614}
-            className="w-full h-auto"
-          />
-        </div>
-        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
-          After: a smaller, text-based ad unit consistent with the rest of the page, shipped via AI-powered diffs.
-        </figcaption>
-      </figure>
+      <ScrollFade className="mb-16 md:mb-24">
+        <figure>
+          <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+            <Image
+              src="/work/meta-ai/sgb-page2.png"
+              alt="The redesigned Pages tab ad: a smaller, text-based unit consistent with the rest of the page, shipped via AI-powered diffs."
+              width={1024}
+              height={614}
+              className="w-full h-auto"
+            />
+          </div>
+          <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+            After: a smaller, text-based ad unit consistent with the rest of the page, shipped via AI-powered diffs.
+          </figcaption>
+        </figure>
+      </ScrollFade>
 
-      <figure className="mb-16 md:mb-24">
-        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
-          <Image
-            src="/work/meta-ai/page-diff.png"
-            alt="The actual code diff that shipped the new Pages tab ad format, authored end-to-end with AI-powered diffs."
-            width={1024}
-            height={614}
-            className="w-full h-auto"
-          />
-        </div>
-        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
-          The diff itself; authored end to end using AI and shipped without waiting on engineering bandwidth.
-        </figcaption>
-      </figure>
+      <ScrollFade className="mb-16 md:mb-24">
+        <figure>
+          <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+            <Image
+              src="/work/meta-ai/page-diff.png"
+              alt="The actual code diff that shipped the new Pages tab ad format, authored end-to-end with AI-powered diffs."
+              width={1024}
+              height={614}
+              className="w-full h-auto"
+            />
+          </div>
+          <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+            The diff itself; authored end to end using AI and shipped without waiting on engineering bandwidth.
+          </figcaption>
+        </figure>
+      </ScrollFade>
 
       <CaseStudySection title="Results">
         <p>
@@ -700,32 +715,36 @@ function AI4PContent() {
         </p>
       </CaseStudySection>
 
-      <figure className="mb-16 md:mb-24">
-        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
-          <Image
-            src="/work/meta-ai/ai4p-timeline.png"
-            alt="The AI4P progression roadmap showing four milestones across a timeline: Seed (H2 2025) with a 12-person pilot and weekly workshops, Stride (H1 2026) expanding to the full design org with designers shipping prod code, Sprint (H2 2026) with org-wide AI integration and persistent agents, and Soar (2027+) reaching an AI-native design system. A bar at the bottom maps these phases to Experiment → Adopt → Integrate → Native."
-            width={1024}
-            height={430}
-            className="w-full h-auto"
-          />
-        </div>
-        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
-          From a 12-person pilot to my org leading AI at Meta: the AI4P roadmap that gave the program a visible destination.
-        </figcaption>
-      </figure>
+      <ScrollFade className="mb-16 md:mb-24">
+        <figure>
+          <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+            <Image
+              src="/work/meta-ai/ai4p-timeline.png"
+              alt="The AI4P progression roadmap showing four milestones across a timeline: Seed (H2 2025) with a 12-person pilot and weekly workshops, Stride (H1 2026) expanding to the full design org with designers shipping prod code, Sprint (H2 2026) with org-wide AI integration and persistent agents, and Soar (2027+) reaching an AI-native design system. A bar at the bottom maps these phases to Experiment → Adopt → Integrate → Native."
+              width={1024}
+              height={430}
+              className="w-full h-auto"
+            />
+          </div>
+          <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+            From a 12-person pilot to my org leading AI at Meta: the AI4P roadmap that gave the program a visible destination.
+          </figcaption>
+        </figure>
+      </ScrollFade>
 
-      <figure className="mb-16 md:mb-24">
-        <div className="rounded-2xl overflow-hidden">
-          <VideoPlayer
-            src="https://pub-138dacc1f93142a69067812529622fe3.r2.dev/diffpushexcerpt.mov"
-            withAudio
-          />
-        </div>
-        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
-          An excerpt from one of the AI4P training videos: walking designers through pushing their first diff.
-        </figcaption>
-      </figure>
+      <ScrollFade className="mb-16 md:mb-24">
+        <figure>
+          <div className="rounded-2xl overflow-hidden">
+            <VideoPlayer
+              src="https://pub-138dacc1f93142a69067812529622fe3.r2.dev/diffpushexcerpt.mov"
+              withAudio
+            />
+          </div>
+          <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+            An excerpt from one of the AI4P training videos: walking designers through pushing their first diff.
+          </figcaption>
+        </figure>
+      </ScrollFade>
 
       <CaseStudySection title="Impact">
         <p>
