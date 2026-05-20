@@ -257,7 +257,7 @@ function ShopEverythingContent() {
             ),
           },
           { value: '10+', label: 'Interactive prototypes' },
-          { value: 'MZ', label: 'Leadership audience' },
+          { value: 'MZ', label: 'Final reviewer' },
           { value: '$XXB', label: 'Projected by 2029' },
         ]}
       />
