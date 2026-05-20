@@ -168,8 +168,7 @@ export default function MetaAIPage() {
             Across 2024 and 2025, this has spanned monetization design for a
             complete SERP redesign, 0&rarr;1 vision work on shoppable video
             reaching the CEO, and a self-initiated AI prototyping program that
-            upskilled 40+ designers. Each tab below covers one of those
-            threads.
+            upskilled 40+ designers.
           </p>
         </>
       }
