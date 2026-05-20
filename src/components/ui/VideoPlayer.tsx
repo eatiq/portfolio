@@ -7,19 +7,29 @@ type VideoPlayerProps = {
   src: string;
   className?: string;
   aspectRatio?: 'auto' | 'square';
+  withAudio?: boolean;
 };
 
-export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' }: VideoPlayerProps) {
+export default function VideoPlayer({ src, className = '', aspectRatio = 'auto', withAudio = false }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [showControls, setShowControls] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isScrubbing, setIsScrubbing] = useState(false);
   const draggingRef = useRef(false);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const toggleMute = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const next = !video.muted;
+    video.muted = next;
+    setIsMuted(next);
+  }, []);
 
   // Update progress bar as video plays
   useEffect(() => {
@@ -169,6 +179,20 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
     </svg>
   );
 
+  const MutedIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+      <path d="M11 5 6 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3l5 4V5z" fill="white" />
+      <path d="m16 9 5 6m0-6-5 6" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+
+  const UnmutedIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+      <path d="M11 5 6 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3l5 4V5z" fill="white" />
+      <path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+
   const controlsVisible = showControls || !isPlaying;
 
   return (
@@ -187,6 +211,20 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
         playsInline
         className={`w-full rounded-2xl ${aspectRatio === 'square' ? 'h-full object-cover' : ''}`}
       />
+
+      {/* Persistent unmute pill — only when audio is available and currently muted */}
+      {withAudio && isMuted && (
+        <button
+          className="absolute top-3 right-3 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-black/55 backdrop-blur-md text-white/95 text-[11px] font-medium tracking-wide hover:bg-black/70 transition-colors"
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleMute();
+          }}
+        >
+          <MutedIcon />
+          <span>Tap to unmute</span>
+        </button>
+      )}
 
       {/* Controls overlay */}
       <AnimatePresence>
@@ -265,6 +303,18 @@ export default function VideoPlayer({ src, className = '', aspectRatio = 'auto' 
                 <span className="text-[11px] font-medium text-white/70 tabular-nums tracking-wide select-none">
                   {formatTime(currentTime)} / {formatTime(duration)}
                 </span>
+                {withAudio && (
+                  <button
+                    className="ml-auto w-8 h-8 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center hover:bg-white/25 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleMute();
+                    }}
+                    aria-label={isMuted ? 'Unmute' : 'Mute'}
+                  >
+                    {isMuted ? <MutedIcon /> : <UnmutedIcon />}
+                  </button>
+                )}
               </div>
             </motion.div>
           </motion.div>

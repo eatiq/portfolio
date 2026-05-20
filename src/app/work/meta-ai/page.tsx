@@ -8,6 +8,7 @@ import ProjectShowcase from '@/components/ui/ProjectShowcase';
 import ContentSwitcher from '@/components/ui/ContentSwitcher';
 import StatGrid from '@/components/ui/StatGrid';
 import PullQuote from '@/components/ui/PullQuote';
+import VideoPlayer from '@/components/ui/VideoPlayer';
 import FadeIn from '@/components/animations/FadeIn';
 
 const allPrototypes = [
@@ -90,38 +91,6 @@ const TABS = [
   { id: 'experiments', label: 'Experiments' },
   { id: 'ai4p', label: 'AI4P' },
 ];
-
-type PlaceholderMediaProps = {
-  label: string;
-  caption?: string;
-  aspect?: 'video' | 'square' | 'portrait';
-};
-
-function PlaceholderMedia({ label, caption, aspect = 'video' }: PlaceholderMediaProps) {
-  const aspectClass = {
-    video: 'aspect-video',
-    square: 'aspect-square',
-    portrait: 'aspect-[3/4]',
-  }[aspect];
-
-  return (
-    <figure className="mb-16 md:mb-24">
-      <div className={`w-full ${aspectClass} bg-foreground/[0.04] border border-dashed border-foreground/15 rounded-xl flex items-center justify-center`}>
-        <div className="text-center px-6">
-          <div className="text-xs uppercase tracking-wider text-foreground/30 mb-2">
-            Placeholder
-          </div>
-          <div className="text-sm text-foreground/50">{label}</div>
-        </div>
-      </div>
-      {caption && (
-        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
-          {caption}
-        </figcaption>
-      )}
-    </figure>
-  );
-}
 
 export default function MetaAIPage() {
   const [activeTab, setActiveTab] = useState<string>('shop-everything');
@@ -688,20 +657,17 @@ function AI4PContent() {
     <>
       <CaseStudySection title="AI for Prototyping (AI4P)">
         <p>
-          By mid-2025, AI-assisted coding tools like Cursor were changing how
-          a small group of Meta designers worked, producing interactive,
-          code-based prototypes at unprecedented speed. The
-          problem was that adoption was extremely uneven. Leadership was
-          starting to expect interactive prototypes for vision work, but
-          most designers had no coding background and no clear path to
-          learn.
+          By mid-2025, tools like Cursor were letting a small group of Meta
+          designers ship interactive, code-based prototypes at unprecedented
+          speed. Adoption was uneven: leadership had started expecting
+          prototypes for vision work, but most designers had no coding
+          background and no clear path to learn.
         </p>
         <p>
-          After my own success vibe-coding the Shop Everything prototypes
-          that reached MZ and Cox, I realized this wasn&apos;t just a
-          personal skill advantage. It was an organizational capability
-          that could be systematically taught and scaled. So I built the
-          program no one had asked me to build.
+          After vibe-coding the Shop Everything prototypes that reached MZ
+          and Cox, I realized this wasn&apos;t a personal skill advantage.
+          It was an org capability &mdash; one that could be taught. So I
+          built the program no one had asked me to build.
         </p>
       </CaseStudySection>
 
@@ -716,47 +682,59 @@ function AI4PContent() {
 
       <CaseStudySection title="The Gap">
         <p>
-          There was no curriculum, no support system, and no mentorship
-          layer. The Cursor pilot group was feeding infrastructure feedback
-          back to the tools team, but the education side was empty. Most
-          designers didn&apos;t know where to start; the few who did were
-          self-teaching slowly and in isolation. I saw the gap and decided
-          to fill it, on top of my P0 work on Search Go Big.
+          No curriculum, no support, no mentorship. The Cursor pilot group
+          was feeding feedback to the tools team, but the education side
+          was empty. Most designers didn&apos;t know where to start; the
+          few who did were self-teaching in isolation. I filled the gap on
+          top of my P0 work on Search Go Big.
         </p>
       </CaseStudySection>
 
       <CaseStudySection title="The Program">
         <p>
-          AI4P came together as a five-part program: a written curriculum
-          and progression milestones; weekly open office hours where anyone
-          could bring a prototype and a question; a library of video
-          tutorials covering specific workflows like SwiftUI prototyping,
-          vibe-coding internal tools, sizzle reels from prototypes, and
-          shipping a first diff; deep 1:1 mentorship with three formal
-          mentees and many more informal ones; and cross-org expansion
-          through formal sessions for FM/Verticals designers.
+          AI4P came together as five parts: a written curriculum with
+          progression milestones, weekly open office hours, a video tutorial
+          library (SwiftUI prototyping, internal tools, sizzle reels,
+          shipping a first diff), 1:1 mentorship with three formal mentees,
+          and cross-org sessions for FM/Verticals designers.
         </p>
       </CaseStudySection>
 
-      <PlaceholderMedia
-        label="AI4P curriculum overview and progression milestones"
-        aspect="video"
-      />
+      <figure className="mb-16 md:mb-24">
+        <div className="rounded-3xl overflow-hidden border border-foreground/10 shadow-2xl">
+          <Image
+            src="/work/meta-ai/ai4p-timeline.png"
+            alt="The AI4P progression roadmap showing four milestones across a timeline: Seed (H2 2025) with a 12-person pilot and weekly workshops, Stride (H1 2026) expanding to the full design org with designers shipping prod code, Sprint (H2 2026) with org-wide AI integration and persistent agents, and Soar (2027+) reaching an AI-native design system. A bar at the bottom maps these phases to Experiment → Adopt → Integrate → Native."
+            width={1024}
+            height={430}
+            className="w-full h-auto"
+          />
+        </div>
+        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+          From a 12-person pilot to my org leading AI at Meta: the AI4P roadmap that gave the program a visible destination.
+        </figcaption>
+      </figure>
 
-      <PlaceholderMedia
-        label="Tutorial library: vibe-coding workflows, sizzle reels, first diff"
-        aspect="video"
-      />
+      <figure className="mb-16 md:mb-24">
+        <div className="rounded-2xl overflow-hidden">
+          <VideoPlayer
+            src="https://pub-138dacc1f93142a69067812529622fe3.r2.dev/diffpushexcerpt.mov"
+            withAudio
+          />
+        </div>
+        <figcaption className="text-sm text-foreground/40 mt-3 text-center">
+          An excerpt from one of the AI4P training videos: walking designers through pushing their first diff.
+        </figcaption>
+      </figure>
 
       <CaseStudySection title="Impact">
         <p>
-          By end of H2 2025, I&apos;d personally supported 40+ designers
-          1:1. FM became the first org to reach 100% diff activation.
-          Five product designers were shipping coded prototypes
-          independently, designers who&apos;d never opened a terminal
-          six months earlier. The program created its own gravity:
-          designers who learned from me started teaching others, and
-          other orgs began requesting similar programs.
+          By end of H2 2025, I&apos;d supported 40+ designers 1:1, and FM
+          became the first org to hit 100% diff activation. Five PDs were
+          shipping coded prototypes independently &mdash; none had opened a
+          terminal six months earlier. The program created its own gravity:
+          mentees started teaching others, and other orgs began asking for
+          the same.
         </p>
       </CaseStudySection>
 
@@ -782,19 +760,17 @@ function AI4PContent() {
       <CaseStudySection title="Reflection">
         <p>
           <strong className="text-foreground">What worked:</strong> Leading
-          by example. The Shop Everything success gave the program
-          credibility from day one. People saw what was possible and
-          wanted in. Office hours with no prerequisites meant nobody
-          was embarrassed to be a beginner. And every session was about
-          building something real, never abstract coding exercises.
+          by example. Shop Everything gave the program credibility on day
+          one &mdash; people saw what was possible and wanted in. Office
+          hours had no prerequisites, and every session built something
+          real.
         </p>
         <p>
           <strong className="text-foreground">What I learned:</strong>{' '}
-          Teaching is the highest-leverage activity a senior IC can do.
-          One hour of teaching saves a hundred hours of org-wide
-          struggling. Program building is also a leadership signal
-          that transcends your job title. People remember the person
-          who built the thing that helped them level up.
+          Teaching is the highest-leverage thing a senior IC can do. One
+          hour of teaching saves a hundred hours of org-wide struggling.
+          Building a program is also a leadership signal that transcends
+          your title.
         </p>
       </CaseStudySection>
     </>
