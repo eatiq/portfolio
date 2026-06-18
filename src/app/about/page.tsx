@@ -2,7 +2,8 @@
 
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import { useRef } from 'react';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import FadeIn from '@/components/animations/FadeIn';
 import PageTransition from '@/components/animations/PageTransition';
 import Navigation from '@/components/ui/Navigation';
@@ -72,6 +73,7 @@ type Stop = {
   body: string;
   isPresent?: boolean;
   artifacts?: ArtifactCfg[];
+  cta?: { label: string; href: string };
 };
 
 const stops: Stop[] = [
@@ -79,7 +81,7 @@ const stops: Stop[] = [
     marker: '1990s',
     place: 'Abu Dhabi & Hyderabad',
     title: 'Beginnings',
-    body: 'Born and raised. A city stacked with cultures taught me to look closely and read across them.',
+    body: 'Born between two cities that never quite agreed with each other. I learned to read a room before I could read a book.',
     artifacts: [
       {
         size: 'md', top: '14%', rotate: -7, enterFrom: 'right',
@@ -105,7 +107,7 @@ const stops: Stop[] = [
     marker: 'Early 2010s',
     place: 'Self-taught',
     title: 'YouTube past midnight',
-    body: 'Endless tutorials, late nights, the obsessive phase you don\u2019t fully come back from.',
+    body: 'Pirated Photoshop, a slow connection, and YouTube past midnight. I spent those nights editing my own face into something cooler, chasing clout one composite at a time.',
     artifacts: [
       {
         size: 'md', top: '18%', rotate: -10, enterFrom: 'left',
@@ -131,7 +133,8 @@ const stops: Stop[] = [
     marker: 'Mid 2010s',
     place: 'First real clients',
     title: 'A music publication, an MTV brief',
-    body: 'Rebranded a music publication working with clients including MTV and Vh1. Design got real.',
+    body: 'Rebranded a music publication and somehow ended up with MTV and Vh1 in the room. Design got real, fast.',
+    cta: { label: 'Read more', href: '/work/awaaz' },
     artifacts: [
       {
         size: 'lg', top: '16%', rotate: 6, enterFrom: 'right',
@@ -174,7 +177,8 @@ const stops: Stop[] = [
     marker: '2018',
     place: 'SCAD',
     title: 'Across an ocean to art school',
-    body: 'Moved to the USA for the Savannah College of Art and Design. A new country, and design as a discipline rather than an instinct.',
+    body: 'Crossed an ocean to study the thing I\u2019d been faking on instinct. Turns out it has rules. Some of them are even right.',
+    cta: { label: 'Read more', href: '/work/sublime' },
     artifacts: [
       {
         size: 'lg', top: '28%', rotate: -6, enterFrom: 'left',
@@ -191,7 +195,7 @@ const stops: Stop[] = [
     marker: '2018',
     place: 'Google',
     title: 'Interning at Google',
-    body: 'A first taste of design at scale. The rigor, the constraints, and the size of the audience on the other side of the screen.',
+    body: 'My first taste of scale. I pitched an AR walking-navigation concept that became the basis for what shipped as Live View.',
     artifacts: [
       {
         size: 'md', top: '22%', rotate: 7, enterFrom: 'right',
@@ -208,10 +212,10 @@ const stops: Stop[] = [
     marker: '2018',
     place: 'Samsung',
     title: 'Then Samsung',
-    body: 'Another internship, another lens. Hardware and software meeting in the hand, where small decisions are felt by millions.',
+    body: 'Designing for something people physically hold. A 2px change suddenly mattered to millions of thumbs.',
     artifacts: [
       {
-        size: 'sm', top: '40%', rotate: -10, enterFrom: 'left',
+        size: 'md', top: '40%', rotate: -10, enterFrom: 'left',
         media: {
           type: 'image',
           src: '/artifacts/samsung-fold.png',
@@ -225,7 +229,8 @@ const stops: Stop[] = [
     marker: '2019',
     place: 'Carter\u2019s',
     title: 'Retail, at real scale',
-    body: 'Designed the Carter\u2019s experience for parents shopping on the go, learning what survives once the work leaves the artboard.',
+    body: 'Designed for exhausted parents shopping one-handed at 2am. Nothing humbles a pretty mockup faster.',
+    cta: { label: 'Read more', href: '/work/carters' },
     artifacts: [
       {
         size: 'md', top: '14%', rotate: 5, enterFrom: 'right',
@@ -237,7 +242,7 @@ const stops: Stop[] = [
         },
       },
       {
-        size: 'md', top: '64%', rotate: -7, enterFrom: 'left', offsetX: 64,
+        size: 'md', top: '42%', rotate: -7, enterFrom: 'left', offsetX: 64,
         media: {
           type: 'image',
           src: '/artifacts/carters-home.png',
@@ -251,7 +256,7 @@ const stops: Stop[] = [
     marker: '2021',
     place: 'Microsoft',
     title: 'Cross-country to Copilot',
-    body: 'Drove across the country to join Microsoft. Years on Copilot\u2019s shopping experience and Windows Search, designing at the intersection of AI and everyday product.',
+    body: 'Drove across the country with everything I owned to work on Copilot and Windows Search, designing for AI back when it still felt like a bet.',
     artifacts: [
       {
         size: 'md', top: '25%', rotate: 9, enterFrom: 'right',
@@ -281,7 +286,7 @@ const stops: Stop[] = [
         },
       },
       {
-        size: 'md', top: '64%', rotate: 7, enterFrom: 'left', offsetX: 64,
+        size: 'md', top: '42%', rotate: 7, enterFrom: 'left', offsetX: 64,
         media: {
           type: 'image',
           src: '/artifacts/meta-ai-skincare.png',
@@ -293,7 +298,7 @@ const stops: Stop[] = [
   },
 ];
 
-function HeroName() {
+function HeroName({ start }: { start: boolean }) {
   const chars = FULL_NAME.split('');
   return (
     <h1 className="text-6xl md:text-[8rem] font-bold tracking-tighter leading-none text-foreground drop-shadow-[0_2px_30px_rgba(0,0,0,0.25)] text-center md:text-left">
@@ -301,9 +306,11 @@ function HeroName() {
         <motion.span
           key={`${char}-${i}`}
           initial={{ opacity: 0, y: 40, rotate: -8 }}
-          animate={{ opacity: 1, y: 0, rotate: 0 }}
+          animate={start ? { opacity: 1, y: 0, rotate: 0 } : { opacity: 0, y: 40, rotate: -8 }}
           transition={{
-            delay: 0.15 + i * 0.04,
+            // Name begins a beat after the photo settles, so the reveal reads
+            // as one motion: image fades in, then the letters rise to meet it.
+            delay: 0.25 + i * 0.04,
             type: 'spring',
             stiffness: 220,
             damping: 16,
@@ -481,9 +488,85 @@ function StopRow({ stop, index }: { stop: Stop; index: number }) {
           <p className="text-lg md:text-xl leading-relaxed text-foreground/60 max-w-xl">
             {stop.body}
           </p>
+          {stop.cta && (
+            <Link
+              href={stop.cta.href}
+              className="group mt-5 inline-flex items-center gap-1.5 text-base md:text-lg font-medium text-foreground transition-opacity hover:opacity-70"
+            >
+              {stop.cta.label}
+              <span className="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+            </Link>
+          )}
         </div>
       </motion.div>
     </div>
+  );
+}
+
+// Full-bleed hero photo, name overlaid. The photo fades + settles in once the
+// image actually finishes loading (rather than popping in), and the name reveal
+// is gated on that same event so text and image arrive as one coordinated beat.
+function HeroSection() {
+  const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  // Images served from cache can finish loading before React attaches `onLoad`,
+  // so check `complete` on mount to avoid the animation never firing.
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setLoaded(true);
+    }
+  }, []);
+
+  return (
+    <section className="relative min-h-screen overflow-hidden">
+      <div className="absolute inset-0">
+        <motion.img
+          ref={imgRef}
+          src={assets.about.photo1}
+          alt="Ehsan Atiq"
+          onLoad={() => setLoaded(true)}
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.08 }}
+          animate={
+            loaded
+              ? { opacity: 1, scale: 1 }
+              : shouldReduceMotion
+                ? { opacity: 0 }
+                : { opacity: 0, scale: 1.08 }
+          }
+          transition={{
+            opacity: { duration: 1, ease: 'easeOut' },
+            scale: { duration: 1.6, ease: [0.22, 1, 0.36, 1] },
+          }}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
+      </div>
+
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-end pb-32 md:pb-40 px-6 md:px-12">
+        <HeroName start={loaded} />
+      </div>
+
+      <motion.div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-foreground/40"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: loaded ? 1 : 0 }}
+        transition={{ duration: 0.6, delay: loaded ? 0.9 : 0 }}
+      >
+        <svg
+          className="w-6 h-6 animate-bounce"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </motion.div>
+    </section>
   );
 }
 
@@ -501,42 +584,20 @@ export default function AboutPage() {
       <Navigation />
 
       {/* Hero — full-bleed photo, name overlaid, fades into the timeline */}
-      <section className="relative min-h-screen overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={assets.about.photo1}
-            alt="Ehsan Atiq"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
-        </div>
-
-        <div className="relative z-10 min-h-screen flex flex-col items-center justify-end pb-32 md:pb-40 px-6 md:px-12">
-          <HeroName />
-        </div>
-
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-foreground/40 animate-[fadeIn_0.6s_ease-in-out_1.2s_both]">
-          <svg
-            className="w-6 h-6 animate-bounce"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Journey track */}
       <section className="px-6 md:px-12 pt-8 md:pt-12 pb-24 md:pb-32">
         <div className="max-w-4xl mx-auto">
           <FadeIn>
-            <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-20 md:mb-32 text-center">
-              A map of how I got here.
-            </h2>
+            <div className="mb-20 md:mb-32 text-center">
+              <p className="text-2xl md:text-3xl leading-relaxed text-foreground max-w-4xl mx-auto mb-16 md:mb-24">
+                I’m a product of my experiences. Of the places that made me and the one I call home. Of the family that raised me, the values they handed down, and the beliefs I’ve chosen to keep. Design is just where all of that ends up.
+              </p>
+              <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight max-w-4xl mx-auto">
+                I’ve never taken the straight path. Here’s the actual one.
+              </h2>
+            </div>
           </FadeIn>
 
           <div ref={trackRef} className="relative xl:-translate-x-44">
